@@ -1,0 +1,124 @@
+SiiNunit
+{
+# For modders: Please do not modify this file if you want to add a new entry. Create in
+# this directory a new file "<base_name>.<idofyourmod>.sii" where <base_name> is name of
+# base file without the extension (e.g. "dashboard" for "/ui/template/dashboard.sii") and <idofyourmod> is
+# some string which is unlikely to conflict with other mod.
+#
+# Warning: Even if the units are specified in more than one source file, they share the
+# same namespace so suffixes or prefixes should be used to avoid conflicts.
+
+#
+# Renault T 2024
+#
+
+ui::text_template : txt.renault_t_24.ic_speed {
+	name: "zDB  Renault T 2024 IC Speed"
+	text: "<color value=FFFFFFFF><align hstyle=center><font face=/font/db_din_pro_medium.font xscale=5.7 yscale=5.7>%0</font><br><color value=FF999999><font face=/font/db_din_pro_regular.font xscale=0.9 yscale=0.9>%1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_navspeed {
+	name: "zDB  Renault T 2024 IC Navigation View Speed"
+	text: "<color value=FFFFFFFF><align hstyle=center><font face=/font/db_din_pro_medium.font xscale=3.6 yscale=3.6>%0</font><br><color value=FF999999><font face=/font/db_din_pro_regular.font xscale=0.9 yscale=0.9>%1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_temp {
+	name: "zDB  Renault T 2024 IC Temperature"
+	text: "<color value=FF979797><align hstyle=left><font face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.3>%0°%1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_odo {
+	name: "zDB  Renault T 2024 IC Odometer"
+	text: "<color value=FFFFFFFF><align hstyle=right><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0 %1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_tripm {
+	name: "zDB  Renault T 2024 IC Tripmeter"
+	text: "<color value=FFFFFFFF><align hstyle=right><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font><offset vshift=-4><font face=/font/db_din_pro_medium.font xscale=1 yscale=1>T1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_spdlmt {
+	name: "zDB  Renault T 2024 IC Speed limit"
+	text: "<color value=FFEFEFEF><align hstyle=center vstyle=center><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0 right=0.0625 top=0.75 bottom=0.8125 xscale=stretch yscale=stretch></align><ret><offset vshift=5><align hstyle=center vstyle=center><font face=/font/db_din_pro_medium.font xscale=1.4 yscale=1.5>%0</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_eta {
+	name: "zDB  Renault T 2024 IC ETA"
+	text: "<color value=FFFF610F><align hstyle=left vstyle=center><img src=/material/ui/dashboard/renault_t_2024/display.mat width=56 height=56 left=0.3125 right=0.375 top=0.9375 bottom=1></align><ret><offset vshift=10><color value=FFFFFFFF><align hstyle=right vstyle=center><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_wvalbc {
+	name: "zDB  Renault T 2024 IC White Val Big Center"
+	text: "<color value=FFFFFFFF><align hstyle=center><font face=/font/db_din_pro_medium.font xscale=2 yscale=2>%0</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_gvalbc {
+	name: "zDB  Renault T 2024 IC Gray Val Big Center"
+	text: "<color value=FFEFEFEF><align hstyle=center><font face=/font/db_din_pro_medium.font xscale=2 yscale=2>%0</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_wvalc {
+	name: "zDB  Renault T 2024 IC White Val Center"
+	text: "<color value=FFFFFFFF><align hstyle=center><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_wvalr {
+	name: "zDB  Renault T 2024 IC White Val Right"
+	text: "<color value=FFFFFFFF><align hstyle=right><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_wval2sl {
+	name: "zDB  Renault T 2024 IC White Val + ValSmall Left"
+	text: "<color value=FFFFFFFF><align hstyle=left><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font><color value=FF979797><offset vshift=6 hshift=2><font face=/font/db_din_pro_medium.font xscale=1.1 yscale=1.1> %1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_gval2sl {
+	name: "zDB  Renault T 2024 IC Gray Val + ValSmall Left"
+	text: "<color value=FFEFEFEF><align hstyle=left><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font><color value=FF979797><offset vshift=6 hshift=2><font face=/font/db_din_pro_medium.font xscale=1.1 yscale=1.1> %1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_gvalpsr {
+	name: "zDB  Renault T 2024 IC Gray Val + % Small Right"
+	text: "<color value=FFEFEFEF><align hstyle=right><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font><color value=FF979797><offset vshift=6 hshift=2><font face=/font/db_din_pro_medium.font xscale=1.1 yscale=1.1>  %</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.ic_wdval2sr {
+	name: "zDB  Renault T 2024 IC White Double Val + ValSmall Right"
+	text: "<color value=FFFFFFFF><align hstyle=right><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font><color value=FF979797><offset vshift=6 hshift=2><font face=/font/db_din_pro_medium.font xscale=1.1 yscale=1.1>%1</font></align><ret><color value=FFFFFFFF><align hstyle=right vstyle=bottom><font face=/font/db_din_pro_medium.font xscale=1.5 yscale=1.5>%0</font><color value=FF979797><offset vshift=6 hshift=2><font face=/font/db_din_pro_medium.font xscale=1.1 yscale=1.1>%1</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.sid_rbtn {
+	name: "zDB  Renault T 2024 SID Round Button"
+	text: "<align hstyle=center><img src=/material/ui/dashboard/renault_t_2024/display.mat color=%0 yscale=stretch width=%1 left=0.9375 right=1 top=0.380859375 bottom=0.431640625><img src=/material/ui/dashboard/renault_t_2024/display.mat color=%0 yscale=stretch width=%2 right=1 left=1 top=0.380859375 bottom=0.431640625><img src=/material/ui/dashboard/renault_t_2024/display.mat color=%0 yscale=stretch width=%1 right=0.9375 left=1 top=0.380859375 bottom=0.431640625></align><ret><offset vshift=6><align hstyle=center vstyle=center><font face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.2>%3</font></align>"
+}
+
+ui::text_template : txt.renault_t_24.sid_tico {
+	name: "zDB  Renault T 2024 SID Trip Icon"
+	text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat width=50 height=50 %0><offset vshift=30><font face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.3><margin left=60>%1</margin></font>"
+}
+
+ui::text_template : txt.renault_t_24.sid_ttxt {
+	name: "zDB  Renault T 2024 SID Trip Text Val"
+	text: "<color value=FFFFFFFF><font face=/font/db_din_pro_medium.font xscale=2 yscale=2><margin left=60>%0</margin></font>"
+}
+
+ui::text_template : txt.renault_t_24.sid_ttxt2 {
+	name: "zDB  Renault T 2024 SID Trip Text Val2"
+	text: "<color value=FFFFFFFF><font face=/font/db_din_pro_medium.font xscale=2 yscale=2><margin left=60>%0 %1</margin></font>"
+}
+
+ui::text_template : txt.renault_t_24.sid_constxt {
+	name: "zDB  Renault T 2024 SID Avg Consumption Val2"
+	text: "<color value=FFFFFFFF><font face=/font/db_din_pro_medium.font xscale=3 yscale=3><margin left=50>%0</margin></font><br><offset vshift=10><color value=FF979797><font face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.2>%1</font>"
+}
+
+ui::text_template : txt.renault_t_24.sid_iconstxt {
+	name: "zDB  Renault T 2024 SID Instant Consumption Val2"
+	text: "<color value=FFFFFFFF><font face=/font/db_din_pro_medium.font xscale=2 yscale=2>%0 </font><color value=FF979797><offset vshift=6><font face=/font/db_din_pro_medium.font xscale=1.2 yscale=1.1>%1</font>"
+}
+
+}
+
+
+
+

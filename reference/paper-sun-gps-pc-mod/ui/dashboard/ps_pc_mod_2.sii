@@ -1,0 +1,36 @@
+SiiNunit
+{
+ui::window : _nameless.wnd {
+ window_handler: null
+ clip_children: true
+ keep_aspect: none
+ user_string_data: ""
+ first_direction_focus_id: 0
+ fitting: false
+ my_children: 1
+ my_children[0]: _nameless._.map
+ coords_l: 0
+ coords_r: 512
+ coords_t: 256
+ coords_b: 0
+ id: 0
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: null
+}
+#-------------------------------------------------------
+ui::text : _nameless._.map {
+ text: "<img src=/material/ui/dashboard/bare_map.mat xscale=stretch yscale=stretch left=0.3 right=0.7 bottom=0.4 top=0.6>"
+ coords_l: 0
+ coords_r: 512
+ coords_t: 256
+ coords_b: 0
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+}

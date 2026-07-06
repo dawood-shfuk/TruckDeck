@@ -1,0 +1,18 @@
+function Ensure-VanillaGpsCache {
+
+    $marker = Join-Path $vanillaCache 'ui\dashboard\scania_2025_gps.sii'
+
+    # Force fresh extraction to ensure compatibility with newest game version
+    if (Test-Path $vanillaCache) { Remove-Item -LiteralPath $vanillaCache -Recurse -Force }
+
+    if (-not (Test-Path $extractor)) { throw "Missing SCS extractor: $extractor" }
+
+    if (-not (Test-Path $gameRoot)) { throw "ETS2 install not found: $gameRoot" }
+
+    Write-Host '  extracting vanilla GPS UI from base_vehicle.scs (one-time)...'
+
+    New-Item -ItemType Directory -Force -Path $vanillaCache | Out-Null
+
+    & $extractor (Join-Path $gameRoot 'base_vehicle.scs') $vanillaCache | Out-Null
+
+}

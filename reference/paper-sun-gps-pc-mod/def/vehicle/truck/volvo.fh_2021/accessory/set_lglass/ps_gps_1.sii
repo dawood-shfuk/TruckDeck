@@ -1,0 +1,17 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_1.volvo.fh_2021.set_lglass
+{
+	name: "GPS"
+	price: 2510
+	unlock: 0
+	icon: "ps_gps/gps_1"
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/gps_volvo.fh16_2012.pmd"
+	interior_model_uk:"/vehicle/truck/upgrade/ps_gps/gps_volvo.fh16_2012_uk.pmd"
+
+	ui_path: "/ui/dashboard/ps_gps_mod_1.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_gps_b.tobj"
+	ui_drawable_size: (512, 512)
+}
+}

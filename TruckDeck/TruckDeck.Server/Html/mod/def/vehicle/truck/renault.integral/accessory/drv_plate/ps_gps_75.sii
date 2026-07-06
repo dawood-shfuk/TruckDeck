@@ -1,0 +1,18 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_f75.renault.integral.drv_plate
+{
+	name: "GPS (75%)"
+	price: 2480
+	unlock: 0
+	icon: "ps_gps/dp_gps_f75"
+
+	look: film_192
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/dp_gps_renault.ae.pmd"
+
+	ui_path: "/ui/dashboard/ps_pc_mod_2.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_dp_b.tobj"
+	ui_drawable_size: (512, 256)
+}
+}

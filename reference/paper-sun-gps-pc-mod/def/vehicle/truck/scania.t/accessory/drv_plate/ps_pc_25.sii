@@ -1,0 +1,21 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_pc_f25.scania.t.drv_plate
+{
+	name: "PC (25%)"
+	price: 2580
+	unlock: 0
+	icon: "ps_gps/dp_pc_f25"
+
+	look: film_64
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/dp_gps_scania.r.pmd"
+	interior_model_uk:"/vehicle/truck/upgrade/ps_gps/dp_gps_scania.r_uk.pmd"
+
+	ui_path: "/ui/dashboard/ps_pc_mod.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_dp_b.tobj"
+	ui_drawable_size: (512, 256)
+
+@include "/def/vehicle/truck/ps_dp_cw_list.sui"
+}
+}

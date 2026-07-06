@@ -1,0 +1,65 @@
+SiiNunit
+{
+# For modders: Please do not modify this file if you want to add a new entry. Create in
+# this directory a new file "<base_name>.<idofyourmod>.sii" where <base_name> is name of
+# base file without the extension (e.g. "dashboard" for "/ui/template/dashboard.sii") and <idofyourmod> is
+# some string which is unlikely to conflict with other mod.
+#
+# Warning: Even if the units are specified in more than one source file, they share the
+# same namespace so suffixes or prefixes should be used to avoid conflicts.
+
+ui::text_template : txt.daf_xf.text0 {
+	name: "zDB  Daf Text Gear"
+	text: "<align hstyle=center><color value=FF30bcfe><font face=/font/db_normal.font xscale=8.148 yscale=8.148>%0</font></align>"
+}
+
+ui::text_template : txt.daf_xf.text1 {
+	name: "zDB  Daf Numbers"
+	text: "<align hstyle=right><color value=FF30bcfe><font face=/font/number.font xscale=3.3 yscale=3.5>%0</font></align>"
+}
+
+ui::text_template : txt.daf_xf.fuel {
+	name: "zDB  Daf Fuel"
+	text: "<align hstyle=right><color value=FF30bcfe><font face=/font/db_normal.font xscale=5.3544 yscale=5.3544>%0</font><offset vshift=36><font face=/font/number.font xscale=2.0 yscale=2.5> %1</font></align>"
+}
+
+ui::text_template : txt.daf_xf.red_warn {
+	name: "zDB  Daf Red Warning"
+	text: "<align hstyle=center><color value=FF2211FF><font face=/font/db_normal.font xscale=5.3544 yscale=4.88>%0</font></align>"
+}
+
+ui::text_template : txt.daf_xf.text2 {
+	name: "zDB  Daf Plain Text"
+	text: "<color value=FF30bcfe><font face=/font/db_normal.font xscale=5.5 yscale=6>%0</font>"
+}
+
+ui::text_template : txt.daf_xf.temp2 {
+	name: "zDB  Daf Temperature Small"
+	text: "<align hstyle=right><color value=FF30bcfe><font face=/font/db_normal.font xscale=5.3544 yscale=5.3544>%0</font><offset vshift=20><font face=/font/db_normal.font xscale=3.492 yscale=3.7248> °%1</font></align>"
+}
+
+ui::text_template : txt.daf_xf.trip_dist {
+	name: "zDB  Daf XF Trip Distance"
+	text: "<align hstyle=right><color value=FF2257FF><font face=/font/lcd_number.font xscale=1.8 yscale=1.6>%0</font><font face=/font/db_normal.font xscale=1.746 yscale=1.746> %1</font></align>"
+}
+
+ui::text_template : txt.daf_xf.temp {
+	name: "zDB  Daf XF Temperature"
+	text: "<align hstyle=right><color value=FF2257FF><font face=/font/lcd_number.font xscale=1.5 yscale=1.6>%0</font><offset vshift=20><font face=/font/lcd_number.font xscale=1.1 yscale=1.0>.0</font><offset vshift=-5><font face=/font/db_normal.font xscale=2.328 yscale=2.91>°%1</font></align>"
+}
+
+ui::text_template : txt.daf_xf.clock {
+	name: "zDB  Daf XF Clock"
+	text: "<align hstyle=right><color value=FF2257FF><font face=/font/lcd_number.font xscale=1.8 yscale=1.6>%0</font></align>"
+}
+
+ui::text_template : txt.daf_xf.odometer {
+	name: "zDB  Daf XF Odometer"
+	text: "<align hstyle=right><color value=FF2257FF><font face=/font/lcd_number.font xscale=1.8 yscale=1.6>%0</font></align>"
+}
+
+}
+
+
+
+

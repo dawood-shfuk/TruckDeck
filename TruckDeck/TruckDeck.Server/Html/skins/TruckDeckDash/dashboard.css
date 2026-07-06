@@ -1,0 +1,735 @@
+/* =======================================================================
+   Big Rig Cluster - a race-style telemetry cluster adapted for ETS2 / ATS.
+   Display-only (no controls). Fits any screen without scrolling.
+   ======================================================================= */
+
+:root {
+    --lime: #b6ff1f;        /* primary accent (changes per colour scheme) */
+    --lime-dim: #6f8a1c;
+    --amber: #ffcf2b;
+    --red: #ff453a;
+    --blue: #4fb3ff;
+    --track: #23291b;
+    --panel: #13160f;
+    --label: #8a937e;
+    --ink: #f3f6ec;
+    --cap: #ffffff;         /* labels + unit suffixes (white night / black day) */
+    --bg1: #16190f;         /* background gradient stops */
+    --bg2: #0a0c08;
+    --bg-solid: #07080a;
+}
+
+/* ===========================  COLOUR SCHEMES  ===========================
+   Two independent dimensions, each on its own bottom-bar button:
+     data-mode   = night | day   (background / contrast)
+     data-accent = lime | amber | red | blue | green | ice | violet
+   Warning colours (amber/red/blue cues) stay semantic elsewhere.            */
+
+/* ---- Accent colour (night shades, on the dark background) ---- */
+.tdd[data-accent="lime"]   { --lime: #b6ff1f; --lime-dim: #6f8a1c; --track: #23291b; }
+.tdd[data-accent="amber"]  { --lime: #ffc24a; --lime-dim: #8a6320; --track: #2a2511; }
+.tdd[data-accent="red"]    { --lime: #ff5a4d; --lime-dim: #8a2a23; --track: #2a1614; }
+.tdd[data-accent="blue"]   { --lime: #46b6ff; --lime-dim: #1f5f8a; --track: #13202a; }
+.tdd[data-accent="green"]  { --lime: #39e07a; --lime-dim: #1c7a40; --track: #142a1d; }
+.tdd[data-accent="ice"]    { --lime: #dfe9f2; --lime-dim: #5d6b7b; --track: #1a2027; --label: #7d8a99; }
+.tdd[data-accent="violet"] { --lime: #b07cff; --lime-dim: #5a3f8a; --track: #221a2e; }
+
+/* ---- Day mode: light background palette (accent re-shaded below) ---- */
+.tdd[data-mode="day"] {
+    --bg1: #eef2f6; --bg2: #d9e1ea; --bg-solid: #e8edf3;
+    --ink: #0b121c; --label: #4a5563; --panel: #e4eaf1; --track: #c3ccd9;
+    --cap: #000000;
+}
+.tdd[data-mode="day"][data-accent="lime"]   { --lime: #3a7d12; --lime-dim: #9bbf6f; }
+.tdd[data-mode="day"][data-accent="amber"]  { --lime: #b07415; --lime-dim: #d8b06a; }
+.tdd[data-mode="day"][data-accent="red"]    { --lime: #c62828; --lime-dim: #e08a86; }
+.tdd[data-mode="day"][data-accent="blue"]   { --lime: #1565c0; --lime-dim: #7fa7d8; }
+.tdd[data-mode="day"][data-accent="green"]  { --lime: #1b8a45; --lime-dim: #82c79e; }
+.tdd[data-mode="day"][data-accent="ice"]    { --lime: #41566b; --lime-dim: #9aa7b6; }
+.tdd[data-mode="day"][data-accent="violet"] { --lime: #6a3fb0; --lime-dim: #a98fd0; }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg-solid);
+    color: var(--ink);
+    font-family: "Rajdhani", "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.dashboard.tdd {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2px, .6vh, 7px);
+    padding: clamp(3px, .8vh, 9px) clamp(8px, 2vw, 22px);
+    background:
+        radial-gradient(120% 90% at 50% -10%, var(--bg1) 0%, var(--bg2) 60%, var(--bg-solid) 100%);
+    transition: background .25s ease;
+}
+
+/* ---- Connection overlay ---- */
+.statusMessage {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 8, 5, .92);
+    color: var(--lime);
+    letter-spacing: .25em;
+    font-weight: 700;
+    font-size: clamp(.9rem, 2.4vh, 1.4rem);
+}
+.statusMessage:empty { display: none; }
+
+/* ---- Colour-scheme button (bottom-left of the status strip) ---- */
+.theme-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--track);
+    background: var(--panel);
+    color: var(--ink);
+    font-weight: 800;
+    letter-spacing: .06em;
+    font-size: clamp(.55rem, 1.5vh, .78rem);
+    padding: 7px 11px;
+    border-radius: 9px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.theme-btn .sw {
+    width: clamp(14px, 2.4vh, 20px);
+    height: clamp(14px, 2.4vh, 20px);
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 8px var(--lime);
+    flex: 0 0 auto;
+}
+.theme-btn:active { transform: scale(.96); }
+
+/* Compact icon buttons: colour = swatch dot only, mode = sun/moon glyph */
+.theme-color, .theme-mode { padding: 7px; gap: 0; }
+.theme-mode .js-mode-label {
+    font-size: clamp(.95rem, 2.6vh, 1.35rem);
+    line-height: 1;
+}
+
+/* =========================  TURN-SIGNAL EDGE GLOW  ========================= */
+.edge-glow {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 26vw;
+    max-width: 360px;
+    z-index: 15;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .12s ease;
+}
+.edge-glow.left {
+    left: 0;
+    /* Round halo glowing from the middle of the edge, fading outward */
+    background: radial-gradient(circle at 0% 50%, rgba(27, 212, 122, .7) 0%, rgba(27, 212, 122, .28) 35%, rgba(27, 212, 122, 0) 65%);
+}
+.edge-glow.right {
+    right: 0;
+    background: radial-gradient(circle at 100% 50%, rgba(27, 212, 122, .7) 0%, rgba(27, 212, 122, .28) 35%, rgba(27, 212, 122, 0) 65%);
+}
+/* Pulse on its own so the side glows flash even when the server reports the
+   blinker as steadily "on" (it doesn't always toggle the boolean per flash). */
+.edge-glow.on { animation: rc-blink .9s steps(1, end) infinite; }
+@keyframes rc-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* =========================  SCREEN BAR  ========================= */
+.tdd-screen-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    min-height: 28px;
+}
+
+.screen-label {
+    flex: 1 1 auto;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.screen-cycle-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 28px;
+    padding: 4px 8px;
+    background: var(--panel);
+    border: 1px solid var(--lime);
+    border-radius: 4px;
+    color: var(--lime);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background .12s ease, transform .08s ease;
+}
+.screen-cycle-btn svg { width: 18px; height: 18px; display: block; }
+.screen-cycle-btn:active { transform: scale(.92); background: rgba(182, 255, 31, .15); }
+
+/* =========================  DIGITAL DISPLAY  ========================= */
+.tdd-display {
+    width: 100%;
+    flex: 1 1 auto;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--track);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    display: none;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 8px;
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: var(--ink, #eee);
+    padding: 2px 4px;
+    border-left: 3px solid var(--track);
+}
+.info-row span { color: var(--label, #888); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; }
+.info-row b { color: var(--lime); font-weight: 800; }
+
+.screen-truck .info-row { border-left-color: #888; }
+.screen-trip .info-row { border-left-color: var(--lime); }
+.screen-fuel .info-row { border-left-color: #ffb020; }
+.screen-status .info-row { border-left-color: var(--red); }
+.screen-dash .info-row { border-left-color: #4fb3ff; }
+.screen-info .info-row { border-left-color: #ffb020; }
+.screen-system .info-row { border-left-color: #4fb3ff; }
+
+/* Tells grid on screen 0 */
+.screen-tells .rc-tells {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+}
+
+/* =========================  TELL-TALE LIGHTS  ========================= */
+/* Display-menu buttons (colour + day/night), inline in the top bar next to
+   the RPM bar (not an overlay). */
+.rc-controls {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 1vw, 9px);
+    margin-right: clamp(5px, 1.2vw, 14px);
+}
+
+.rc-tells {
+    /* Four fixed icon-width columns, so the block width is constant (and the
+       speed-limit badge above can match it). Off icons collapse out of grid. */
+    display: grid;
+    grid-template-columns: repeat(4, clamp(16px, 3.2vh, 28px));
+    justify-content: center;
+    align-content: start;
+    gap: clamp(2px, .7vh, 7px) clamp(3px, .7vw, 9px);
+    min-height: clamp(18px, 3.6vh, 32px); /* reserve space so gauges don't jump */
+}
+.tell svg { width: 100%; height: auto; }
+/* Tell-tales render as real dashboard-light icons (SVG injected by the JS),
+   tinted by their colour class and glowing when active. */
+.tell {
+    display: none;                       /* only appears when active */
+    line-height: 0;
+    color: var(--label);
+}
+.tell.on { display: inline-flex; align-items: center; }
+.tell svg {
+    width: clamp(16px, 3.2vh, 28px);
+    height: clamp(16px, 3.2vh, 28px);
+    display: block;
+}
+.tell.on svg { filter: drop-shadow(0 0 5px currentColor); }
+.tell.c-green.on { color: var(--lime); }
+.tell.c-blue.on  { color: var(--blue); }
+.tell.c-amber.on { color: var(--amber); }
+.tell.c-red.on   { color: var(--red); }
+
+/* =========================  SHIFT LED BAR  ========================= */
+.tdd-shift {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: clamp(3px, .8vh, 8px) 0;
+    position: relative;
+}
+
+.tdd-controls {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.tdd-rpm-group {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(6px, 1.4vw, 14px);
+}
+
+.tdd-fuel-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(4px, 0.8vw, 8px);
+    margin-bottom: 2px;
+}
+
+.tdd-fuel-icon {
+    flex: 0 0 auto;
+    width: clamp(14px, 2.4vh, 22px);
+    height: clamp(14px, 2.4vh, 22px);
+    color: var(--amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tdd-fuel-icon svg { width: 100%; height: 100%; display: block; }
+.tdd-fuel-icon.low { color: var(--red); }
+.tdd-fuel-icon.warn { color: var(--amber); }
+.tdd-fuel-icon.ok { color: #39e07a; }
+
+.tdd-rpm-icon {
+    flex: 0 0 auto;
+    width: clamp(14px, 2.4vh, 22px);
+    height: clamp(14px, 2.4vh, 22px);
+    color: #39e07a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .08s linear;
+}
+.tdd-rpm-icon svg { width: 100%; height: 100%; display: block; }
+
+.tdd-fuel-bars {
+    display: flex;
+    gap: clamp(3px, 0.6vw, 6px);
+}
+
+.fuel-unit {
+    width: clamp(12px, 2vw, 22px);
+    height: clamp(6px, 1.2vh, 10px);
+    background: var(--track);
+    border-radius: 1px;
+    transition: background .15s ease, box-shadow .15s ease;
+}
+
+.fuel-unit.on.red { background: var(--red); box-shadow: 0 0 8px var(--red); }
+.fuel-unit.on.amber { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+.fuel-unit.on.green { background: #39e07a; box-shadow: 0 0 8px #39e07a; }
+.tdd-scale {
+    flex: 0 0 auto;
+    font-size: clamp(.5rem, 1.4vh, .72rem);
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: var(--cap);
+    font-variant-numeric: tabular-nums;
+}
+.tdd-rpm-bars {
+    flex: 1 1 auto;
+    display: flex;
+    gap: clamp(2px, 0.4vw, 4px);
+    justify-content: center;
+}
+
+.rpm-unit {
+    flex: 1 1 0;
+    height: clamp(10px, 2.2vw, 20px);
+    background: var(--track);
+    border-radius: 1px;
+    transition: background .05s linear, box-shadow .05s linear;
+}
+
+.rpm-unit.on.green { background: #39e07a; box-shadow: 0 0 8px #39e07a; }
+.rpm-unit.on.amber { background: #ffb020; box-shadow: 0 0 8px #ffb020; }
+.rpm-unit.on.red { background: #ff453a; box-shadow: 0 0 8px #ff453a; }
+.rpm-unit.on.white { background: #ffffff; box-shadow: 0 0 10px #ffffff; }
+
+/* =========================  MAIN CLUSTER  ========================= */
+.tdd-main {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* side stat columns hug the edges */
+    gap: clamp(4px, 1vw, 16px);
+    margin: 0;
+    padding: clamp(1px, .4vh, 4px) 0;
+}
+
+/* Centre group: the two gauges grow to fill the space between the columns,
+   keeping speed + RPM as large as possible. */
+.tdd-gauges {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* speed (tacho) left, RPM right */
+    gap: clamp(6px, 2.5vw, 40px);
+}
+
+/* Centre column between the gauges: speed limit on top, tell-tales below it.
+   Width hugs the 4-column icon grid so the limit can match it. */
+.tdd-center {
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;      /* speed limit pinned to the top */
+    gap: clamp(4px, 1.4vh, 14px);
+    padding-top: clamp(2px, 1.2vh, 12px);
+}
+
+/* ---- Stat tiles (left & right columns) ---- */
+.tdd-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(8px, 2.4vh, 26px);
+    /* Fixed width + contained layout so a changing number (e.g. RANGE going
+       from "--" to "1234") never reflows the row and shoves the gauges. */
+    flex: 0 0 clamp(98px, 16vw, 210px);
+    min-width: 0;
+    contain: layout;
+}
+/* Right column hugs the right edge */
+.tdd-main > .tdd-stats:last-child { align-items: flex-end; text-align: right; }
+.tdd-main > .tdd-stats:last-child .att { align-items: flex-end; }
+.tdd-main > .tdd-stats:last-child .stat { justify-content: flex-end; }
+.stat { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: clamp(2px, .5vw, 5px); line-height: 1; }
+.s-label {
+    font-size: clamp(.55rem, 1.5vh, .8rem);
+    letter-spacing: .14em;
+    color: var(--cap);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+.stat > .s-label { flex: 0 0 100%; }    /* label sits on its own line above value+unit */
+.s-val {
+    font-size: clamp(1.4rem, 5.4vh, 3.1rem);
+    font-weight: 800;
+    color: var(--lime);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.s-unit {                    /* unit suffix, inline after the value at ~50% size */
+    font-size: clamp(.7rem, 2.7vh, 1.55rem);
+    color: var(--cap);
+    font-weight: 700;
+}
+.stat.alert .s-val { color: var(--red); }
+.stat.caution .s-val { color: var(--amber); }
+
+/* ---- Steering angle + incline/decline mini widgets ---- */
+.att { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; }
+.att-val {
+    font-size: clamp(.85rem, 2.6vh, 1.5rem);
+    font-weight: 800;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    margin-top: 3px;
+}
+.att-val b { color: var(--lime); }
+.att-val i { font-style: normal; color: var(--label); margin: 0 3px; font-size: .85em; }
+
+.steer-wheel {
+    position: relative;
+    width: clamp(26px, 5.4vh, 48px);
+    height: clamp(26px, 5.4vh, 48px);
+    border-radius: 50%;
+    border: clamp(2px, .55vh, 4px) solid var(--lime);
+    margin: 4px 0 1px;
+    transition: transform .08s linear;
+}
+.steer-wheel::before {           /* horizontal cross-spoke */
+    content: '';
+    position: absolute;
+    top: 50%; left: 6%; right: 6%;
+    height: clamp(2px, .5vh, 3px);
+    background: var(--lime);
+    transform: translateY(-50%);
+}
+.steer-wheel::after {            /* centre hub */
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 26%; height: 26%;
+    background: var(--lime);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+.steer-spoke {                   /* lower column spoke (shows rotation) */
+    position: absolute;
+    left: 50%; top: 52%; bottom: 6%;
+    width: clamp(2px, .5vh, 3px);
+    background: var(--lime);
+    transform: translateX(-50%);
+}
+
+.tilt {
+    position: relative;
+    width: clamp(34px, 7vh, 60px);
+    height: clamp(26px, 5.4vh, 48px);
+    margin: 4px 0 1px;
+    border-radius: 9px;
+    border: 1px solid var(--track);
+    background: rgba(0, 0, 0, .12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.tilt-bar {
+    width: 76%;
+    height: clamp(3px, .65vh, 4px);
+    background: var(--lime);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--lime);
+    transition: transform .1s linear;
+}
+
+/* ---- Gauges ---- */
+.tdd-gauge {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 2vh, 20px);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 0;
+}
+
+.gauge-speed { cursor: pointer; }
+.gauge-speed:active { transform: scale(.985); }
+.gauge-speed.speed-ok .ring-big { color: #39e07a; text-shadow: 0 0 20px rgba(57, 224, 122, 0.35); }
+.gauge-speed.speed-warn .ring-big { color: #ffb020; text-shadow: 0 0 20px rgba(255, 176, 32, 0.35); }
+.gauge-speed.speed-over .ring-big { color: #ff453a; text-shadow: 0 0 22px rgba(255, 69, 58, 0.45); }
+.gauge-speed.speed-over { border-color: rgba(255, 69, 58, 0.55); }
+.gauge-speed.speed-warn { border-color: rgba(255, 176, 32, 0.45); }
+.gauge-speed.speed-ok { border-color: rgba(57, 224, 122, 0.35); }
+.gauge-rpm { cursor: pointer; }
+.gauge-rpm:active { transform: scale(.985); }
+
+.ring-big {
+    font-size: clamp(3rem, 15vh, 8rem);
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+.gauge-rpm .ring-big { color: var(--lime); text-shadow: 0 0 20px var(--lime-dim); }
+
+.ring-unit {
+    font-size: clamp(0.6rem, 1.8vh, 1.2rem);
+    letter-spacing: 0.2em;
+    color: var(--label);
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+.ring-sub {
+    margin-top: 8px;
+    font-size: clamp(0.5rem, 1.2vh, 0.8rem);
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--label);
+}
+.ring-sub b { color: var(--lime); }
+/* When cruise is engaged it shows just the speed number, sized to match RPM. */
+.js-cruise.active { color: var(--lime); font-size: 2rem; line-height: 1; letter-spacing: 0; }
+
+/* Auto / manual indicator pill above the gear */
+.ring-trans {
+    font-size: clamp(0.5rem, 1.2vh, 0.8rem);
+    letter-spacing: 0.2em;
+    font-weight: 800;
+    line-height: 1;
+    padding: 2px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--track);
+    color: var(--label);
+    margin-bottom: 8px;
+}
+.ring-trans.auto {
+    color: var(--lime);
+    border-color: var(--lime);
+    box-shadow: 0 0 10px var(--lime-dim);
+}
+
+/* RPM value + label stacked under the gear in the RPM gauge */
+.ring-rpm {
+    margin-top: 8px;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+}
+.ring-rpmunit {
+    font-size: clamp(0.5rem, 1.2vh, 0.8rem);
+    letter-spacing: 0.2em;
+    color: var(--label);
+    margin-top: 2px;
+}
+
+/* =========================  BOTTOM STRIP  ========================= */
+.tdd-bottom {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(8px, 2vw, 26px);
+    padding: clamp(5px, 1.2vh, 12px) clamp(12px, 2.4vw, 32px);
+    background: linear-gradient(180deg, #101309, #0a0c07);
+    border: 1px solid #1d2316;
+    border-radius: 12px;
+}
+.indics { display: flex; align-items: center; gap: clamp(6px, 1.4vw, 16px); }
+.ind {
+    font-size: clamp(.9rem, 2.6vh, 1.5rem);
+    line-height: 1;
+    color: #39402d;
+    transition: color .1s ease, text-shadow .1s ease;
+}
+.ind.on { color: var(--lime); text-shadow: 0 0 10px rgba(182, 255, 31, .6); }
+.ind.blinker.on { color: var(--amber); text-shadow: 0 0 10px rgba(255, 207, 43, .6); }
+.ind.beam.on { color: var(--blue); text-shadow: 0 0 10px rgba(79, 179, 255, .7); }
+.ind.park.on { color: var(--red); text-shadow: 0 0 10px rgba(255, 69, 58, .7); font-weight: 800; }
+.ind.park { font-weight: 800; font-size: clamp(.8rem, 2.2vh, 1.2rem); }
+
+
+.trip {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 40px);
+    font-size: clamp(.65rem, 1.8vh, .8rem);   /* label / unit text */
+    color: var(--label);
+    font-weight: 600;
+    white-space: nowrap;
+}
+.trip b {                                      /* numbers, called out larger */
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1rem, 3.2vh, 1.5rem);
+}
+.js-eta { color: #fff; }
+.js-ttg { color: var(--amber); }
+.js-deadline { color: var(--red); }
+.js-rest { color: var(--blue); }
+
+.trip .ttg { margin-left: 2px; }
+
+.clock {
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 1.2vw, 14px);
+    font-size: clamp(1rem, 3.2vh, 1.5rem);     /* clock number */
+    font-weight: 800;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+.tdd-country {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(4px, 1vw, 8px);
+    max-width: clamp(88px, 22vw, 200px);
+    padding: clamp(3px, .8vh, 6px) clamp(8px, 1.4vw, 12px);
+    border-radius: 999px;
+    border: 1px solid var(--track);
+    background: rgba(0, 0, 0, .22);
+    line-height: 1;
+    min-width: 0;
+}
+.tdd-country-flag {
+    font-size: clamp(1rem, 2.8vh, 1.45rem);
+    line-height: 1;
+    flex: 0 0 auto;
+}
+.tdd-country-name {
+    font-size: clamp(.62rem, 1.7vh, .82rem);
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--cap);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tdd-country.country-flash {
+    animation: tdd-country-flash .4s ease-out;
+}
+@keyframes tdd-country-flash {
+    0% { border-color: var(--accent, #5ec8ff); background: rgba(94, 200, 255, .18); }
+    100% { border-color: var(--track); background: rgba(0, 0, 0, .22); }
+}
+
+/* ---- Portrait / narrow: shrink the side stats so the gauges fit ---- */
+@media (max-aspect-ratio: 1/1) {
+    .tdd-main { gap: clamp(6px, 2vw, 18px); }
+    .tdd-gauges { gap: clamp(6px, 2vw, 18px); }
+    .s-val { font-size: clamp(1.1rem, 4vh, 2rem); }
+}

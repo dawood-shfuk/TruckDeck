@@ -1,0 +1,16 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_3.daf.95ati.set_lglass
+{
+	name: "GPS-"
+	price: 2500
+	unlock: 0
+	icon: "ps_gps/gps_3"
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/gps_daf.95ati.pmd"
+
+	ui_path: "/ui/dashboard/ps_gps_mod_3.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_gps_b.tobj"
+	ui_drawable_size: (512, 512)
+}
+}

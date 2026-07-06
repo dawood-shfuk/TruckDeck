@@ -1,0 +1,10 @@
+effect : "eut2.unlit.vcol.tex.add.rfx" {
+	diffuse : { 1.000000 , 1.000000 , 1.000000 }
+	luminance_night : 2.850000
+	luminance_output : 2600.000000
+	texture : "texture_base" {
+		source : "/vehicle/truck/upgrade/ps_gps/ui_dp_b.tobj"
+		u_address : clamp
+		v_address : clamp
+	}
+}

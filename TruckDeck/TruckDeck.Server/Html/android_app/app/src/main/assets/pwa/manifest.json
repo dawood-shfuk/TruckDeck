@@ -1,0 +1,22 @@
+{
+    "name": "Truck Command Deck",
+    "short_name": "TruckDeck",
+    "description": "Auxiliary Control Deck for Euro Truck Simulator 2",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "orientation": "landscape",
+    "background_color": "#0a0b0d",
+    "theme_color": "#0a0b0d",
+    "icons": [
+        {
+            "src": "icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

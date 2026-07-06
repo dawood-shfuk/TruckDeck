@@ -1,0 +1,80 @@
+accessory_hookup_data : gps_film_25.addon_hookup
+{
+	name: "25%"
+	price: 1
+	unlock: 0
+	icon: "ps_gps/film_25"
+
+	model: "/vehicle/truck/upgrade/ps_gps/gps_film.pmd"
+	look: film_64
+
+	suitable_for[]: "set_lglass"
+	suitable_for[]: "set_glass"
+	suitable_for[]: "set_dashbrd"
+	suitable_for[]: "gps3"
+	suitable_for[]: "toybig"
+	suitable_for[]: "toymed"
+	suitable_for[]: "toysmall"
+	suitable_for[]: "cup_holder"
+	suitable_for[]: "curtain_f"
+	suitable_for[]: "curtain_l"
+	suitable_for[]: "curtain_r"
+	suitable_for[]: "door_l"
+	suitable_for[]: "door_r"
+	suitable_for[]: "set_cuphold"
+	suitable_for[]: "set_table"
+}
+
+accessory_hookup_data : gps_film_50.addon_hookup
+{
+	name: "50%"
+	price: 1
+	unlock: 0
+	icon: "ps_gps/film_50"
+
+	model: "/vehicle/truck/upgrade/ps_gps/gps_film.pmd"
+	look: default
+
+	suitable_for[]: "set_lglass"
+	suitable_for[]: "set_glass"
+	suitable_for[]: "set_dashbrd"
+	suitable_for[]: "gps3"
+	suitable_for[]: "toybig"
+	suitable_for[]: "toymed"
+	suitable_for[]: "toysmall"
+	suitable_for[]: "cup_holder"
+	suitable_for[]: "curtain_f"
+	suitable_for[]: "curtain_l"
+	suitable_for[]: "curtain_r"
+	suitable_for[]: "door_l"
+	suitable_for[]: "door_r"
+	suitable_for[]: "set_cuphold"
+	suitable_for[]: "set_table"
+}
+
+accessory_hookup_data : gps_film_75.addon_hookup
+{
+	name: "75%"
+	price: 1
+	unlock: 0
+	icon: "ps_gps/film_75"
+
+	model: "/vehicle/truck/upgrade/ps_gps/gps_film.pmd"
+	look: film_192
+
+	suitable_for[]: "set_lglass"
+	suitable_for[]: "set_glass"
+	suitable_for[]: "set_dashbrd"
+	suitable_for[]: "gps3"
+	suitable_for[]: "toybig"
+	suitable_for[]: "toymed"
+	suitable_for[]: "toysmall"
+	suitable_for[]: "cup_holder"
+	suitable_for[]: "curtain_f"
+	suitable_for[]: "curtain_l"
+	suitable_for[]: "curtain_r"
+	suitable_for[]: "door_l"
+	suitable_for[]: "door_r"
+	suitable_for[]: "set_cuphold"
+	suitable_for[]: "set_table"
+}

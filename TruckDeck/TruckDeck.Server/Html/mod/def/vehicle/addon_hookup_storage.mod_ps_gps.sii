@@ -1,0 +1,5 @@
+SiiNunit
+{
+@include "addon_hookups/mod_ps_gps.sui"
+}
+

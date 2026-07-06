@@ -1,0 +1,19 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_2.man.tgx.drv_plate
+{
+	name: "PC"
+	price: 2580
+	unlock: 0
+	icon: "ps_gps/dp_pc"
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/dp_gps_man.tgx.pmd"
+	interior_model_uk:"/vehicle/truck/upgrade/ps_gps/dp_gps_man.tgx_uk.pmd"
+
+	ui_path: "/ui/dashboard/ps_pc_mod.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_dp_b.tobj"
+	ui_drawable_size: (512, 256)
+
+@include "/def/vehicle/truck/ps_dp_cw_list.sui"
+}
+}

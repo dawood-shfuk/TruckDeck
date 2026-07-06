@@ -1,0 +1,56 @@
+SiiNunit
+{
+# For modders: Please do not modify this file if you want to add a new entry. Create in
+# this directory a new file "<base_name>.<idofyourmod>.sii" where <base_name> is name of
+# base file without the extension (e.g. "dashboard" for "/ui/template/dashboard.sii") and <idofyourmod> is
+# some string which is unlikely to conflict with other mod.
+#
+# Warning: Even if the units are specified in more than one source file, they share the
+# same namespace so suffixes or prefixes should be used to avoid conflicts.
+
+
+ui::text_template : txt.man_tgx_el3.txt_right {
+	name: "zDB  MAN EL3 Text Right"
+	text: "<align hstyle=right><font face=/font/db_normal.font xscale=8.148 yscale=8.148>%0</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.temp {
+	name: "zDB  MAN EL3 Temperature"
+	text: "<align hstyle=right><font face=/font/db_normal.font xscale=8.1478 yscale=8.1478>%0 °%1</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.mode {
+	name: "zDB  MAN EL3 Gear Mode"
+	text: "<align hstyle=center><font face=/font/db_normal.font xscale=4.656 yscale=4.656>%0</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.gear {
+	name: "zDB  MAN EL3 Gear"
+	text: "<align hstyle=left><font face=/font/db_normal.font xscale=11.058 yscale=11.058>%0</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.trip {
+	name: "zDB  MAN EL3 Trip Line"
+	text: "<align hstyle=right right=-340><font face=/font/db_normal.font xscale=8.148 yscale=8.148>%0</align></font><ret><align hstyle=left left=375><font face=/font/db_normal.font xscale=6.402 yscale=8.148>%1</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.speed_big {
+	name: "zDB  MAN EL3 Speed Big"
+	text: "<align hstyle=right><font face=/font/db_normal.font xscale=25.608 yscale=23.28>%0</font><offset vshift=240><font face=/font/db_normal.font xscale=4.8888 yscale=5.5872> %1</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.volt {
+	name: "zDB  MAN EL3 Voltage"
+	text: "<align hstyle=right><font face=/font/db_normal.font xscale=8.148 yscale=8.148>%0 V</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.lcd_temp {
+	name: "zDB  MAN EL3 LCD Temperature"
+	text: "<align hstyle=right><font face=/font/lcd_italic.font xscale=2.0 yscale=1.7>%0</font><offset vshift=-8><font face=/font/db_normal.font xscale=4.85388 yscale=3.492>°</font><offset vshift=8 hshift=-4><font face=/font/lcd_italic.font xscale=2.0 yscale=1.7>%1</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.lcd_clock {
+	name: "zDB  MAN EL3 LCD Clock"
+	text: "<align hstyle=right><font face=/font/lcd_italic.font xscale=2.0 yscale=1.7>%0</font></align>"
+}
+ui::text_template : txt.man_tgx_el3.lcd_dist {
+	name: "zDB  MAN EL3 LCD Distance"
+	text: "<align hstyle=right><font face=/font/lcd_italic.font xscale=2.0 yscale=1.7>%0</font></align><br><align hstyle=left left=18><offset vshift=10><font face=/font/db_normal.font xscale=2.91 yscale=2.91>%1</font></align>"
+}
+}
+
+
+
+

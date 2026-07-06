@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.dawood.truckdeck'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.dawood.truckdeck"
+        minSdk 24
+        targetSdk 34
+        versionCode 16205
+        versionName "1.6.3.2"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

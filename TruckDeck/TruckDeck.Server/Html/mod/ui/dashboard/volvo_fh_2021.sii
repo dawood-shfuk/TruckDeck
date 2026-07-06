@@ -1,0 +1,1703 @@
+SiiNunit
+{
+ui::window : _nameless.wnd {
+ window_handler: null
+ clip_children: true
+ keep_aspect: none
+ user_string_data: ""
+ first_direction_focus_id: 0
+ fitting: false
+ my_children: 7
+ my_children[0]: _nameless._.sharedisplay
+ my_children[1]: _nameless._.display1
+ my_children[2]: _nameless._.display2
+ my_children[3]: _nameless._.display3
+ my_children[4]: _nameless._.display4
+ my_children[5]: _nameless._.display5
+ my_children[6]: _nameless._.display6
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 0
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: null
+}
+
+ui::group : _nameless._.sharedisplay {
+ fitting: false
+ my_children: 35
+ my_children[0]: _nameless._.bcg
+ my_children[1]: _nameless._.bcg_gauge
+ my_children[2]: _nameless._.bcg_wings
+ my_children[3]: _nameless._.temp
+ my_children[4]: _nameless._.parkingl_ico
+ my_children[5]: _nameless._.highb_ico
+ my_children[6]: _nameless._.lblinkr_ico
+ my_children[7]: _nameless._.rblinkr_ico
+ my_children[8]: _nameless._.screen_ico
+ my_children[9]: _nameless._.cc_group
+ my_children[10]: _nameless._.consa_ico
+ my_children[11]: _nameless._.consa
+ my_children[12]: _nameless._.consi_ico
+ my_children[13]: _nameless._.consi
+ my_children[14]: _nameless._.range_ico
+ my_children[15]: _nameless._.range
+ my_children[16]: _nameless._.trans_emode
+ my_children[17]: _nameless._.trans_mode
+ my_children[18]: _nameless._.trans_gear
+ my_children[19]: _nameless._.engbr_ico
+ my_children[20]: _nameless._.retar_ico
+ my_children[21]: _nameless._.drvhours_ico
+ my_children[22]: _nameless._.drvhours
+ my_children[23]: _nameless._.time
+ my_children[24]: _nameless._.tripmeter
+ my_children[25]: _nameless._.odometer
+ my_children[26]: _nameless._.fuel_bar
+ my_children[27]: _nameless._.adblue_bar
+ my_children[28]: _nameless._.rpm_bar
+ my_children[29]: _nameless._.speed_gauge
+ my_children[30]: _nameless._.speed_over
+ my_children[31]: _nameless._.speedlmt
+ my_children[32]: _nameless._.warn_ico
+ my_children[33]: _nameless._.low_fuel
+ my_children[34]: _nameless._.low_airp
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 950
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg {
+ text: "<color value=FF0F0F0F><img src=/material/ui/white.mat xscale=stretch yscale=stretch>\r\n<color value=FFA7FFCB>\r\n<ret><offset hshift=1402 vshift=216><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=30 height=30 left=0.9375 right=1 top=0.4375 bottom=0.5>\r\n<color value=FF666666>\r\n<ret><offset hshift=1415 vshift=248><img src=/material/ui/white.mat width=4 height=26>\r\n<ret><offset hshift=1415 vshift=282><img src=/material/ui/white.mat width=4 height=26>\r\n<ret><offset hshift=1415 vshift=316><img src=/material/ui/white.mat width=4 height=26>\r\n<color value=FFBEEFE7>\r\n<ret><offset hshift=44 vshift=224><img src=/material/ui/white.mat width=214 height=2>\r\n<ret><offset hshift=44 vshift=304><img src=/material/ui/white.mat width=214 height=2>\r\n<ret><offset hshift=1238 vshift=265><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=60 height=60 left=0.8125 right=0.875 top=0.375 bottom=0.4375>\r\n<color value=FFFFFFFF>\r\n<ret><offset hshift=1204 vshift=235><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=128 height=128 left=0.5419921875 right=0.6181640625 top=0.7509765625 bottom=0.8271484375>\r\n<ret><offset hshift=1200 vshift=170><font face=/font/db_normal.font xscale=2.1 yscale=2.1>RADIO FM</font>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bcg_gauge {
+ text: "<color value=FFFFFFFF><offset hshift=138><img src=/material/ui/dashboard/volvo_fh_2021/display.mat left=0.00390625 right=0.80859375 top=0.001953125 bottom=0.3740234375 width=1158 height=538>\r\n<font face=/font/db_opti_handel_gothic_light.font xscale=1.2 yscale=1.6>\r\n<ret><offset vshift=342 hshift=376>20\r\n<ret><offset vshift=250 hshift=400>30\r\n<ret><offset vshift=165 hshift=446>40\r\n<ret><offset vshift=100 hshift=520>50\r\n<ret><offset vshift=58 hshift=602>60\r\n<ret><offset vshift=42 hshift=696>70\r\n<ret><offset vshift=58 hshift=790>80\r\n<ret><offset vshift=100 hshift=878>90\r\n<ret><offset vshift=165 hshift=930>100\r\n<ret><offset vshift=250 hshift=980>110\r\n<ret><offset vshift=342 hshift=1000>120\r\n<ret><offset vshift=426 hshift=550>5\r\n<ret><offset vshift=426 hshift=614>10\r\n<ret><offset vshift=426 hshift=696>15\r\n<ret><offset vshift=426 hshift=774>20\r\n<ret><offset vshift=426 hshift=854>25\r\n</font>\r\n<font face=/font/db_opti_handel_gothic_light.font xscale=0.5 yscale=0.6>\r\n<color value=FFBEEFE7>\r\n<ret><offset hshift=330 vshift=262>F\r\n<ret><offset hshift=280 vshift=368>1\r\n<ret><offset hshift=286 vshift=376>/\r\n<ret><offset hshift=292 vshift=386>2\r\n<color value=FFFFD0AC>\r\n<ret><offset hshift=1100 vshift=262>F\r\n<ret><offset hshift=1140 vshift=368>1\r\n<ret><offset hshift=1146 vshift=376>/\r\n<ret><offset hshift=1152 vshift=386>2\r\n</font>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bcg_wings {
+ text: "<color value=FFFFFFFF>\r\n<ret><offset vshift=480><img src=/material/ui/dashboard/volvo_fh_2021/display.mat left=0.517578125 right=0.7294921875 top=0.646484375 bottom=0.6845703125 width=330 height=56>\r\n<ret><offset vshift=480><align hstyle=right><img src=/material/ui/dashboard/volvo_fh_2021/display.mat right=0.517578125 left=0.7294921875 top=0.646484375 bottom=0.6845703125 width=330 height=56></align>\r\n<font face=/font/db_opti_handel_gothic_light.font xscale=0.5 yscale=0.6>\r\n<color value=FFBEEFE7>\r\n<ret><offset hshift=266 vshift=416><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=44 height=44 left=0.9375 right=1 top=0.1875 bottom=0.25>\r\n<ret><offset hshift=268 vshift=458>Diesel\r\n<color value=FFFFD0AC>\r\n<ret><offset hshift=1136 vshift=416><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=44 height=44 left=0.9375 right=1 top=0.1875 bottom=0.25>\r\n<ret><offset hshift=1135 vshift=458>AdBlue\r\n</font>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.temp {
+ value: "22|C"
+ look_template: txt.vlv_fh_2021.ic_temp
+ text: ""
+ coords_l: 36
+ coords_r: 124
+ coords_t: 505
+ coords_b: 475
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1000
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.parkingl_ico {
+ text: "<color value=FF11FF11><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.125 bottom=0.1875>"
+ coords_l: 173
+ coords_r: 221
+ coords_t: 518
+ coords_b: 470
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1470
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.highb_ico {
+ text: "<color value=FFFF6633><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.9375 right=1 top=0.125 bottom=0.1875>"
+ coords_l: 222
+ coords_r: 270
+ coords_t: 518
+ coords_b: 470
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1590
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.lblinkr_ico {
+ text: "<color value=FF44DD88><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0 bottom=0.0625>"
+ coords_l: 403
+ coords_r: 481
+ coords_t: 526
+ coords_b: 448
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1570
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.rblinkr_ico {
+ text: "<color value=FF44DD88><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch right=0.875 left=0.9375 top=0 bottom=0.0625>"
+ coords_l: 951
+ coords_r: 1029
+ coords_t: 526
+ coords_b: 448
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1580
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.screen_ico {
+ text: "<color value=FFBEEFE7><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.9375 right=1 top=0.0625 bottom=0.125>"
+ coords_l: 1342
+ coords_r: 1390
+ coords_t: 518
+ coords_b: 470
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::group : _nameless._.cc_group {
+ fitting: false
+ my_children: 3
+ my_children[0]: _nameless._.cc_ico
+ my_children[1]: _nameless._.cc_spd
+ my_children[2]: _nameless._.cc_gauge
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1240
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.cc_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat left=0.8125 right=0.875 top=0.125 bottom=0.1875 xscale=stretch yscale=stretch>"
+ coords_l: 628
+ coords_r: 676
+ coords_t: 400
+ coords_b: 352
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui::text_common : _nameless._.cc_spd {
+ value: 90
+ look_template: txt.vlv_fh_2021.ic_wvalbc
+ text: ""
+ coords_l: 683
+ coords_r: 762
+ coords_t: 389
+ coords_b: 354
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1100
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui::gauge : _nameless._.cc_gauge {
+ min: -101
+ max: 101
+ value_min: 10
+ value_max: 130
+ value: 10
+ material: "/material/ui/dashboard/volvo_fh_2021/cc_gauge.mat"
+ xref_pos: 32
+ yref_pos: 304
+ off_x: 0
+ off_y: 0
+ smooth_move: true
+ coords_l: 619
+ coords_r: 821
+ coords_t: 253
+ coords_b: 51
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1450
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui::text : _nameless._.consa_ico {
+ text: "<color value=FFBEEFE7><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.8125 right=0.875 top=0.1875 bottom=0.25>"
+ coords_l: 43
+ coords_r: 91
+ coords_t: 379
+ coords_b: 331
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.consa {
+ value: "0.6|l/100km"
+ look_template: txt.vlv_fh_2021.ic_wval2smr
+ text: ""
+ coords_l: 102
+ coords_r: 268
+ coords_t: 364
+ coords_b: 333
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1170
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.consi_ico {
+ text: "<color value=FFBEEFE7><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.1875 bottom=0.25>"
+ coords_l: 43
+ coords_r: 91
+ coords_t: 300
+ coords_b: 252
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.consi {
+ value: "29.6|l/100km"
+ look_template: txt.vlv_fh_2021.ic_wval2smr
+ text: ""
+ coords_l: 102
+ coords_r: 320
+ coords_t: 285
+ coords_b: 254
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1160
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.range_ico {
+ text: "<color value=FFBEEFE7><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.8125 right=0.875 top=0.25 bottom=0.3125>"
+ coords_l: 43
+ coords_r: 91
+ coords_t: 219
+ coords_b: 171
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.range {
+ value: "2605|km"
+ look_template: txt.vlv_fh_2021.ic_wval2smr
+ text: ""
+ coords_l: 102
+ coords_r: 320
+ coords_t: 204
+ coords_b: 173
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1080
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.trans_emode {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.0625 bottom=0.125>"
+ coords_l: 521
+ coords_r: 571
+ coords_t: 175
+ coords_b: 125
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.trans_mode {
+ value: A
+ look_template: txt.vlv_fh_2021.ic_wvalbc
+ text: ""
+ coords_l: 638
+ coords_r: 687
+ coords_t: 168
+ coords_b: 132
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1310
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.trans_gear {
+ value: 12
+ look_template: txt.vlv_fh_2021.ic_wvalbc
+ text: ""
+ coords_l: 696
+ coords_r: 786
+ coords_t: 168
+ coords_b: 132
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1300
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.engbr_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.3125 bottom=0.375>"
+ coords_l: 780
+ coords_r: 830
+ coords_t: 175
+ coords_b: 125
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1230
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.retar_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.9375 right=1 top=0.3125 bottom=0.375>"
+ coords_l: 835
+ coords_r: 885
+ coords_t: 175
+ coords_b: 125
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1290
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.drvhours_ico {
+ text: "<color value=FFBEEFE7><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.9375 right=1 top=0.25 bottom=0.3125>"
+ coords_l: 26
+ coords_r: 58
+ coords_t: 46
+ coords_b: 14
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.drvhours {
+ value: "02:40|h"
+ look_template: txt.vlv_fh_2021.ic_wvalr
+ text: ""
+ coords_l: 48
+ coords_r: 144
+ coords_t: 44
+ coords_b: 16
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1390
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.time {
+ value: "11:34"
+ look_template: txt.vlv_fh_2021.ic_wvalr
+ text: ""
+ coords_l: 172
+ coords_r: 273
+ coords_t: 44
+ coords_b: 16
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1050
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.tripmeter {
+ value: "54205|km"
+ look_template: txt.vlv_fh_2021.ic_tripm
+ text: ""
+ coords_l: 1087
+ coords_r: 1243
+ coords_t: 44
+ coords_b: 16
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1210
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.odometer {
+ value: "1200000|km"
+ look_template: txt.vlv_fh_2021.ic_odo
+ text: ""
+ coords_l: 1213
+ coords_r: 1424
+ coords_t: 44
+ coords_b: 16
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1030
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_text_bar : _nameless._.fuel_bar {
+ vertical: true
+ min_size: 0
+ max_size: 209
+ min_value: 0
+ max_value: 1
+ text: "<color value=FFA7FFEA><align vstyle=bottom><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch height=212 left=0.73046875 right=0.7446 top=0.380859375 bottom=0.5263671875></align>"
+ coords_l: 316
+ coords_r: 337
+ coords_t: 259
+ coords_b: 47
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1070
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_text_bar : _nameless._.adblue_bar {
+ vertical: true
+ min_size: 0
+ max_size: 209
+ min_value: 0
+ max_value: 1
+ text: "<color value=FFFFD9B2><align vstyle=bottom><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch height=212 right=0.73046875 left=0.7446 top=0.380859375 bottom=0.5263671875></align>"
+ coords_l: 1103
+ coords_r: 1124
+ coords_t: 258
+ coords_b: 46
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1140
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_text_bar : _nameless._.rpm_bar {
+ vertical: false
+ min_size: 85
+ max_size: 432
+ min_value: 400
+ max_value: 2600
+ text: "<color value=FFFFFFFF><align hstyle=right><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=85 yscale=stretch left=0.6328125 right=0.693359375 top=0.7607421875 bottom=0.8173828125></align>"
+ coords_l: 504
+ coords_r: 589
+ coords_t: 133
+ coords_b: 46
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1700
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::gauge : _nameless._.speed_gauge {
+ min: -101
+ max: 101
+ value_min: 10
+ value_max: 130
+ value: 10
+ material: "/material/ui/dashboard/volvo_fh_2021/speed_gauge.mat"
+ xref_pos: 512
+ yref_pos: 512
+ off_x: 0
+ off_y: 0
+ smooth_move: true
+ coords_l: 619
+ coords_r: 821
+ coords_t: 253
+ coords_b: 51
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1430
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.speed_over {
+ text: "<color value=55FFFFFF><offset hshift=138><img src=/material/ui/dashboard/volvo_fh_2021/display.mat left=0.00390625 right=0.80859375 top=0.001953125 bottom=0.3740234375 width=1158 height=538>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.speedlmt {
+ value: 150
+ look_template: txt.vlv_fh_2021.ic_speedlmt
+ text: ""
+ coords_l: 161
+ coords_r: 239
+ coords_t: 142
+ coords_b: 64
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1610
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.warn_ico {
+ text: "<color value=FF6EC1FF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.25 bottom=0.3125>"
+ coords_l: 706
+ coords_r: 738
+ coords_t: 46
+ coords_b: 14
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1190
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::group : _nameless._.low_fuel {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.low_fuel_ico
+ my_children[1]: _nameless._.warn_ico1
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1200
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.low_fuel_ico {
+ text: "<color value=FF4488FF>\r\n<ret><offset hshift=0 vshift=0><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=44 height=44 left=0.9375 right=1 top=0.1875 bottom=0.25>\r\n<ret><offset hshift=2 vshift=42><font face=/font/db_opti_handel_gothic_light.font xscale=0.5 yscale=0.6>Diesel</font>"
+ coords_l: 266
+ coords_r: 320
+ coords_t: 124
+ coords_b: 61
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::text : _nameless._.warn_ico1 {
+ text: "<color value=FF6EC1FF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.25 bottom=0.3125>"
+ coords_l: 706
+ coords_r: 738
+ coords_t: 46
+ coords_b: 14
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::group : _nameless._.low_airp {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.airp_ico
+ my_children[1]: _nameless._.warn_ico2
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1260
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.airp_ico {
+ text: "<color value=FF1111FF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.3125 bottom=0.375>\r\n<ret><offset vshift=7 hshift=20><font face=/font/db_normal.font xscale=1.746 yscale=1.746>!</font>"
+ coords_l: 1293
+ coords_r: 1341
+ coords_t: 518
+ coords_b: 470
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_airp
+}
+
+ui::text : _nameless._.warn_ico2 {
+ text: "<color value=FF6EC1FF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.25 bottom=0.3125>"
+ coords_l: 706
+ coords_r: 738
+ coords_t: 46
+ coords_b: 14
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_airp
+}
+
+ui::group : _nameless._.display1 {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.bcg1
+ my_children[1]: _nameless._.speed
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 100
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg1 {
+ text: "<color value=FFFFFFFF><offset hshift=340 vshift=197><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=758 height=266 left=0.0029296875 right=0.5302734375 top=0.380859375 bottom=0.5595703125>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text_common : _nameless._.speed {
+ value: "0|km/h"
+ look_template: txt.vlv_fh_2021.ic_speed
+ text: ""
+ coords_l: 580
+ coords_r: 859
+ coords_t: 292
+ coords_b: 209
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1020
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::group : _nameless._.display2 {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.bcg2
+ my_children[1]: _nameless._.turbo_pres
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 200
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg2 {
+ text: "<color value=FFFFFFFF><offset hshift=340 vshift=198><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=758 height=266 left=0.0029296875 right=0.5302734375 top=0.380859375 bottom=0.5595703125>\r\n<ret><offset hshift=602 vshift=274><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=230 height=16 left=0.5419921875 right=0.705078125 top=0.7138671875 bottom=0.7275390625>\r\n<font face=/font/db_opti_handel_gothic_light.font xscale=0.7 yscale=0.8>\r\n<ret><offset hshift=604 vshift=300>Low<offset hshift=150> High\r\n</font>\r\n<color value=FFAABBBB>\r\n<font face=/font/db_normal.font xscale=1.513 yscale=1.513>\r\n<ret><offset hshift=614 vshift=228>Turbo Boost Pressure\r\n</font>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui_text_bar : _nameless._.turbo_pres {
+ vertical: false
+ min_size: 32
+ max_size: 246
+ min_value: 0
+ max_value: &3fc00000
+ text: "<color value=FFFFFFFF><align hstyle=right><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=32 yscale=stretch left=0.73046875 right=0.75 top=0.5322265625 bottom=0.5498046875></align>"
+ coords_l: 593
+ coords_r: 625
+ coords_t: 283
+ coords_b: 255
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1130
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::group : _nameless._.display3 {
+ fitting: false
+ my_children: 3
+ my_children[0]: _nameless._.bcg3
+ my_children[1]: _nameless._.air_press
+ my_children[2]: _nameless._.air_press_w
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 300
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg3 {
+ text: "<color value=FFFFFFFF><offset hshift=340 vshift=198><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=758 height=266 left=0.0029296875 right=0.5302734375 top=0.380859375 bottom=0.5595703125>\r\n<ret><offset hshift=602 vshift=271><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=232 height=21 left=0.5419921875 right=0.705078125 top=0.69140625 bottom=0.7080078125>\r\n<font face=/font/db_opti_handel_gothic_light.font xscale=0.7 yscale=0.8>\r\n<ret><offset hshift=586 vshift=264>1\r\n<ret><offset hshift=586 vshift=284>2\r\n<ret><offset hshift=836 vshift=274>bar\r\n<ret><offset hshift=702 vshift=300>7<offset hshift=8>8<offset hshift=63>13\r\n</font>\r\n<color value=FFAABBBB>\r\n<font face=/font/db_normal.font xscale=1.513 yscale=1.513>\r\n<ret><offset hshift=592 vshift=228>Brake Air Supply Pressure\r\n</font>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui_text_bar : _nameless._.air_press {
+ vertical: false
+ min_size: 32
+ max_size: 250
+ min_value: 0
+ max_value: 14
+ text: "<color value=FFFFFFFF><align hstyle=right>\r\n<img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=32 height=28 left=0.73046875 right=0.75 top=0.5322265625 bottom=0.5498046875>\r\n<ret><offset vshift=30><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=32 height=28 left=0.73046875 right=0.75 bottom=0.5322265625 top=0.5498046875>\r\n</align>"
+ coords_l: 593
+ coords_r: 625
+ coords_t: 287
+ coords_b: 227
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1120
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.air_press_w {
+ text: "<color value=FF4422FF>\r\n<img src=/material/ui/dashboard/volvo_fh_2021/display.mat yscale=stretch width=295 right=0.5146484375 left=0.677734375 top=0.830078125 bottom=1>\r\n<img src=/material/ui/dashboard/volvo_fh_2021/display.mat yscale=stretch width=295 left=0.5146484375 right=0.677734375 top=0.830078125 bottom=1>\r\n<color value=FF4488FF><font face=/font/db_normal.font xscale=1.862 yscale=1.862>\r\n<ret><align hstyle=center><offset vshift=100>Stay parked</align>\r\n</font>"
+ coords_l: 426
+ coords_r: 1016
+ coords_t: 448
+ coords_b: 132
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1260
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::group : _nameless._.display4 {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.bcg4
+ my_children[1]: _nameless._.water_temp
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 400
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg4 {
+ text: "<color value=FFFFFFFF><offset hshift=340 vshift=198><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=758 height=266 left=0.0029296875 right=0.5302734375 top=0.380859375 bottom=0.5595703125>\r\n<ret><offset hshift=602 vshift=275><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=232 height=16 left=0.5419921875 right=0.705078125 top=0.7333984375 bottom=0.7451171875>\r\n<font face=/font/db_opti_handel_gothic_light.font xscale=0.7 yscale=0.8>\r\n<ret><offset hshift=604 vshift=300>Low<offset hshift=150> High\r\n</font>\r\n<color value=FFAABBBB>\r\n<font face=/font/db_normal.font xscale=1.513 yscale=1.513>\r\n<ret><offset hshift=610 vshift=228>Engine Coolant Temp.\r\n</font>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui_text_bar : _nameless._.water_temp {
+ vertical: false
+ min_size: 32
+ max_size: 250
+ min_value: 0
+ max_value: 130
+ text: "<color value=FFFFFFFF><align hstyle=right><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=32 yscale=stretch left=0.73046875 right=0.75 top=0.5322265625 bottom=0.5498046875></align>"
+ coords_l: 593
+ coords_r: 625
+ coords_t: 283
+ coords_b: 255
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1150
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::group : _nameless._.display5 {
+ fitting: false
+ my_children: 19
+ my_children[0]: _nameless._.bcg5
+ my_children[1]: _nameless._.speed1
+ my_children[2]: _nameless._.cc_group1
+ my_children[3]: _nameless._.tript_ico
+ my_children[4]: _nameless._.tript
+ my_children[5]: _nameless._.timetr
+ my_children[6]: _nameless._.consa1_ico
+ my_children[7]: _nameless._.consa1
+ my_children[8]: _nameless._.eta
+ my_children[9]: _nameless._.fuel_bar1
+ my_children[10]: _nameless._.range1
+ my_children[11]: _nameless._.adblue_bar1
+ my_children[12]: _nameless._.adblue
+ my_children[13]: _nameless._.trans_emode1
+ my_children[14]: _nameless._.trans_mode1
+ my_children[15]: _nameless._.trans_gear1
+ my_children[16]: _nameless._.engbr_ico1
+ my_children[17]: _nameless._.retar_ico1
+ my_children[18]: _nameless._.rpm_bar1
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 500
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg5 {
+ text: "<color value=FF534A53>\r\n<ret><offset hshift=280 vshift=100><img src=/material/ui/white.mat width=880 height=355 xscale=stretch yscale=stretch>\r\n<color value=FFFFFFFF>\r\n<ret><offset hshift=280 vshift=100><img src=/material/ui/dashboard/bare_map.mat width=880 height=355 left=0.125 right=0.875 bottom=0.35388 top=0.6811>\r\n<ret>\r\n<img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=720 height=270 left=0 right=0.49 bottom=0.825 top=1>\r\n<img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=720 height=270 right=0 left=0.49 bottom=0.825 top=1>\r\n<ret><offset vshift=270>\r\n<img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=720 height=270 left=0 right=0.49 top=0.825 bottom=1>\r\n<img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=720 height=270 right=0 left=0.49 top=0.825 bottom=1>\r\n<ret><offset vshift=102>\r\n<align hstyle=center><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=500 height=100 left=0 right=0.5 top=0.6396484375 bottom=0.6875></align>\r\n<color value=FFFFFFFF>\r\n<ret><offset hshift=363><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=705 height=201 left=0.00390625 right=0.4931640625 top=0.56640625 bottom=0.7060546875>\r\n<ret><offset hshift=340 vshift=411><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=765 height=126 left=0.0029296875 right=0.5361328125 top=0.712890625 bottom=0.8017578125>\r\n<ret><offset hshift=43 vshift=141><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=269 height=256 left=0.5361328125 right=0.724609375 top=0.380859375 bottom=0.5595703125>\r\n<ret><offset hshift=1134 vshift=218><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=255 height=104 left=0.5361328125 right=0.7255859375 top=0.5654296875 bottom=0.6396484375>\r\n<color value=FFA7FFCB>\r\n<ret><offset hshift=1415 vshift=282><img src=/material/ui/white.mat width=4 height=26>\r\n<color value=FF666666>\r\n<ret><offset hshift=1402 vshift=216><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=30 height=30 left=0.9375 right=1 top=0.4375 bottom=0.5>\r\n<ret><offset hshift=1415 vshift=248><img src=/material/ui/white.mat width=4 height=26>\r\n<ret><offset hshift=1415 vshift=316><img src=/material/ui/white.mat width=4 height=26>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.speed1 {
+ value: "0|km/h"
+ look_template: txt.vlv_fh_2021.ic_navspeed
+ text: ""
+ coords_l: 560
+ coords_r: 880
+ coords_t: 536
+ coords_b: 440
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1020
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::group : _nameless._.cc_group1 {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.cc_ico1
+ my_children[1]: _nameless._.cc_spd1
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1240
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.cc_ico1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat left=0.8125 right=0.875 top=0.125 bottom=0.1875 xscale=stretch yscale=stretch>"
+ coords_l: 628
+ coords_r: 676
+ coords_t: 434
+ coords_b: 386
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group1
+}
+
+ui::text_common : _nameless._.cc_spd1 {
+ value: 90
+ look_template: txt.vlv_fh_2021.ic_wvalbc
+ text: ""
+ coords_l: 683
+ coords_r: 762
+ coords_t: 423
+ coords_b: 388
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1100
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group1
+}
+
+ui::text : _nameless._.tript_ico {
+ text: "<color value=FFBEEFE7>\r\n<offset vshift=12><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=48 height=48 left=0.8125 right=0.875 top=0 bottom=0.0625>\r\n<offset vshift=-12 hshift=12><font face=/font/db_normal.font xscale=1.513 yscale=1.513>Trip time</font>"
+ coords_l: 64
+ coords_r: 304
+ coords_t: 385
+ coords_b: 321
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.tript {
+ value: "00:00"
+ look_template: txt.vlv_fh_2021.ic_wvall
+ text: ""
+ coords_l: 124
+ coords_r: 240
+ coords_t: 355
+ coords_b: 324
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1390
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.timetr {
+ value: "00:00"
+ look_template: txt.vlv_fh_2021.ic_ttilrest
+ text: ""
+ coords_l: 64
+ coords_r: 304
+ coords_t: 305
+ coords_b: 241
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1540
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.consa1_ico {
+ text: "<color value=FFBEEFE7><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.8125 right=0.875 top=0.1875 bottom=0.25>"
+ coords_l: 65
+ coords_r: 113
+ coords_t: 213
+ coords_b: 165
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.consa1 {
+ value: "0.6|l/100km"
+ look_template: txt.vlv_fh_2021.ic_wval2smr
+ text: ""
+ coords_l: 124
+ coords_r: 290
+ coords_t: 198
+ coords_b: 167
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1170
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.eta {
+ value: "00:00"
+ look_template: txt.vlv_fh_2021.ic_eta
+ text: ""
+ coords_l: 1156
+ coords_r: 1396
+ coords_t: 305
+ coords_b: 241
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1530
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui_text_bar : _nameless._.fuel_bar1 {
+ vertical: true
+ min_size: 0
+ max_size: 59
+ min_value: 0
+ max_value: 1
+ text: "<color value=FFA7FFEA><align vstyle=bottom><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch height=59 left=0.7314453125 right=0.73828125 top=0.5556640625 bottom=0.59765625></align>"
+ coords_l: 341
+ coords_r: 349
+ coords_t: 126
+ coords_b: 67
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1070
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.range1 {
+ value: "2605|km"
+ look_template: txt.vlv_fh_2021.ic_wval2r
+ text: ""
+ coords_l: 348
+ coords_r: 452
+ coords_t: 106
+ coords_b: 75
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui_text_bar : _nameless._.adblue_bar1 {
+ vertical: true
+ min_size: 0
+ max_size: 59
+ min_value: 0
+ max_value: 1
+ text: "<color value=FFFFD9B2><align vstyle=bottom><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch height=59 left=0.7314453125 right=0.73828125 top=0.5556640625 bottom=0.59765625></align>"
+ coords_l: 1097
+ coords_r: 1105
+ coords_t: 126
+ coords_b: 67
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1140
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.adblue {
+ value: 65
+ look_template: txt.vlv_fh_2021.ic_bvalpc
+ text: ""
+ coords_l: 989
+ coords_r: 1093
+ coords_t: 106
+ coords_b: 75
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1520
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.trans_emode1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.0625 bottom=0.125>"
+ coords_l: 521
+ coords_r: 571
+ coords_t: 125
+ coords_b: 75
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.trans_mode1 {
+ value: A
+ look_template: txt.vlv_fh_2021.ic_wvalbc
+ text: ""
+ coords_l: 638
+ coords_r: 687
+ coords_t: 118
+ coords_b: 82
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1310
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.trans_gear1 {
+ value: 12
+ look_template: txt.vlv_fh_2021.ic_wvalbc
+ text: ""
+ coords_l: 696
+ coords_r: 786
+ coords_t: 118
+ coords_b: 82
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1300
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.engbr_ico1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.875 right=0.9375 top=0.3125 bottom=0.375>"
+ coords_l: 780
+ coords_r: 826
+ coords_t: 125
+ coords_b: 79
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1230
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.retar_ico1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/volvo_fh_2021/display.mat xscale=stretch yscale=stretch left=0.9375 right=1 top=0.3125 bottom=0.375>"
+ coords_l: 835
+ coords_r: 881
+ coords_t: 125
+ coords_b: 79
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1290
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui_text_bar : _nameless._.rpm_bar1 {
+ vertical: false
+ min_size: 85
+ max_size: 432
+ min_value: 400
+ max_value: 2600
+ text: "<color value=FFFFFFFF><align hstyle=right><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=85 yscale=stretch left=0.6328125 right=0.693359375 top=0.7607421875 bottom=0.79></align>"
+ coords_l: 504
+ coords_r: 589
+ coords_t: 89
+ coords_b: 58
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1700
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::group : _nameless._.display6 {
+ fitting: false
+ my_children: 4
+ my_children[0]: _nameless._.bcg6
+ my_children[1]: _nameless._.dmg_warn
+ my_children[2]: _nameless._.lowf_warn
+ my_children[3]: _nameless._.lowa_warn
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 600
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg6 {
+ text: "<color value=AA0F0F0F><img src=/material/ui/white.mat width=280 height=380><offset hshift=900><img src=/material/ui/white.mat width=170 height=480>\r\n<color value=FF0F0F0F>\r\n<ret><offset vshift=370><align hstyle=center><img src=/material/ui/white.mat width=500 height=180></align>\r\n<color value=FFBEEFE7>\r\n<ret><offset vshift=196 hshift=540><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=30 height=30 left=0.8125 right=0.875 top=0.5 bottom=0.5625>\r\n<ret><offset vshift=196 hshift=870><img src=/material/ui/dashboard/volvo_fh_2021/display.mat width=30 height=30 right=0.8125 left=0.875 top=0.5 bottom=0.5625>\r\n<font face=/font/db_normal.font xscale=1.979 yscale=1.746>\r\n<ret><offset vshift=192><align hstyle=center>NOTIFICATIONS</align>\r\n</font>\r\n<color value=FFFFFFFF>\r\n<font face=/font/db_normal.font xscale=1.746 yscale=1.746>\r\n<ret><offset vshift=330><align hstyle=center>No active notifications</align>\r\n</font>\r\n<ret><offset vshift=230><align hstyle=center>\r\n<color value=FF666666>\r\n<img src=/material/ui/white.mat width=24 height=4><offset hshift=6>\r\n<color value=FFA7FFCB>\r\n<img src=/material/ui/white.mat width=24 height=4><offset hshift=6>\r\n<color value=FF666666>\r\n<img src=/material/ui/white.mat width=24 height=4><offset hshift=6>\r\n<img src=/material/ui/white.mat width=24 height=4>\r\n</align>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::group : _nameless._.dmg_warn {
+ fitting: false
+ my_children: 1
+ my_children[0]: _nameless.1b5d.92f0
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1190
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless.1b5d.92f0 {
+ text: "<color value=FF0F0F0F><img src=/material/ui/white.mat xscale=stretch yscale=stretch>\r\n<color value=FF4488FF><font face=/font/db_normal.font xscale=1.862 yscale=1.862>\r\n<ret><align hstyle=center vstyle=center>Vehicle damaged<br>Visit service, please.</align>\r\n</font>"
+ coords_l: 560
+ coords_r: 874
+ coords_t: 261
+ coords_b: 133
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 11
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.dmg_warn
+}
+
+ui::group : _nameless._.lowf_warn {
+ fitting: false
+ my_children: 1
+ my_children[0]: _nameless.1b63.41d0
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1200
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless.1b63.41d0 {
+ text: "<color value=FF0F0F0F><img src=/material/ui/white.mat xscale=stretch yscale=stretch>\r\n<color value=FF4488FF><font face=/font/db_normal.font xscale=1.862 yscale=1.862>\r\n<ret><align hstyle=center vstyle=center>Low fuel!<br>Refuel your tank.</align>\r\n</font>"
+ coords_l: 560
+ coords_r: 874
+ coords_t: 261
+ coords_b: 133
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.lowf_warn
+}
+
+ui::group : _nameless._.lowa_warn {
+ fitting: false
+ my_children: 1
+ my_children[0]: _nameless.1b63.44a0
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 0#1260
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless.1b63.44a0 {
+ text: ""#"<color value=FF0F0F0F><img src=/material/ui/white.mat xscale=stretch yscale=stretch>\r\n<color value=FF4488FF><font face=/font/db_normal.font xscale=1.862 yscale=1.862>\r\n<ret><align hstyle=center vstyle=center>Low air pressure!<br>Please wait.</align>\r\n</font>"
+ coords_l: 560
+ coords_r: 874
+ coords_t: 261
+ coords_b: 133
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.lowa_warn
+}
+
+}
+
+
+
+

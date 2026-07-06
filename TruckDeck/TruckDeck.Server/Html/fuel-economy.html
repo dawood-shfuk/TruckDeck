@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Fuel Economy Log</title>
+    <style>
+        :root {
+            --lime: #b6ff1f;
+            --amber: #ffcf2b;
+            --red: #ff453a;
+            --ink: #eef3e6;
+            --label: #8a937e;
+            --panel: #12150d;
+            --line: #1f2618;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { margin: 0; height: 100%; }
+        body {
+            background: radial-gradient(120% 90% at 50% -10%, #16190f 0%, #0a0c08 60%, #07080a 100%);
+            color: var(--ink);
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            padding: clamp(12px, 3vw, 32px);
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        h1 {
+            font-size: clamp(1.2rem, 3.4vw, 1.8rem);
+            letter-spacing: .12em;
+            margin: 0;
+            color: #fff;
+        }
+        h1 .accent { color: var(--lime); }
+        .spacer { flex: 1 1 0; }
+        .btn {
+            border: 1px solid #2c331f;
+            background: #13160f;
+            color: #c7d3b3;
+            font-weight: 700;
+            letter-spacing: .04em;
+            font-size: .82rem;
+            padding: 9px 14px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+        .btn:hover { border-color: var(--lime); }
+        .btn.danger { color: #ffb3ae; border-color: #3a241f; }
+        .btn.danger:hover { border-color: var(--red); }
+
+        .summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .card {
+            flex: 1 1 150px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+        .card .k { font-size: .68rem; letter-spacing: .14em; color: var(--label); text-transform: uppercase; }
+        .card .v { font-size: clamp(1.3rem, 4vw, 2rem); font-weight: 800; color: var(--lime); font-variant-numeric: tabular-nums; }
+        .card .v small { font-size: .55em; color: #6f7a5e; font-weight: 700; }
+
+        .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+        table { width: 100%; border-collapse: collapse; font-size: .85rem; min-width: 760px; }
+        thead th {
+            text-align: right;
+            background: #0f1209;
+            color: var(--label);
+            font-weight: 700;
+            letter-spacing: .06em;
+            font-size: .68rem;
+            text-transform: uppercase;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--line);
+            white-space: nowrap;
+        }
+        thead th:first-child, tbody td:first-child { text-align: left; }
+        tbody td {
+            text-align: right;
+            padding: 9px 12px;
+            border-bottom: 1px solid #161b10;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+        tbody tr:nth-child(even) { background: rgba(255, 255, 255, .015); }
+        tbody tr:hover { background: rgba(182, 255, 31, .05); }
+        .muted { color: var(--label); }
+        .empty {
+            padding: 40px 16px;
+            text-align: center;
+            color: var(--label);
+        }
+        .note { margin-top: 14px; font-size: .76rem; color: #5d6b4c; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FUEL <span class="accent">ECONOMY</span> LOG</h1>
+        <div class="spacer"></div>
+        <button class="btn" id="refresh">&#8635; Refresh</button>
+        <button class="btn" id="export-json">Export JSON</button>
+        <button class="btn" id="export-csv">Export CSV</button>
+        <button class="btn danger" id="clear">Clear log</button>
+    </header>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Session start</th>
+                    <th>Route</th>
+                    <th>Load</th>
+                    <th>Weight (t)</th>
+                    <th>Duration</th>
+                    <th>Distance (km)</th>
+                    <th>Distance (mi)</th>
+                    <th>Fuel (L)</th>
+                    <th>L/100km</th>
+                    <th>L/mi</th>
+                    <th>MPG (US)</th>
+                </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+        </table>
+    </div>
+
+    <p class="note" id="note"></p>
+
+    <script>
+        var KEY = 'rc.fuelLog';
+        var L_PER_US_GAL = 3.785411784;
+
+        function loadLog() {
+            try {
+                var raw = localStorage.getItem(KEY);
+                var arr = raw ? JSON.parse(raw) : [];
+                return Array.isArray(arr) ? arr : [];
+            } catch (e) { return []; }
+        }
+
+        function fmtDur(ms) {
+            if (!isFinite(ms) || ms < 0) return '--';
+            var s = Math.round(ms / 1000);
+            var h = Math.floor(s / 3600); s -= h * 3600;
+            var m = Math.floor(s / 60); s -= m * 60;
+            return (h ? h + 'h ' : '') + (m < 10 && h ? '0' : '') + m + 'm ' + (s < 10 ? '0' : '') + s + 's';
+        }
+        function fmtDate(iso) {
+            var d = new Date(iso);
+            if (isNaN(d.getTime())) return '--';
+            var p = function (n) { return (n < 10 ? '0' : '') + n; };
+            return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+                ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+        }
+        function metrics(s) {
+            var km = +s.distanceKm || 0;
+            var mi = km * 0.621371;
+            var fuel = +s.fuelL || 0;
+            return {
+                km: km, mi: mi, fuel: fuel,
+                l100: km > 0 ? fuel / km * 100 : null,
+                lmi: mi > 0 ? fuel / mi : null,
+                mpg: fuel > 0 ? mi / (fuel / L_PER_US_GAL) : null,
+                durMs: new Date(s.end) - new Date(s.start)
+            };
+        }
+        function n(v, d) { return v == null ? '<span class="muted">--</span>' : v.toFixed(d == null ? 2 : d); }
+        function esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>]/g, function (c) {
+                return c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;';
+            });
+        }
+        function route(s) {
+            if (s.from && s.to) return esc(s.from) + ' &#8594; ' + esc(s.to);
+            if (s.to) return esc(s.to);
+            if (s.from) return esc(s.from);
+            return '<span class="muted">--</span>';
+        }
+        function tons(kg) { return (kg == null || isNaN(kg)) ? '<span class="muted">--</span>' : (kg / 1000).toFixed(1); }
+
+        function render() {
+            var log = loadLog();
+            var rows = document.getElementById('rows');
+            var summary = document.getElementById('summary');
+            rows.innerHTML = '';
+
+            if (!log.length) {
+                rows.innerHTML = '<tr><td colspan="11" class="empty">No sessions logged yet.<br>' +
+                    'Open the Big Rig Cluster or Trucker\'s Command Deck dashboard, tap <b>ECON</b> to start a trip, then tap it again to stop and save.</td></tr>';
+                summary.innerHTML = '';
+                document.getElementById('note').innerHTML = noteText();
+                return;
+            }
+
+            var totKm = 0, totFuel = 0;
+            log.slice().reverse().forEach(function (s) {
+                var m = metrics(s);
+                totKm += m.km; totFuel += m.fuel;
+                var tr = document.createElement('tr');
+                tr.innerHTML =
+                    '<td>' + fmtDate(s.start) + '</td>' +
+                    '<td style="text-align:left">' + route(s) + '</td>' +
+                    '<td style="text-align:left">' + (s.cargo ? esc(s.cargo) : '<span class="muted">--</span>') + '</td>' +
+                    '<td>' + tons(s.massKg) + '</td>' +
+                    '<td>' + fmtDur(m.durMs) + '</td>' +
+                    '<td>' + n(m.km, 1) + '</td>' +
+                    '<td>' + n(m.mi, 1) + '</td>' +
+                    '<td>' + n(m.fuel, 1) + '</td>' +
+                    '<td>' + n(m.l100, 2) + '</td>' +
+                    '<td>' + n(m.lmi, 3) + '</td>' +
+                    '<td>' + n(m.mpg, 1) + '</td>';
+                rows.appendChild(tr);
+            });
+
+            var totMi = totKm * 0.621371;
+            var avgL100 = totKm > 0 ? totFuel / totKm * 100 : null;
+            var avgLmi = totMi > 0 ? totFuel / totMi : null;
+            var avgMpg = totFuel > 0 ? totMi / (totFuel / L_PER_US_GAL) : null;
+
+            summary.innerHTML =
+                card('Sessions', log.length, '') +
+                card('Total distance', totKm.toFixed(1), 'km / ' + totMi.toFixed(1) + ' mi') +
+                card('Total fuel', totFuel.toFixed(1), 'L') +
+                card('Avg L/100km', avgL100 == null ? '--' : avgL100.toFixed(2), '') +
+                card('Avg L/mi', avgLmi == null ? '--' : avgLmi.toFixed(3), '') +
+                card('Avg MPG (US)', avgMpg == null ? '--' : avgMpg.toFixed(1), '');
+
+            document.getElementById('note').innerHTML = noteText();
+        }
+
+        function card(k, v, unit) {
+            return '<div class="card"><div class="k">' + k + '</div>' +
+                '<div class="v">' + v + (unit ? ' <small>' + unit + '</small>' : '') + '</div></div>';
+        }
+        function noteText() {
+            return 'Data is stored in this browser (localStorage key <b>rc.fuelLog</b>) for ' +
+                location.origin + '. For sharing across the dashboard and this page, open both from the ' +
+                'same server address. Use <b>Export</b> to save a real file.';
+        }
+
+        function download(filename, text, type) {
+            var blob = new Blob([text], { type: type });
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 100);
+        }
+        function stamp() {
+            var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; };
+            return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + p(d.getHours()) + p(d.getMinutes());
+        }
+        function exportJson() {
+            download('fuel-economy-' + stamp() + '.json', JSON.stringify(loadLog(), null, 2), 'application/json');
+        }
+        function exportCsv() {
+            var log = loadLog();
+            var head = ['start', 'end', 'from', 'to', 'cargo', 'weight_t', 'distance_km', 'distance_mi', 'fuel_l', 'l_per_100km', 'l_per_mi', 'mpg_us'];
+            var lines = [head.join(',')];
+            var csv = function (v) {
+                v = String(v == null ? '' : v);
+                return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+            };
+            log.forEach(function (s) {
+                var m = metrics(s);
+                lines.push([
+                    s.start, s.end, csv(s.from), csv(s.to), csv(s.cargo),
+                    (s.massKg == null || isNaN(s.massKg)) ? '' : (s.massKg / 1000).toFixed(3),
+                    m.km.toFixed(3), m.mi.toFixed(3), m.fuel.toFixed(3),
+                    m.l100 == null ? '' : m.l100.toFixed(3),
+                    m.lmi == null ? '' : m.lmi.toFixed(4),
+                    m.mpg == null ? '' : m.mpg.toFixed(2)
+                ].join(','));
+            });
+            download('fuel-economy-' + stamp() + '.csv', lines.join('\n'), 'text/csv');
+        }
+
+        document.getElementById('refresh').addEventListener('click', render);
+        document.getElementById('export-json').addEventListener('click', exportJson);
+        document.getElementById('export-csv').addEventListener('click', exportCsv);
+        document.getElementById('clear').addEventListener('click', function () {
+            if (confirm('Delete all logged fuel-economy sessions?')) {
+                localStorage.removeItem(KEY);
+                render();
+            }
+        });
+        window.addEventListener('storage', function (e) { if (e.key === KEY) render(); });
+        render();
+    </script>
+</body>
+</html>

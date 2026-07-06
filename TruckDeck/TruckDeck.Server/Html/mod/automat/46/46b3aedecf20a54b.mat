@@ -1,0 +1,13 @@
+effect : "eut2.dif.lum.rfx" {
+	additional_ambient : 0.000000
+	diffuse : { 0.134259 , 0.134259 , 0.134259 }
+	luminance_night : 0.500000
+	luminance_output : 1500.000000
+	reflection : 0.000000
+	shininess : 15.000000
+	specular : { 0.089176 , 0.089176 , 0.089176 }
+	texture : "texture_base" {
+		source : "/vehicle/truck/upgrade/ps_gps/bg.tobj"
+		sampler : default
+	}
+}

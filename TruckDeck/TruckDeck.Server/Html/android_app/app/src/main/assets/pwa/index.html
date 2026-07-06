@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Truck Command Deck</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0a0b0d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <!-- Active dashboard (a skin rendered by the server's dashboard-host) -->
+    <iframe id="skin-frame" title="Dashboard" allow="fullscreen; autoplay"></iframe>
+
+    <!-- Settings cog menu button (top-right, always on top) -->
+    <button id="menu-btn" class="cog-btn" aria-label="Open menu" title="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.2"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+    </button>
+
+    <!-- Empty state shown when no dashboard is active -->
+    <div id="empty-state" class="empty">
+        <div class="empty-card">
+            <h1>TRUCK&nbsp;DECK</h1>
+            <p id="empty-msg">Open the menu to set your server IP and pick a dashboard.</p>
+            <button id="empty-open" class="primary-btn">OPEN MENU</button>
+        </div>
+    </div>
+
+    <!-- Slide-in menu -->
+    <div id="backdrop" class="backdrop hidden"></div>
+    <aside id="drawer" class="drawer">
+        <header class="drawer-head">
+            <span class="drawer-title">TRUCK DECK</span>
+            <button id="drawer-close" class="icon-btn" aria-label="Close menu">&times;</button>
+        </header>
+
+        <section class="drawer-sec">
+            <h3>SERVER</h3>
+            <div class="ip-row">
+                <input id="ip-input" type="text" autocomplete="off" autocapitalize="off"
+                       spellcheck="false" placeholder="192.168.1.146" />
+                <button id="ip-save" class="primary-btn small">SAVE</button>
+            </div>
+            <div id="conn-status" class="status">Not connected</div>
+            <div class="row-actions">
+                <button id="refresh-skins" class="ghost-btn">&#8635; Refresh</button>
+            </div>
+        </section>
+
+        <section class="drawer-sec">
+            <h3>APPEARANCE</h3>
+            <div class="row-actions">
+                <button class="theme-btn theme-color js-theme" type="button" title="Cycle colour scheme">
+                    <span class="sw"></span>
+                </button>
+                <button class="theme-btn theme-mode js-mode" type="button" title="Toggle day / night">
+                    <span class="js-mode-label">&#9790;</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="drawer-sec grow">
+            <h3>DASHBOARDS</h3>
+            <div id="skin-list" class="skin-list">
+                <div class="skin-empty">Set the server IP to load dashboards.</div>
+            </div>
+        </section>
+
+        <footer class="drawer-foot">
+            Controls require the Input Bridge running on the PC (port 25556).
+        </footer>
+    </aside>
+
+    <script src="app.js"></script>
+</body>
+</html>

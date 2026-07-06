@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruckDeck Map Generator</title>
+    <link rel="stylesheet" href="map-generator.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="hero">
+            <div class="hero-text">
+                <p class="eyebrow">TruckDeck Tools</p>
+                <h1>Map Generator</h1>
+                <p class="lede">Point at your game install, build PMTiles from your owned DLC map data, and activate them for TruckDeck NAV dashboards.</p>
+                <p class="runtime-badge" id="runtime-badge"></p>
+            </div>
+            <a class="back-link" href="/">← Dashboard menu</a>
+        </header>
+
+        <section class="card hidden" id="wsl-card">
+            <h2>0 · WSL setup</h2>
+            <p class="hint">Map generation uses Linux tools (tippecanoe) via <strong>WSL2</strong>. Choose a drive with free space (~2 GB). Use <code>D:\WSL</code> if <code>C:</code> is full.</p>
+
+            <div class="game-row">
+                <label for="wsl-install-path">WSL install folder</label>
+                <div class="path-row">
+                    <input id="wsl-install-path" type="text" spellcheck="false" placeholder="D:\WSL" value="D:\WSL">
+                    <button type="button" class="btn" id="btn-browse-wsl">Browse…</button>
+                </div>
+            </div>
+
+            <p class="field-status warn" id="wsl-install-note">Requires Administrator approval. You may need to reboot Windows after install.</p>
+
+            <div class="row">
+                <button type="button" class="btn primary" id="btn-install-wsl">Install WSL (Administrator)</button>
+            </div>
+        </section>
+
+        <section class="card" id="prereq-card">
+            <h2>1 · Map tools (WSL)</h2>
+            <p class="hint">Install once inside WSL. Generation runs locally on your PC — nothing is uploaded.</p>
+            <ul class="checklist" id="prereq-list"></ul>
+            <div class="row">
+                <button type="button" class="btn primary" id="btn-setup-tools">Install map tools (WSL)</button>
+                <button type="button" class="btn ghost" id="btn-refresh-status">Refresh</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2 · Game install folders</h2>
+            <p class="hint">Used to read <code>base.scs</code> and map DLC from your install. Saved in TruckDeck settings.</p>
+
+            <div class="game-row">
+                <label for="ets2-path">Euro Truck Simulator 2</label>
+                <div class="path-row">
+                    <input id="ets2-path" type="text" spellcheck="false" placeholder="D:\SteamLibrary\steamapps\common\Euro Truck Simulator 2">
+                    <button type="button" class="btn" data-browse="ets2">Browse…</button>
+                    <button type="button" class="btn ghost" data-detect="ets2">Detect Steam</button>
+                </div>
+                <p class="field-status" id="ets2-status"></p>
+            </div>
+
+            <div class="game-row">
+                <label for="ats-path">American Truck Simulator</label>
+                <div class="path-row">
+                    <input id="ats-path" type="text" spellcheck="false" placeholder="D:\SteamLibrary\steamapps\common\American Truck Simulator">
+                    <button type="button" class="btn" data-browse="ats">Browse…</button>
+                    <button type="button" class="btn ghost" data-detect="ats">Detect Steam</button>
+                </div>
+                <p class="field-status" id="ats-status"></p>
+            </div>
+
+            <button type="button" class="btn primary" id="btn-save-paths">Save game paths</button>
+        </section>
+
+        <section class="card">
+            <h2>3 · Generate PMTiles</h2>
+            <p class="hint">Parsing can take several minutes depending on DLC count. Keep TruckDeck running.</p>
+
+            <div class="gen-options">
+                <label class="checkbox"><input type="checkbox" id="gen-ets2" checked> ETS2 map</label>
+                <label class="checkbox"><input type="checkbox" id="gen-ats"> ATS map</label>
+                <label class="checkbox"><input type="checkbox" id="gen-activate" checked> Activate in TruckDeck when done</label>
+            </div>
+
+            <div class="outputs" id="outputs-panel"></div>
+
+            <button type="button" class="btn primary large" id="btn-generate">Generate map</button>
+        </section>
+
+        <section class="card job-card hidden" id="job-card">
+            <h2>Progress</h2>
+            <div class="progress-wrap">
+                <div class="progress-bar"><div class="progress-fill" id="job-progress"></div></div>
+                <span class="progress-label" id="job-message">Starting…</span>
+            </div>
+            <pre class="log" id="job-log"></pre>
+        </section>
+
+        <footer class="footer">
+            <p>Map data pipeline uses <a href="https://github.com/truckermudgeon/maps" target="_blank" rel="noopener">truckermudgeon/maps</a> (GPL-3.0). tippecanoe runs inside <strong>WSL2 Ubuntu</strong> on your PC.</p>
+        </footer>
+    </div>
+    <script src="map-generator.js"></script>
+</body>
+</html>

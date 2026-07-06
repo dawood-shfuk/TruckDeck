@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TruckDeck Dashboard Menu</title>
+    <link rel="apple-touch-icon" href="images/app-icon.png"/>
+    <link rel="shortcut icon" href="images/app-icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;"/>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="index-theme.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <meta id="viewport" name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <header><h1><img class="app-icon" src="images/app-icon.png" /> TruckDeck Dashboard</h1></header>
+    <div class="rc-toolbar">
+        <button class="theme-btn js-theme" type="button" title="Cycle colour scheme">
+            <span class="sw"></span><span class="js-theme-label">LIME</span>
+        </button>
+        <button class="theme-btn js-mode" type="button" title="Toggle day / night">
+            <span class="js-mode-label">NIGHT</span>
+        </button>
+    </div>
+    <table class="settings">
+        <tr>
+            <th>Server IP:</th>
+            <td>
+                <span class="server-ip"></span>
+                <input class="edit-server-ip" type="button" value="Edit"/>
+            </td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td class="server-status disconnected">Connecting...</td>
+        </tr>
+    </table>
+
+    <nav class="menu-tabs" role="tablist" aria-label="Dashboard menu">
+        <button class="menu-tab is-active" type="button" role="tab" data-tab="home" aria-selected="true" aria-controls="panel-home">Home</button>
+        <button class="menu-tab" type="button" role="tab" data-tab="truckdeck" aria-selected="false" aria-controls="panel-truckdeck">TruckDeck skins</button>
+        <button class="menu-tab" type="button" role="tab" data-tab="funbit" aria-selected="false" aria-controls="panel-funbit">Funbit skins</button>
+        <button class="menu-tab" type="button" role="tab" data-tab="credits" aria-selected="false" aria-controls="panel-credits">Credits</button>
+        <a class="menu-tab menu-tab-link" href="downloads.html" role="tab">Downloads</a>
+    </nav>
+
+    <div class="tab-panels">
+        <section class="tab-panel tab-panel-home is-active" id="panel-home" role="tabpanel" data-panel="home">
+            <div class="home-body">
+                <div class="home-hero">
+                    <p class="home-callsign">DISPATCH · TRUCKDECK <span class="js-app-version">%TRUCKDECK_VERSION%</span></p>
+                    <h2 class="home-tagline">Copy that, driver — your rig is online.</h2>
+                    <p class="home-lede">TruckDeck streams live ETS2 &amp; ATS telemetry to dashboards on your phone, tablet, or second monitor. OEM-style clusters, command decks, turn-by-turn NAV, and classic Funbit skins — all from one server running on your PC.</p>
+                </div>
+
+                <div class="home-skin-strip" aria-label="Featured dashboards">
+                    <figure class="home-skin-card">
+                        <img src="skins/TruckDeckDash/dashboard.jpg" alt="TruckDeckDash preview" loading="lazy">
+                        <figcaption>TruckDeckDash</figcaption>
+                    </figure>
+                    <figure class="home-skin-card">
+                        <img src="skins/truck_command_deck/dashboard.jpg" alt="Trucker's Command Deck preview" loading="lazy">
+                        <figcaption>Command Deck</figcaption>
+                    </figure>
+                    <figure class="home-skin-card">
+                        <img src="skins/truckdeck_nav/dashboard.jpg" alt="TruckDeck NAV preview" loading="lazy">
+                        <figcaption>TruckDeck NAV</figcaption>
+                    </figure>
+                    <figure class="home-skin-card">
+                        <img src="skins/truckdeck_scania/dashboard.jpg" alt="TruckDeck Scania preview" loading="lazy">
+                        <figcaption>Scania OEM</figcaption>
+                    </figure>
+                </div>
+
+                <div class="home-grid">
+                    <article class="home-card">
+                        <h3>Live telemetry</h3>
+                        <p>Speed, RPM, fuel, job data, and RenCloud extras — hazard lights, diff lock, route distance — pushed in real time while you drive.</p>
+                    </article>
+                    <article class="home-card">
+                        <h3>Dashboard skins</h3>
+                        <p>Big Rig Cluster, Trucker&rsquo;s Command Deck, and brand dashboards for Volvo, Scania, Mercedes, MAN, DAF, and Renault. Pick a skin and roll.</p>
+                    </article>
+                    <article class="home-card">
+                        <h3>TruckDeck NAV</h3>
+                        <p>PMTiles world maps, in-dash routing, and guidance tuned for trucking. Generate maps from the TruckDeck desktop app, then pair with the NAV mod to mirror GPS into your cabin.</p>
+                    </article>
+                    <article class="home-card">
+                        <h3>Input bridge</h3>
+                        <p>Map buttons on your dashboard to in-game actions — lights, wipers, cruise — without alt-tabbing out of the cab.</p>
+                    </article>
+                </div>
+
+                <div class="home-actions">
+                    <button type="button" class="home-link-btn primary" data-goto-tab="truckdeck">Choose a dashboard &rarr;</button>
+                    <a class="home-link-btn ghost" href="downloads.html">Downloads (installer, APK &amp; NAV)</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tab-panel tab-panel-truckdeck" id="panel-truckdeck" role="tabpanel" data-panel="truckdeck" hidden>
+            <table class="skins skins-truckdeck"></table>
+        </section>
+        <section class="tab-panel tab-panel-funbit" id="panel-funbit" role="tabpanel" data-panel="funbit" hidden>
+            <table class="skins skins-funbit"></table>
+        </section>
+        <section class="tab-panel tab-panel-credits" id="panel-credits" role="tabpanel" data-panel="credits" hidden>
+            <div class="credits-body">
+                <p class="credits-lead">TruckDeck is combined work built on years of community telemetry dashboards, server code, and in-game plugins. Thank you to everyone below.</p>
+
+                <div class="credits-group">
+                    <h3>TruckDeck <span class="js-app-version">%TRUCKDECK_VERSION%</span></h3>
+                    <ul>
+                        <li><strong>TruckDeck</strong> — unified server, NAV maps, input bridge, and dashboard suite</li>
+                    </ul>
+                </div>
+
+                <div class="credits-group">
+                    <h3>TruckDeck dashboards</h3>
+                    <ul>
+                        <li><strong>Dawood</strong> — TruckDeckDash, Trucker's Command Deck, TruckDeck NAV, and OEM skins (Volvo, Scania, Mercedes, MAN, DAF, Renault)</li>
+                    </ul>
+                </div>
+
+                <div class="credits-group">
+                    <h3>Original telemetry server</h3>
+                    <ul>
+                        <li><strong>Funbit</strong> — ETS2/ATS telemetry server, mobile dashboard framework, and default skins</li>
+                        <li><strong>MrMike</strong> — original telemetry server co-author</li>
+                        <li><strong>Paulo Cunha</strong> — Job Monitor skins and ongoing community contributions</li>
+                        <li><strong>Mike</strong> — early telemetry server contributions (acknowledged in Job Monitor skins)</li>
+                    </ul>
+                </div>
+
+                <div class="credits-group">
+                    <h3>Community skins (Funbit era)</h3>
+                    <ul>
+                        <li><strong>Klauzzy</strong> — DAF XF, Volvo FH, MAN TGX, Scania, Mercedes Atego dashboards</li>
+                        <li><strong>Nino Scholz</strong> — MAN TGX MPH dashboard (with Klauzzy)</li>
+                        <li><strong>Jianqun Z.</strong> — T Dashboard 4.x</li>
+                        <li><strong>Trinity / Trinity4u</strong> — 18-Speed helper and Kenworth K100E skins</li>
+                        <li><strong>Argiano</strong> — RenaultDash-Info (RD-Info)</li>
+                        <li><strong>NightstalkerPL &amp; Lisek Chytrusek</strong> — Peterbilt 579 (WEBX.PL)</li>
+                    </ul>
+                </div>
+
+                <div class="credits-group">
+                    <h3>Telemetry plugins &amp; SDK</h3>
+                    <ul>
+                        <li><strong>SCS Software</strong> — official ETS2/ATS telemetry SDK</li>
+                        <li><strong>RenCloud</strong> — extended scs-sdk-plugin (shared-memory telemetry)</li>
+                        <li><strong>nlhans</strong> — original ets2-sdk-plugin foundation</li>
+                        <li><strong>TruckSim GPS</strong> — trucksim-gps-telemetry plugin and GPS telemetry path</li>
+                    </ul>
+                </div>
+
+                <div class="credits-group">
+                    <h3>Open source used in this release</h3>
+                    <ul>
+                        <li>jQuery, SignalR/OWIN, MapLibre GL, PMTiles, Playwright (dev splash capture), and other libraries shipped with or used to build TruckDeck</li>
+                    </ul>
+                </div>
+
+                <p class="credits-note">Skin authors are also credited on each dashboard card. Original Funbit skins are preserved under <code>skins/FUNBITskins/</code>.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="brand-footer">TruckDeck</div>
+        <div class="version-line">Version <span class="js-app-version">%TRUCKDECK_VERSION%</span></div>
+        <a class="footer-link" href="downloads.html">Downloads</a>
+        <span class="footer-sep"> · </span>
+        <a class="footer-link" href="https://truckdeck.site/downloads" target="_blank" rel="noopener">truckdeck.site</a>
+        <div class="copyright">Copyright &copy; TruckDeck. Built on Funbit ETS2 Telemetry Server &amp; community work.</div>
+    </footer>
+    <script id="skin-empty-row-template" type="text/html">
+        <tr>
+            <td class="skin-empty">Not available.<br/>Please connect to the server first.</td>
+        </tr>
+    </script>
+    <script id="skin-row-template" type="text/html">
+        <tr data-name="{{=it.name}}">
+            <td class="skin-image">
+                <img src="{{=it.splashUrl}}" />
+            </td>
+            <td class="skin-desc">
+                <div><strong>Title</strong>: {{=it.title}}</div>
+                <div><strong>Author</strong>: {{=it.author}}</div>
+                {{? it.width === -1 && it.height === -1}}
+                <div><strong>Size</strong>: Dynamic</div>
+                {{??}}
+                <div><strong>Size</strong>: {{=it.width}} x {{=it.height}}</div>
+                {{?}}
+                <div class="skin-actions"><button type="button" class="skin-view">&#9654; VIEW</button></div>
+            </td>
+        </tr>
+    </script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/doT.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/menu.js"></script>
+    <script src="index-theme.js"></script>
+</body>
+</html>

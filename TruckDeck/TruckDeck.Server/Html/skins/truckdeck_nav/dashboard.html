@@ -1,0 +1,45 @@
+<div class="dashboard tdn">
+    <div class="statusMessage"></div>
+    <div id="tdn-map" class="tdn-map"></div>
+
+    <div class="tdn-map-controls" aria-label="Map controls">
+        <button type="button" class="tdn-map-ctrl js-map-zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+        <button type="button" class="tdn-map-ctrl js-map-zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+        <button type="button" class="tdn-map-ctrl js-map-recenter" title="Center on truck" aria-label="Center on truck">⌖</button>
+    </div>
+
+    <div class="tdn-chrome">
+        <header class="tdn-top-bar">
+            <div class="tdn-country js-country" hidden>
+                <span class="tdn-country-flag js-country-flag" aria-hidden="true"></span>
+                <span class="tdn-country-name js-country-name"></span>
+            </div>
+            <div class="tdn-top-speed">
+                <span class="js-speed">0</span>
+                <span class="js-speed-unit">KM/H</span>
+            </div>
+            <div class="tdn-top-limit js-speedLimit-wrap">
+                <span class="js-speedLimit"></span>
+            </div>
+            <button type="button" class="tdn-nav-mode js-nav-mode" title="Navigation mode">BEST</button>
+        </header>
+    </div>
+
+    <div class="tdn-bottom-chrome">
+    <footer class="tdn-bottom-bar">
+        <div class="tdn-bottom-meta">
+            <span class="tdn-meta-item"><span class="tdn-meta-label">REST</span> <b class="js-rest">--</b></span>
+            <span class="tdn-meta-item"><span class="tdn-meta-label">JOB</span> <b class="js-job">--</b></span>
+            <span class="tdn-meta-item tdn-meta-item--waypoint" title="Distance to next world-map checkpoint">
+                <span class="tdn-meta-label"><span class="tdn-lbl-long">CHECKPOINT</span><span class="tdn-lbl-short">CHK</span></span>
+                <b class="js-waypoint">--</b>
+            </span>
+        </div>
+        <div class="tdn-bottom-trip">
+            <span class="tdn-bottom-dist"><span class="js-dist">--</span> <span class="js-dist-unit">KM</span></span>
+            <span class="tdn-bottom-arrive"><span class="tdn-arrive-label"><span class="tdn-lbl-long">DUE IN</span><span class="tdn-lbl-short">IN</span></span> <b class="js-arrive">--</b></span>
+            <span class="tdn-bottom-eta js-eta">ETA --:--</span>
+        </div>
+    </footer>
+    </div>
+</div>

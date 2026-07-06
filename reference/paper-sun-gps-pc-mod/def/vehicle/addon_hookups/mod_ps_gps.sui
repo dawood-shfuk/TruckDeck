@@ -1,0 +1,43 @@
+accessory_hookup_data : gps_film_25.addon_hookup
+{
+	name: "25%"
+	price: 1
+	unlock: 0
+	icon: "ps_gps/film_25"
+
+	model: "/vehicle/truck/upgrade/ps_gps/gps_film.pmd"
+	look: film_64
+
+	suitable_for[]: "set_lglass"
+	suitable_for[]: "gps3"
+}
+
+accessory_hookup_data : gps_film_50.addon_hookup
+{
+	name: "50%"
+	price: 1
+	unlock: 0
+	icon: "ps_gps/film_50"
+
+	model: "/vehicle/truck/upgrade/ps_gps/gps_film.pmd"
+	look: default
+
+	suitable_for[]: "set_lglass"
+	suitable_for[]: "gps3"
+}
+
+accessory_hookup_data : gps_film_75.addon_hookup
+{
+	name: "75%"
+	price: 1
+	unlock: 0
+	icon: "ps_gps/film_75"
+
+	model: "/vehicle/truck/upgrade/ps_gps/gps_film.pmd"
+	look: film_192
+
+	suitable_for[]: "set_lglass"
+	suitable_for[]: "gps3"
+}
+
+

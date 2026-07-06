@@ -1,0 +1,9 @@
+{
+    "config": {
+        "name": "truck_command_deck",
+        "title": "Trucker's Command Deck",
+        "author": "Dawood",
+        "width": -1,
+        "height": -1
+    }
+}

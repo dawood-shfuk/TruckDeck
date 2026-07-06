@@ -1,0 +1,34 @@
+SiiNunit
+{
+# For modders: Please do not modify this file if you want to add a new entry. Create in
+# this directory a new file "<base_name>.<idofyourmod>.sii" where <base_name> is name of
+# base file without the extension (e.g. "dashboard" for "/ui/template/dashboard.sii") and <idofyourmod> is
+# some string which is unlikely to conflict with other mod.
+#
+# Warning: Even if the units are specified in more than one source file, they share the
+# same namespace so suffixes or prefixes should be used to avoid conflicts.
+
+#
+#Mercedes
+#
+
+
+ui::text_template : txt.mercedes.text_sm2 {
+	name: "zDB  Mercedes Numbers LCD"
+	text: "<align hstyle=right><color value=FFFFFFFF><font face=/font/lcd_italic.font xscale=1.7 yscale=1.3>%0</font></align>"
+}
+ui::text_template : txt.mercedes.speed_sm2 {
+	name: "zDB  Mercedes Speed LCD"
+	text: "<align hstyle=right><color value=FFFFFFFF><font face=/font/lcd_italic.font xscale=1.7 yscale=1.3>%0</font><offset vshift=10><font face=/font/lcd_italic.font xscale=1.4 yscale=1>.0</font></align>"
+}
+ui::text_template : txt.mercedes.text_sm5 {
+	name: "zDB  Mercedes Ambient LCD"
+	text: "<align hstyle=right><offset vshift=8><color value=FFFFFFFF><font face=/font/lcd_italic.font xscale=1.7 yscale=1.3>%0</font><offset vshift=-5><font face=/font/db_normal.font xscale=1.8624 yscale=1.8624>°</font><offset vshift=5><font face=/font/lcd_italic.font xscale=1.7 yscale=1.3>%1</font></align>"
+}
+
+
+}
+
+
+
+

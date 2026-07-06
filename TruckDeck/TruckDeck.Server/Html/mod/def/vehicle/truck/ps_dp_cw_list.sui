@@ -1,0 +1,12 @@
+
+	conflict_with[]: "ps_gps.*.*.set_lglass"
+	conflict_with[]: "ps_gps_1.*.*.set_lglass"
+	conflict_with[]: "ps_gps_2.*.*.set_lglass"
+	conflict_with[]: "ps_gps_b.*.*.set_lglass"
+	conflict_with[]: "ps_gps_b_bl.*.*.set_lglass"
+	conflict_with[]: "ps_gps_b1.*.*.set_lglass"
+	conflict_with[]: "ps_gps_b1_bl.*.*.set_lglass"
+	conflict_with[]: "ps_gps_b2.*.*.set_lglass"
+	conflict_with[]: "ps_gps_p.*.*.set_lglass"
+	conflict_with[]: "ps_gps_p1.*.*.set_lglass"
+	conflict_with[]: "ps_gps_p2.*.*.set_lglass"

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Downloads — TruckDeck {{ version }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="hero compact">
+        <p class="callsign">LOAD DOCK · v{{ version }}</p>
+        <h1>Grab what you need for the road</h1>
+        <p><a href="{{ url_for('index') }}">&larr; Back to home</a></p>
+    </header>
+
+    <section class="download-list">
+        {% for d in downloads %}
+        <article class="download-card{% if not d.available %} unavailable{% endif %}">
+            <h2>{{ d.title }}</h2>
+            <p>{{ d.description }}</p>
+            {% if d.available %}
+            <a class="btn primary" href="{{ d.url }}" download>{{ d.file }}</a>
+            <p class="meta">{{ d.size_mb }} MB{% if d.sha256 %} · SHA-256: <code>{{ d.sha256[:16] }}…</code>{% endif %}</p>
+            {% else %}
+            <p class="meta warn">Not available on server yet.</p>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </section>
+</body>
+</html>

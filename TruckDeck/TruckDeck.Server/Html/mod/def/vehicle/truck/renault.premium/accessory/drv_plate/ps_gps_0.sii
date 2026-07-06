@@ -1,0 +1,17 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_f0.renault.premium.drv_plate
+{
+	name: "GPS"
+	price: 2480
+	unlock: 0
+	icon: "ps_gps/dp_gps"
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/dp_gps_renault.premium.pmd"
+	interior_model_uk:"/vehicle/truck/upgrade/ps_gps/dp_gps_renault.premium_uk.pmd"
+
+	ui_path: "/ui/dashboard/ps_pc_mod_2.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_dp_b.tobj"
+	ui_drawable_size: (512, 256)
+}
+}

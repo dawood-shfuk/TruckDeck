@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TruckDeck NAV - Mock</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="../../scripts/jquery.min.js"></script>
+    <script src="../../scripts/ets2-projection.js"></script>
+    <script src="../../scripts/truckdeck-nav-guidance.js"></script>
+    <script src="../../scripts/truckdeck-pmtiles-map.js"></script>
+    <script src="../../scripts/vendor/proj4.js"></script>
+    <script src="../../scripts/vendor/pmtiles.js"></script>
+    <script src="../../scripts/vendor/maplibre-gl.js"></script>
+    <link rel="stylesheet" href="../../scripts/vendor/maplibre-gl.css">
+</head>
+<body class="tdd-host-dynamic" style="margin:0;height:100vh;width:100vw;overflow:hidden;background:#0a0f14;">
+<div class="dashboard tdn" style="position:absolute;inset:0;height:100%;width:100%;">
+    <div id="tdn-map" class="tdn-map"></div>
+    <div class="tdn-map-controls" aria-label="Map controls">
+        <button type="button" class="tdn-map-ctrl js-map-zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+        <button type="button" class="tdn-map-ctrl js-map-zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+        <button type="button" class="tdn-map-ctrl js-map-recenter" title="Center on truck" aria-label="Center on truck">⌖</button>
+    </div>
+    <div class="tdn-chrome">
+        <header class="tdn-top-bar">
+            <div class="tdn-country js-country">
+                <span class="tdn-country-flag js-country-flag">🇩🇪</span>
+                <span class="tdn-country-name js-country-name">Germany</span>
+            </div>
+            <div class="tdn-top-speed"><span class="js-speed">72</span> <span class="js-speed-unit">KM/H</span></div>
+            <div class="tdn-top-limit js-speedLimit-wrap"><span class="js-speedLimit">80</span></div>
+        </header>
+    </div>
+    <div class="tdn-bottom-chrome">
+    <footer class="tdn-bottom-bar">
+        <div class="tdn-bottom-meta">
+            <span class="tdn-meta-item"><span class="tdn-meta-label">REST</span> <b class="js-rest">2h 15m</b></span>
+            <span class="tdn-meta-item"><span class="tdn-meta-label">JOB</span> <b class="js-job">8h 40m</b></span>
+            <span class="tdn-meta-item tdn-meta-item--waypoint">
+                <span class="tdn-meta-label"><span class="tdn-lbl-long">CHECKPOINT</span><span class="tdn-lbl-short">CHK</span></span>
+                <b class="js-waypoint">1.2km</b>
+            </span>
+        </div>
+        <div class="tdn-bottom-trip">
+            <span class="tdn-bottom-dist"><span class="js-dist">42.5</span> <span class="js-dist-unit">KM</span></span>
+            <span class="tdn-bottom-arrive"><span class="tdn-arrive-label"><span class="tdn-lbl-long">DUE IN</span><span class="tdn-lbl-short">IN</span></span> <b class="js-arrive">1h05m</b></span>
+            <span class="tdn-bottom-eta js-eta">ETA 14:32</span>
+        </div>
+    </footer>
+    </div>
+</div>
+<script>
+(function () {
+    var m = new TruckDeckPmtilesMap(document.getElementById('tdn-map'), {
+        game: 'ets2',
+        follow: true,
+        rotate: true,
+        followPitch: 45,
+        followTruckScreenY: 0.8
+    });
+    m.init().then(function () {
+        if (window.TruckDeckProjection) {
+            var ll = TruckDeckProjection.gameToLngLat('ETS2', -31000, 15000);
+            if (ll) m.setTruck(ll[0], ll[1], 45, 72);
+        }
+    })['catch'](function (e) {
+        console.error('Map failed:', (e && e.message) ? e.message : e);
+    });
+})();
+</script>
+</body>
+</html>

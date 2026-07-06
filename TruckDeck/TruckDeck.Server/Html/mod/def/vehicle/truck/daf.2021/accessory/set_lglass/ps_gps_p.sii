@@ -1,0 +1,19 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_p.daf.2021.set_lglass
+{
+	name: "GPS P+ (prototype)"
+	price: 2710
+	unlock: 0
+	icon: "ps_gps/gps_p"
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/gps_prj_eu.pmd"
+	exterior_model:"/vehicle/truck/upgrade/ps_gps/gps_prj.pmd"
+
+	interior_model_uk:"/vehicle/truck/upgrade/ps_gps/gps_prj.pmd"
+
+	ui_path: "/ui/dashboard/ps_gps_mod.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_gps_b.tobj"
+	ui_drawable_size: (512, 512)
+}
+}

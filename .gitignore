@@ -1,0 +1,40 @@
+# Build outputs
+**/bin/
+**/obj/
+**/server/
+**/packages/
+**/.vs/
+**/*.user
+**/*.suo
+**/*.cache
+**/x64/
+**/Release/
+**/Debug/
+
+# Maps & large generated assets (create locally)
+**/*.pmtiles
+**/maps/generated/
+**/*-graph.json
+**/*-cities.json
+**/_vanilla_gps_cache/
+**/_game_extract/
+
+# Android / Node
+**/android_app/app/build/
+**/android_app/.gradle/
+**/node_modules/
+
+# Logs & local settings
+*.log
+TruckDeck-crash.log
+**/Settings.json
+
+# Release packs (download installers separately from truckdeck.site)
+TruckDeck_build*/
+*.zip
+TruckDeck-Setup.exe
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.cursor/

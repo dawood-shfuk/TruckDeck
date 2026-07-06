@@ -1,0 +1,2131 @@
+SiiNunit
+{
+ui::window : _nameless.01261de50 {
+ window_handler: null
+ clip_children: true
+ keep_aspect: none
+ user_string_data: ""
+ first_direction_focus_id: 0
+ fitting: false
+ my_children: 8
+ my_children[0]: _nameless._.sharedisplay
+ my_children[1]: _nameless._.display0
+ my_children[2]: _nameless._.display1
+ my_children[3]: _nameless._.display2
+ my_children[4]: _nameless._.display3
+ my_children[5]: _nameless._.display4
+ my_children[6]: _nameless._.display5
+ my_children[7]: _nameless._.display6
+ coords_l: 0
+ coords_r: 800
+ coords_t: 302
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 302
+ area_b: 0
+ id: 0
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: null
+}
+
+ui::group : _nameless._.sharedisplay {
+ fitting: false
+ my_children: 30
+ my_children[0]: _nameless._.speedo
+ my_children[1]: _nameless._.rpm
+ my_children[2]: _nameless._.odometer
+ my_children[3]: _nameless._.temp
+ my_children[4]: _nameless._.clock
+ my_children[5]: _nameless._.speed
+ my_children[6]: _nameless._.trip_dist
+ my_children[7]: _nameless._.gearmode
+ my_children[8]: _nameless._.gear
+ my_children[9]: _nameless._.gear.auto.man
+ my_children[10]: _nameless._.parking_ligh.ts
+ my_children[11]: _nameless._.retarder
+ my_children[12]: _nameless._.diff_lock
+ my_children[13]: _nameless._.chk_eng
+ my_children[14]: _nameless._.headlights
+ my_children[15]: _nameless._.coolant_gaug.e
+ my_children[16]: _nameless._.low_fuel
+ my_children[17]: _nameless._.low_air
+ my_children[18]: _nameless._.cc_group
+ my_children[19]: _nameless._.bcg_main
+ my_children[20]: _nameless._.bcg_over
+ my_children[21]: _nameless._.eta
+ my_children[22]: _nameless._.time_to_rest
+ my_children[23]: _nameless._.fuel_perc
+ my_children[24]: _nameless._.ad_blue_perc
+ my_children[25]: _nameless._.bcg_over_cc
+ my_children[26]: _nameless._.bsm_left
+ my_children[27]: _nameless._.bsm_right
+ my_children[28]: _nameless._.spd_lmt
+ my_children[29]: _nameless._.engine_brk
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 950
+ layer: -1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui_gauge : _nameless._.speedo {
+ min: 33
+ max: &429d6666
+ value_min: 0
+ value_max: &42dd0000
+ value: 110
+ material: "/material/ui/dashboard/daf_xd/gauge_left.mat"
+ xref_pos: 0
+ yref_pos: -150
+ off_x: 0
+ off_y: 0
+ smooth_move: false
+ coords_l: 398
+ coords_r: 402
+ coords_t: 299
+ coords_b: 199
+ area_l: 1
+ area_r: 1
+ area_t: -501
+ area_b: -501
+ id: 1430
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_gauge : _nameless._.rpm {
+ min: -34
+ max: &c2a9999a
+ value_min: 0
+ value_max: 2650
+ value: 1500
+ material: "/material/ui/dashboard/daf_xd/gauge_right.mat"
+ xref_pos: 256
+ yref_pos: -150
+ off_x: 0
+ off_y: 0
+ smooth_move: false
+ coords_l: 397
+ coords_r: 401
+ coords_t: 296
+ coords_b: 196
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1440
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.odometer {
+ value: "2552|km"
+ look_template: txt.daf_xd.textsmall
+ text: ""
+ coords_l: 26
+ coords_r: 154
+ coords_t: 24
+ coords_b: 4
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1030
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.temp {
+ value: "18|C"
+ look_template: txt.daf_xd.temp
+ text: ""
+ coords_l: 198
+ coords_r: 278
+ coords_t: 24
+ coords_b: 4
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1000
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.clock {
+ value: "22:45"
+ look_template: txt.daf_xd.clock
+ text: ""
+ coords_l: 330
+ coords_r: 470
+ coords_t: 292
+ coords_b: 272
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1050
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.speed {
+ value: "180|km/h"
+ look_template: txt.daf_xd.speed
+ text: ""
+ coords_l: 95
+ coords_r: 235
+ coords_t: 189
+ coords_b: 154
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1020
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.trip_dist {
+ value: "1485|km"
+ look_template: txt.daf_xd.trip_dist
+ text: ""
+ coords_l: 466
+ coords_r: 666
+ coords_t: 183
+ coords_b: 153
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1210
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.gearmode {
+ value: R
+ look_template: txt.daf_xd.gearmode
+ text: ""
+ coords_l: 347
+ coords_r: 377
+ coords_t: 56
+ coords_b: 36
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1380
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.gear {
+ value: R2
+ look_template: txt.daf_xd.gear
+ text: ""
+ coords_l: 375
+ coords_r: 426
+ coords_t: 54
+ coords_b: 29
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1300
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.gear.auto.man {
+ value: A
+ look_template: txt.daf_xd.gearam
+ text: ""
+ coords_l: 425
+ coords_r: 445
+ coords_t: 48
+ coords_b: 38
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1310
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.parking_ligh.ts {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9726 right=0.999 top=0.7519 bottom=0.789>"
+ coords_l: 2
+ coords_r: 22
+ coords_t: 81
+ coords_b: 66
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1470
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.retarder {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9726 right=0.999 top=0.8437 bottom=0.8867>"
+ coords_l: 750
+ coords_r: 772
+ coords_t: 52
+ coords_b: 34
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1290
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.diff_lock {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9394 right=0.9658 top=0.7519 bottom=0.8027>"
+ coords_l: 328
+ coords_r: 351
+ coords_t: 28
+ coords_b: 7
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1490
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.chk_eng {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9404 right=0.96875 top=0.8027 bottom=0.8417>"
+ coords_l: 159
+ coords_r: 180
+ coords_t: 24
+ coords_b: 9
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1190
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.headlights {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9726 right=0.999 top=0.791 bottom=0.8398>"
+ coords_l: 13
+ coords_r: 33
+ coords_t: 66
+ coords_b: 48
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1480
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_gauge : _nameless._.coolant_gaug.e {
+ min: -19
+ max: -4
+ value_min: 0
+ value_max: 130
+ value: 90
+ material: "/material/ui/dashboard/daf_xd/gauge_right.mat"
+ xref_pos: 256
+ yref_pos: 850
+ off_x: 0
+ off_y: 0
+ smooth_move: false
+ coords_l: 241
+ coords_r: 251
+ coords_t: -248
+ coords_b: -448
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1460
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::group : _nameless._.low_fuel {
+ fitting: false
+ my_children: 8
+ my_children[0]: _nameless._.lowf_ind
+ my_children[1]: _nameless._.lowf_txt
+ my_children[2]: _nameless._.lowf_ico_2
+ my_children[3]: _nameless._.lowf_bar_bcg
+ my_children[4]: _nameless._.lowf_bar
+ my_children[5]: _nameless._.lf_war_dim
+ my_children[6]: _nameless._.lf_war_bar
+ my_children[7]: _nameless._.lf_war_bcg
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 1200
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.lowf_ind {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9775 right=0.998 top=0.9433 bottom=0.9941 color=FF0000FF>"
+ coords_l: 522
+ coords_r: 538
+ coords_t: 26
+ coords_b: 5
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1200
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::text : _nameless._.lowf_txt {
+ text: "<align hstyle=center><font face=/font/pt_sans.font  xscale=0.85 yscale=0.92>Low fuel level</font></align>"
+ coords_l: 324
+ coords_r: 473
+ coords_t: 217
+ coords_b: 189
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 21
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::text : _nameless._.lowf_ico_2 {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9775 right=0.998 top=0.9433 bottom=0.9941>"
+ coords_l: 391
+ coords_r: 408
+ coords_t: 249
+ coords_b: 228
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 21
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::text : _nameless._.lowf_bar_bcg {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.0025 right=0.1435 top=0.822 bottom=0.8555>"
+ coords_l: 343
+ coords_r: 455
+ coords_t: 165
+ coords_b: 150
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 21
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui_text_bar : _nameless._.lowf_bar {
+ vertical: false
+ min_size: 0
+ max_size: 15
+ min_value: 0
+ max_value: &3e19999a
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.634765625 right=0.647460938 top=0.758 bottom=0.781>"
+ coords_l: 347
+ coords_r: 362
+ coords_t: 165
+ coords_b: 154
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1070
+ layer: 22
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::text : _nameless._.lf_war_dim {
+ text: "<img src=/material/ui/white.mat xscale=stretch yscale=stretch color=66000000>"
+ coords_l: 0
+ coords_r: 800
+ coords_t: 301
+ coords_b: 1
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 19
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::text : _nameless._.lf_war_bar {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0 right=0.443359375 top=0.751 bottom=0.8125>"
+ coords_l: 225
+ coords_r: 576
+ coords_t: 290
+ coords_b: 265
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 20
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::text : _nameless._.lf_war_bcg {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat yscale=stretch xscale=stretch left=0.37890625 right=0.620117188 top=0.1171875 bottom=0.59765625>"
+ coords_l: 303
+ coords_r: 495
+ coords_t: 256
+ coords_b: 77
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 20
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_fuel
+}
+
+ui::group : _nameless._.low_air {
+ fitting: false
+ my_children: 9
+ my_children[0]: _nameless._.lowa_ico
+ my_children[1]: _nameless._.lowa_txt
+ my_children[2]: _nameless._.lowa_ico1
+ my_children[3]: _nameless._.lowa_ico2
+ my_children[4]: _nameless._.lowa_bar_bcg
+ my_children[5]: _nameless._.lowa_bar
+ my_children[6]: _nameless._.la_war_bar
+ my_children[7]: _nameless._.la_war_bcg
+ my_children[8]: _nameless._.la_war_dim
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 1260
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.lowa_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9423 right=0.9677 top=0.9472 bottom=0.9882>"
+ coords_l: 387
+ coords_r: 410
+ coords_t: 248
+ coords_b: 229
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 24
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::text : _nameless._.lowa_txt {
+ text: "<align hstyle=center><font face=/font/pt_sans.font  xscale=0.85 yscale=0.92>Air pressure too low</font></align>"
+ coords_l: 315
+ coords_r: 488
+ coords_t: 217
+ coords_b: 189
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 24
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::text : _nameless._.lowa_ico1 {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9414 right=0.96875 top=0.895 bottom=0.938>"
+ coords_l: 320
+ coords_r: 345
+ coords_t: 169
+ coords_b: 149
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 24
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::text : _nameless._.lowa_ico2 {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9414 right=0.96875 top=0.8457 bottom=0.8886>"
+ coords_l: 320
+ coords_r: 345
+ coords_t: 129
+ coords_b: 109
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 24
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::text : _nameless._.lowa_bar_bcg {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.447265625 right=0.629882813 top=0.751953125 bottom=0.94140625>"
+ coords_l: 357
+ coords_r: 481
+ coords_t: 167
+ coords_b: 106
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 24
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui_text_bar : _nameless._.lowa_bar {
+ vertical: false
+ min_size: 0
+ max_size: 89
+ min_value: 0
+ max_value: 12
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.634765625 right=0.647460938 top=0.755 bottom=0.9025>"
+ coords_l: 365
+ coords_r: 454
+ coords_t: 166
+ coords_b: 118
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1120
+ layer: 25
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::text : _nameless._.la_war_bar {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat yscale=stretch xscale=stretch left=0.37890625 right=0.620117188 top=0.1171875 bottom=0.59765625>"
+ coords_l: 303
+ coords_r: 495
+ coords_t: 256
+ coords_b: 77
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 23
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::text : _nameless._.la_war_bcg {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0 right=0.443359375 top=0.751 bottom=0.8125>"
+ coords_l: 225
+ coords_r: 576
+ coords_t: 290
+ coords_b: 265
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 23
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::text : _nameless._.la_war_dim {
+ text: "<img src=/material/ui/white.mat xscale=stretch yscale=stretch color=66000000>"
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 20
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.low_air
+}
+
+ui::group : _nameless._.cc_group {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.cc_icon
+ my_children[1]: _nameless._.cc_needle
+ coords_l: 0
+ coords_r: 800
+ coords_t: 301
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 301
+ area_b: 0
+ id: 1240
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.cc_icon {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9739 right=0.999 top=0.889 bottom=0.94>"
+ coords_l: 245
+ coords_r: 265
+ coords_t: 185
+ coords_b: 167
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui_gauge : _nameless._.cc_needle {
+ min: 33
+ max: &429d6666
+ value_min: 0
+ value_max: &42dd0000
+ value: 60
+ material: "/material/ui/dashboard/daf_xd/cc_line.mat"
+ xref_pos: 3
+ yref_pos: -200
+ off_x: 0
+ off_y: 0
+ smooth_move: false
+ coords_l: 398
+ coords_r: 402
+ coords_t: 301
+ coords_b: 201
+ area_l: 1
+ area_r: 1
+ area_t: -499
+ area_b: -499
+ id: 1450
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui::text : _nameless._.bcg_main {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat bottom=0.75 xscale=stretch yscale=stretch>"
+ coords_l: 0
+ coords_r: 800
+ coords_t: 301
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bcg_over {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_over.mat bottom=0.75 xscale=stretch yscale=stretch>"
+ coords_l: 0
+ coords_r: 800
+ coords_t: 301
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.eta {
+ value: "19:45"
+ look_template: txt.daf_xd.time_eta
+ text: ""
+ coords_l: 457
+ coords_r: 557
+ coords_t: 294
+ coords_b: 274
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1530
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.time_to_rest {
+ value: "19:45"
+ look_template: txt.daf_xd.time_to_rest
+ text: ""
+ coords_l: 244
+ coords_r: 344
+ coords_t: 294
+ coords_b: 274
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1540
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.fuel_perc {
+ value: 100
+ look_template: txt.daf_xd.fuel_perc
+ text: ""
+ coords_l: 540
+ coords_r: 600
+ coords_t: 24
+ coords_b: 4
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1510
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.ad_blue_perc {
+ value: 66
+ look_template: txt.daf_xd.fuel_perc
+ text: ""
+ coords_l: 677
+ coords_r: 737
+ coords_t: 24
+ coords_b: 4
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1520
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bcg_over_cc {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.13 right=0.375 top=0.1369 bottom=0.4696>"
+ coords_l: 0
+ coords_r: 226
+ coords_t: 192
+ coords_b: 38
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bsm_left {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.6953125 right=0.99609375 top=0.654296875 bottom=0.99609375>"
+ coords_l: 296
+ coords_r: 426
+ coords_t: 183
+ coords_b: 21
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1660
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bsm_right {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.99609375 right=0.6953125 top=0.654296875 bottom=0.99609375>"
+ coords_l: 374
+ coords_r: 504
+ coords_t: 183
+ coords_b: 21
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1670
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.spd_lmt {
+ value: 100
+ look_template: txt.daf_xd.spdlimit
+ text: ""
+ coords_l: 197
+ coords_r: 237
+ coords_t: 235
+ coords_b: 195
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1610
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.engine_brk {
+ text: "<offset hshift=3><img src=/material/ui/dashboard/daf_xd/info_panel_over.mat width=48 height=96 left=0.5234375 right=0.6953125 top=0.654296875 bottom=0.99609375>\r\n<ret><offset vshift=120><img src=/material/ui/dashboard/daf_xd/display_main.mat width=22 height=18 left=0.9726 right=0.999 top=0.8437 bottom=0.8867>"
+ coords_l: 750
+ coords_r: 800
+ coords_t: 172
+ coords_b: 33
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1230
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::group : _nameless._.display0 {
+ fitting: false
+ my_children: 5
+ my_children[0]: _nameless._.avg_fuel_ico
+ my_children[1]: _nameless._.ins_fuel_ico
+ my_children[2]: _nameless._.avg_fuel
+ my_children[3]: _nameless._.inst_fuel
+ my_children[4]: _nameless._.fuel_tab
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 100
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui::text : _nameless._.avg_fuel_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9111 right=0.9365 top=0.806 bottom=0.8535>"
+ coords_l: 665
+ coords_r: 690
+ coords_t: 271
+ coords_b: 248
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display0
+}
+
+ui::text : _nameless._.ins_fuel_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9111 right=0.9365 top=0.7539 bottom=0.8027>"
+ coords_l: 594
+ coords_r: 618
+ coords_t: 271
+ coords_b: 249
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display0
+}
+
+ui::text_common : _nameless._.avg_fuel {
+ value: "333.3|gal/100km"
+ look_template: txt.daf_xd.fuelcons
+ text: ""
+ coords_l: 592
+ coords_r: 761
+ coords_t: 245
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1170
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display0
+}
+
+ui::text_common : _nameless._.inst_fuel {
+ value: "35.5|l/100km"
+ look_template: txt.daf_xd.instcons
+ text: ""
+ coords_l: 540
+ coords_r: 668
+ coords_t: 245
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1160
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display0
+}
+
+ui::text : _nameless._.fuel_tab {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9111 right=0.9365 top=0.7539 bottom=0.8027>"
+ coords_l: 769
+ coords_r: 793
+ coords_t: 247
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display0
+}
+
+ui::group : _nameless._.display1 {
+ fitting: false
+ my_children: 7
+ my_children[0]: _nameless._.cc_top_ico
+ my_children[1]: _nameless._.cc_smart_ico
+ my_children[2]: _nameless._.cc_under_ico
+ my_children[3]: _nameless._.cc_top
+ my_children[4]: _nameless._.cc_tab
+ my_children[5]: _nameless._.cc_smart
+ my_children[6]: _nameless._.cc_lower
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 200
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui::text : _nameless._.cc_top_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.912 right=0.936 top=0.9511 bottom=0.998>"
+ coords_l: 595
+ coords_r: 619
+ coords_t: 270
+ coords_b: 248
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text : _nameless._.cc_smart_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.912 right=0.936 top=0.8554 bottom=0.9003>"
+ coords_l: 631
+ coords_r: 655
+ coords_t: 270
+ coords_b: 248
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text : _nameless._.cc_under_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.912 right=0.936 top=0.905 bottom=0.948>"
+ coords_l: 666
+ coords_r: 691
+ coords_t: 270
+ coords_b: 248
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text_common : _nameless._.cc_top {
+ value: 120
+ look_template: txt.daf_xd.cctop
+ text: ""
+ coords_l: 581
+ coords_r: 629
+ coords_t: 245
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1100
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text : _nameless._.cc_tab {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.884 right=0.9091 top=0.7539 bottom=0.801>"
+ coords_l: 769
+ coords_r: 793
+ coords_t: 246
+ coords_b: 224
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text_common : _nameless._.cc_smart {
+ value: 10
+ look_template: txt.daf_xd.cctop_smart
+ text: ""
+ coords_l: 620
+ coords_r: 665
+ coords_t: 245
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1410
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text_common : _nameless._.cc_lower {
+ value: "-0"
+ look_template: txt.daf_xd.cctop
+ text: ""
+ coords_l: 662
+ coords_r: 694
+ coords_t: 245
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::group : _nameless._.display2 {
+ fitting: false
+ my_children: 5
+ my_children[0]: _nameless._.trip_dist_ic.o
+ my_children[1]: _nameless._.trip_time_ic.o
+ my_children[2]: _nameless._.trip_dist_to.p
+ my_children[3]: _nameless._.trip_time
+ my_children[4]: _nameless._.trip_tab
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 300
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui::text : _nameless._.trip_dist_ic.o {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.885 right=0.9083 top=0.9089 bottom=0.9453>"
+ coords_l: 581
+ coords_r: 606
+ coords_t: 269
+ coords_b: 250
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::text : _nameless._.trip_time_ic.o {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.8876 right=0.9072 top=0.8574 bottom=0.8964>"
+ coords_l: 669
+ coords_r: 691
+ coords_t: 269
+ coords_b: 247
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::text_common : _nameless._.trip_dist_to.p {
+ value: "|"
+ look_template: txt.daf_xd.textsmallw
+ text: ""
+ coords_l: 548
+ coords_r: 636
+ coords_t: 245
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0#1210
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::text_common : _nameless._.trip_time {
+ value: "20:30"
+ look_template: txt.daf_xd.triptime
+ text: ""
+ coords_l: 636
+ coords_r: 724
+ coords_t: 245
+ coords_b: 225
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1390
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::text : _nameless._.trip_tab {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.8837 right=0.9072 top=0.808 bottom=0.8493>"
+ coords_l: 769
+ coords_r: 789
+ coords_t: 246
+ coords_b: 230
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::group : _nameless._.display3 {
+ fitting: false
+ my_children: 8
+ my_children[0]: _nameless._.info_bcg_3
+ my_children[1]: _nameless._.air_pres_bcg
+ my_children[2]: _nameless._.blue_bar_3
+ my_children[3]: _nameless._.air_1_ico
+ my_children[4]: _nameless._.air_2_ico
+ my_children[5]: _nameless._.title_3
+ my_children[6]: _nameless._.air_pres
+ my_children[7]: _nameless._.air_pres_war.n
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 400
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui::text : _nameless._.info_bcg_3 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.119140625 bottom=0.6484375>"
+ coords_l: 452
+ coords_r: 800
+ coords_t: 291
+ coords_b: 31
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.air_pres_bcg {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.447265625 right=0.629882813 top=0.751953125 bottom=0.94140625>"
+ coords_l: 548
+ coords_r: 697
+ coords_t: 185
+ coords_b: 109
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.blue_bar_3 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0 right=0.023 bottom=0.359>"
+ coords_l: 511
+ coords_r: 521
+ coords_t: 231
+ coords_b: 82
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.air_1_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9414 right=0.96875 top=0.895 bottom=0.938>"
+ coords_l: 520
+ coords_r: 545
+ coords_t: 187
+ coords_b: 167
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.air_2_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9414 right=0.96875 top=0.8457 bottom=0.8886>"
+ coords_l: 520
+ coords_r: 545
+ coords_t: 138
+ coords_b: 118
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.title_3 {
+ text: "<font face=/font/pt_sans.font>Air Pressure</font>"
+ coords_l: 520
+ coords_r: 652
+ coords_t: 261
+ coords_b: 241
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui_text_bar : _nameless._.air_pres {
+ vertical: false
+ min_size: 0
+ max_size: 89
+ min_value: 0
+ max_value: 12
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.654296875 right=0.666992188 top=0.755 bottom=0.9025>"
+ coords_l: 558
+ coords_r: 665
+ coords_t: 183
+ coords_b: 124
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1120
+ layer: 11
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::group : _nameless._.air_pres_war.n {
+ fitting: false
+ my_children: 4
+ my_children[0]: _nameless._.2
+ my_children[1]: _nameless._.1
+ my_children[2]: _nameless._.warn_text
+ my_children[3]: _nameless._.air_pres_w
+ coords_l: 399
+ coords_r: 599
+ coords_t: 201
+ coords_b: 1
+ area_l: 399
+ area_r: 599
+ area_t: 201
+ area_b: 1
+ id: 1260
+ layer: 11
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.2 {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9414 right=0.96875 top=0.8457 bottom=0.8886 color=FF0000FF>"
+ coords_l: 520
+ coords_r: 545
+ coords_t: 138
+ coords_b: 118
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 11
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.air_pres_war.n
+}
+
+ui::text : _nameless._.1 {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.9414 right=0.96875 top=0.895 bottom=0.938 color=FF0000FF>"
+ coords_l: 520
+ coords_r: 545
+ coords_t: 187
+ coords_b: 167
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 11
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.air_pres_war.n
+}
+
+ui::text : _nameless._.warn_text {
+ text: "<font face=/font/pt_sans.font xscale=0.85 yscale=0.92>Air pressure too low</font>"
+ coords_l: 544
+ coords_r: 734
+ coords_t: 85
+ coords_b: 65
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.air_pres_war.n
+}
+
+ui_text_bar : _nameless._.air_pres_w {
+ vertical: false
+ min_size: 0
+ max_size: 89
+ min_value: 0
+ max_value: 12
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.634765625 right=0.647460938 top=0.755 bottom=0.9025>"
+ coords_l: 558
+ coords_r: 665
+ coords_t: 183
+ coords_b: 124
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1120
+ layer: 12
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.air_pres_war.n
+}
+
+ui::group : _nameless._.display4 {
+ fitting: false
+ my_children: 6
+ my_children[0]: _nameless._.info_bcg_4
+ my_children[1]: _nameless._.temp_bar_bcg
+ my_children[2]: _nameless._.blue_bar_4
+ my_children[3]: _nameless._.temp_icon_4
+ my_children[4]: _nameless._.title_4
+ my_children[5]: _nameless._.temp_bar
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 500
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui::text : _nameless._.info_bcg_4 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.119140625 bottom=0.6484375>"
+ coords_l: 452
+ coords_r: 800
+ coords_t: 291
+ coords_b: 31
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::text : _nameless._.temp_bar_bcg {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.149 right=0.287 top=0.821 bottom=0.852>"
+ coords_l: 555
+ coords_r: 668
+ coords_t: 183
+ coords_b: 170
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::text : _nameless._.blue_bar_4 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.023 right=0.046 bottom=0.24>"
+ coords_l: 511
+ coords_r: 520
+ coords_t: 231
+ coords_b: 134
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::text : _nameless._.temp_icon_4 {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.8533 right=0.8797 top=0.8043 bottom=0.8512>"
+ coords_l: 517
+ coords_r: 541
+ coords_t: 189
+ coords_b: 167
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::text : _nameless._.title_4 {
+ text: "<font face=/font/pt_sans.font>Coolant Temperature</font>"
+ coords_l: 520
+ coords_r: 726
+ coords_t: 261
+ coords_b: 241
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui_text_bar : _nameless._.temp_bar {
+ vertical: false
+ min_size: 0
+ max_size: 107
+ min_value: 0
+ max_value: 130
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.654296875 right=0.666992188 top=0.758 bottom=0.781>"
+ coords_l: 558
+ coords_r: 665
+ coords_t: 183
+ coords_b: 173
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1150
+ layer: 11
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::group : _nameless._.display5 {
+ fitting: false
+ my_children: 12
+ my_children[0]: _nameless._.info_bcg_5
+ my_children[1]: _nameless._.blue_bar_5
+ my_children[2]: _nameless._.title_5
+ my_children[3]: _nameless._.trip_dist_5
+ my_children[4]: _nameless._.trip_time_5
+ my_children[5]: _nameless._.total_fuel_5
+ my_children[6]: _nameless._.avg_fuel_5
+ my_children[7]: _nameless._.hor_line
+ my_children[8]: _nameless.13f4.b800
+ my_children[9]: _nameless.13e5.f670
+ my_children[10]: _nameless.13f4.b340
+ my_children[11]: _nameless.13f4.ae80
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 600
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui::text : _nameless._.info_bcg_5 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.119140625 bottom=0.6484375>"
+ coords_l: 452
+ coords_r: 800
+ coords_t: 291
+ coords_b: 31
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.blue_bar_5 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.047 right=0.065 bottom=0.479>"
+ coords_l: 510
+ coords_r: 518
+ coords_t: 231
+ coords_b: 42
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.title_5 {
+ text: "<font face=/font/pt_sans.font>Trip 1</font>"
+ coords_l: 520
+ coords_r: 722
+ coords_t: 261
+ coords_b: 241
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.trip_dist_5 {
+ value: "234|km"
+ look_template: txt.daf_xd.trip3
+ text: ""
+ coords_l: 647
+ coords_r: 775
+ coords_t: 217
+ coords_b: 185
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1210
+ layer: 12
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.trip_time_5 {
+ value: "5:10"
+ look_template: txt.daf_xd.triptime2
+ text: ""
+ coords_l: 647
+ coords_r: 775
+ coords_t: 170
+ coords_b: 138
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1390
+ layer: 12
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.total_fuel_5 {
+ value: "24|gal"
+ look_template: txt.daf_xd.trip2
+ text: ""
+ coords_l: 647
+ coords_r: 775
+ coords_t: 123
+ coords_b: 91
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1500
+ layer: 12
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.avg_fuel_5 {
+ value: "35.4|l/100km"
+ look_template: txt.daf_xd.trip2
+ text: ""
+ coords_l: 647
+ coords_r: 775
+ coords_t: 76
+ coords_b: 44
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1170
+ layer: 12
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.hor_line {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.0035 right=0.0915 top=0.484 bottom=0.644>"
+ coords_l: 519
+ coords_r: 779
+ coords_t: 188
+ coords_b: 82
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 11
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless.13f4.b800 {
+ text: "<font face=/font/pt_sans.font>Distance</font>"
+ coords_l: 520
+ coords_r: 722
+ coords_t: 217
+ coords_b: 197
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless.13e5.f670 {
+ text: "<font face=/font/pt_sans.font>Time</font>"
+ coords_l: 520
+ coords_r: 722
+ coords_t: 170
+ coords_b: 150
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless.13f4.b340 {
+ text: "<font face=/font/pt_sans.font>Total Fuel</font>"
+ coords_l: 520
+ coords_r: 722
+ coords_t: 123
+ coords_b: 103
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless.13f4.ae80 {
+ text: "<font face=/font/pt_sans.font xscale=0.95>Avg Fuel Consumption</font>"
+ coords_l: 520
+ coords_r: 730
+ coords_t: 76
+ coords_b: 56
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::group : _nameless._.display6 {
+ fitting: false
+ my_children: 6
+ my_children[0]: _nameless._.info_bcg_6
+ my_children[1]: _nameless._.soot_ico
+ my_children[2]: _nameless._.title_6
+ my_children[3]: _nameless._.blue_bar_6
+ my_children[4]: _nameless._.soot_bar
+ my_children[5]: _nameless._.regen_text
+ coords_l: 0
+ coords_r: 800
+ coords_t: 300
+ coords_b: 0
+ area_l: 0
+ area_r: 800
+ area_t: 300
+ area_b: 0
+ id: 700
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.01261de50
+}
+
+ui::text : _nameless._.info_bcg_6 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0.119140625 bottom=0.6484375>"
+ coords_l: 452
+ coords_r: 800
+ coords_t: 291
+ coords_b: 31
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.soot_ico {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch left=0.8553 right=0.8807 top=0.7573 bottom=0.7984>"
+ coords_l: 519
+ coords_r: 545
+ coords_t: 190
+ coords_b: 169
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.title_6 {
+ text: "<font face=/font/pt_sans.font>Soot Filter</font>"
+ coords_l: 520
+ coords_r: 726
+ coords_t: 261
+ coords_b: 233
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.blue_bar_6 {
+ text: "<img src=/material/ui/dashboard/daf_xd/info_panel_over.mat xscale=stretch yscale=stretch left=0 right=0.023 bottom=0.359>"
+ coords_l: 511
+ coords_r: 521
+ coords_t: 231
+ coords_b: 82
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.soot_bar {
+ text: "<img src=/material/ui/dashboard/daf_xd/display_main.mat xscale=stretch yscale=stretch right=0.166 top=0.867 bottom=0.928>"
+ coords_l: 550
+ coords_r: 685
+ coords_t: 184
+ coords_b: 159
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.regen_text {
+ text: "<font face=/font/pt_sans.font xscale=0.85 yscale=0.92>Regeneration not required</font>"
+ coords_l: 550
+ coords_r: 770
+ coords_t: 141
+ coords_b: 113
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 10
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+}

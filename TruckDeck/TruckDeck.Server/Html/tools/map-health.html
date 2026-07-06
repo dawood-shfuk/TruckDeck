@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruckDeck Map Health</title>
+    <style>
+        :root { color-scheme: dark; font-family: Segoe UI, system-ui, sans-serif; }
+        body { margin: 0; padding: 24px; background: #0f1419; color: #e6edf3; }
+        h1 { margin: 0 0 8px; font-size: 1.4rem; }
+        p { color: #9da7b3; margin: 0 0 20px; }
+        .grid { display: grid; gap: 12px; max-width: 960px; }
+        .card { background: #1a2332; border: 1px solid #2d3a4d; border-radius: 10px; padding: 14px 16px; }
+        .card h2 { margin: 0 0 10px; font-size: 1rem; }
+        .row { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; border-bottom: 1px solid #243041; }
+        .row:last-child { border-bottom: 0; }
+        .ok { color: #3ddc84; }
+        .bad { color: #ff6b6b; }
+        .warn { color: #f0c040; }
+        #preview { height: 280px; border-radius: 8px; overflow: hidden; margin-top: 12px; background: #242f3e; }
+        button { background: #2563eb; color: #fff; border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; }
+        button:hover { background: #1d4ed8; }
+        pre { white-space: pre-wrap; word-break: break-word; font-size: 12px; color: #b6c2cf; }
+    </style>
+    <link rel="stylesheet" href="../scripts/vendor/maplibre-gl.css">
+    <script src="../scripts/vendor/proj4.js"></script>
+    <script src="../scripts/vendor/pmtiles.js"></script>
+    <script src="../scripts/vendor/maplibre-gl.js"></script>
+    <script src="../scripts/ets2-projection.js"></script>
+    <script src="../scripts/truckdeck-pmtiles-map.js"></script>
+</head>
+<body>
+    <h1>TruckDeck NAV — Map Health</h1>
+    <p>Checks PMTiles, vendor scripts, sprites, fonts, and live map render.</p>
+    <button type="button" id="refresh">Run checks</button>
+    <div class="grid" id="results" style="margin-top:16px;"></div>
+    <div class="card" style="margin-top:16px; max-width:960px;">
+        <h2>Live map preview</h2>
+        <div id="preview"></div>
+        <div id="preview-status" class="warn" style="margin-top:8px;">Waiting…</div>
+    </div>
+<script>
+(function () {
+    var resultsEl = document.getElementById('results');
+    var previewStatus = document.getElementById('preview-status');
+
+    function row(label, ok, detail) {
+        return '<div class="row"><span>' + label + '</span><span class="' + (ok ? 'ok' : 'bad') + '">' +
+            (ok ? 'OK' : 'FAIL') + (detail ? ' — ' + detail : '') + '</span></div>';
+    }
+
+    function card(title, html) {
+        return '<div class="card"><h2>' + title + '</h2>' + html + '</div>';
+    }
+
+    function headOk(url) {
+        return fetch(url, { method: 'HEAD' }).then(function (r) { return r.ok; })['catch'](function () { return false; });
+    }
+
+    function rangeOk(url) {
+        return fetch(url, { headers: { Range: 'bytes=0-16383' } }).then(function (r) {
+            return r.status === 206 || r.status === 200;
+        })['catch'](function () { return false; });
+    }
+
+    function runChecks() {
+        resultsEl.innerHTML = '<div class="card"><h2>Running…</h2></div>';
+        previewStatus.textContent = 'Running preview…';
+
+        var checks = Promise.resolve();
+
+        checks = checks.then(function () {
+            return fetch('/api/maps/status').then(function (r) { return r.json(); }).then(function (status) {
+                var h = status.navHealth || {};
+                var v = h.vendor || {};
+                var s = h.sprites || {};
+                var f = h.fonts || {};
+                var p = h.pmtiles || {};
+                var html = '';
+                html += row('maplibre-gl.js', !!v.maplibreGl, v.maplibreGlBytes ? v.maplibreGlBytes + ' B' : '');
+                html += row('pmtiles.js', !!v.pmtiles, v.pmtilesBytes ? v.pmtilesBytes + ' B' : '');
+                html += row('proj4.js', !!v.proj4, v.proj4Bytes ? v.proj4Bytes + ' B' : '');
+                html += row('truckdeck-pmtiles-map.js', !!v.mapScript, '');
+                html += row('sprites.png', !!s.png, '');
+                html += row('sprites@2x.png', !!s.png2x, '');
+                html += row('local label fonts', !!f.localGlyphs, f.rangeCount ? f.rangeCount + ' ranges' : '');
+                html += row('ets2.pmtiles (active)', !!p.activeExists, p.activeBytes ? (p.activeBytes / 1048576).toFixed(1) + ' MB' : '');
+                html += row('PMTiles middleware', !!p.middleware, p.acceptRanges || '');
+                resultsEl.innerHTML = card('Server assets (/api/maps/status)', html) +
+                    card('Paths', '<pre>' + JSON.stringify(status, null, 2) + '</pre>');
+                return status;
+            });
+        });
+
+        checks = checks.then(function () {
+            return Promise.all([
+                headOk('/ets2.pmtiles'),
+                rangeOk('/ets2.pmtiles'),
+                headOk('/scripts/vendor/maplibre-gl.js'),
+                headOk('/maps/sprites/sprites.png')
+            ]).then(function (vals) {
+                var html = '';
+                html += row('HEAD /ets2.pmtiles', vals[0], '');
+                html += row('RANGE /ets2.pmtiles', vals[1], vals[1] ? '206 or 200' : '');
+                html += row('HEAD maplibre-gl.js', vals[2], '');
+                html += row('HEAD sprites.png', vals[3], '');
+                resultsEl.innerHTML += card('HTTP probes', html);
+            });
+        });
+
+        checks.then(function () {
+            var host = document.getElementById('preview');
+            host.innerHTML = '';
+            var map = new TruckDeckPmtilesMap(host, { game: 'ets2', follow: false, rotate: false });
+            return map.init().then(function () {
+                previewStatus.textContent = 'Map ready';
+                previewStatus.className = 'ok';
+                if (window.TruckDeckProjection) {
+                    var ll = TruckDeckProjection.gameToLngLat('ETS2', -31000, 15000);
+                    if (ll) map.setTruck(ll[0], ll[1], 45);
+                }
+            })['catch'](function (e) {
+                previewStatus.textContent = 'Preview failed: ' + (e && e.message ? e.message : e);
+                previewStatus.className = 'bad';
+            });
+        });
+    }
+
+    document.getElementById('refresh').addEventListener('click', runChecks);
+    runChecks();
+})();
+</script>
+</body>
+</html>

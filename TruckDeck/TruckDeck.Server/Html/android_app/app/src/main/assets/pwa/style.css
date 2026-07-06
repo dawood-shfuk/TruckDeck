@@ -1,0 +1,447 @@
+/* =======================================================================
+   Truck Command Deck - PWA shell
+   A launcher that hosts any server skin in an iframe, with a 3-dot menu
+   (top-right) for setting the server IP, previewing, and choosing a
+   dashboard. Themed with the same schema as the dashboards: an independent
+   colour scheme (data-accent) and day/night (data-mode), both persisted in
+   the shared rc.accent / rc.mode keys.
+   ======================================================================= */
+
+:root {
+    --accent: #b6ff1f;        /* primary accent - cycles with the colour scheme */
+    --accent-dim: #6f8a1c;
+    --ok: #1bd47a;            /* semantic: connected / on */
+    --bad: #ff6b6b;
+    --busy: #ffcf5a;
+    --btn-ink: #06210f;       /* text drawn on top of the accent */
+    --ink: #e7edf3;
+    --ink-dim: #8ea0b2;
+    --ink-faint: #5f7081;
+    --bg1: #11161d;
+    --bg2: #07090c;
+    --bg-solid: #050608;
+    --panel-1: #131922;
+    --panel-2: #0c0f14;
+    --panel: #11161d;
+    --line: #1d242c;
+    --line-soft: #141a21;
+    --track: #23291b;
+    --input-bg: #0a0e13;
+}
+
+/* ---- Accent colour (night shades) ---- */
+html[data-accent="lime"]   { --accent: #b6ff1f; --accent-dim: #6f8a1c; --track: #23291b; }
+html[data-accent="amber"]  { --accent: #ffc24a; --accent-dim: #8a6320; --track: #2a2511; }
+html[data-accent="red"]    { --accent: #ff5a4d; --accent-dim: #8a2a23; --track: #2a1614; }
+html[data-accent="blue"]   { --accent: #46b6ff; --accent-dim: #1f5f8a; --track: #13202a; }
+html[data-accent="green"]  { --accent: #39e07a; --accent-dim: #1c7a40; --track: #142a1d; }
+html[data-accent="ice"]    { --accent: #dfe9f2; --accent-dim: #5d6b7b; --track: #1a2027; }
+html[data-accent="violet"] { --accent: #b07cff; --accent-dim: #5a3f8a; --track: #221a2e; }
+
+/* ---- Day mode: light background palette (accent re-shaded below) ---- */
+html[data-mode="day"] {
+    --btn-ink: #ffffff;
+    --ink: #0b121c; --ink-dim: #44566b; --ink-faint: #6a7a8b;
+    --bg1: #eef2f6; --bg2: #d9e1ea; --bg-solid: #e8edf3;
+    --panel-1: #ffffff; --panel-2: #eef2f7; --panel: #ffffff;
+    --line: #d3dbe5; --line-soft: #e1e7ee; --track: #c3ccd9;
+    --input-bg: #ffffff;
+}
+html[data-mode="day"][data-accent="lime"]   { --accent: #3a7d12; --accent-dim: #9bbf6f; }
+html[data-mode="day"][data-accent="amber"]  { --accent: #b07415; --accent-dim: #d8b06a; }
+html[data-mode="day"][data-accent="red"]    { --accent: #c62828; --accent-dim: #e08a86; }
+html[data-mode="day"][data-accent="blue"]   { --accent: #1565c0; --accent-dim: #7fa7d8; }
+html[data-mode="day"][data-accent="green"]  { --accent: #1b8a45; --accent-dim: #82c79e; }
+html[data-mode="day"][data-accent="ice"]    { --accent: #41566b; --accent-dim: #9aa7b6; }
+html[data-mode="day"][data-accent="violet"] { --accent: #6a3fb0; --accent-dim: #a98fd0; }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background:
+        radial-gradient(1200px 720px at 50% -12%, var(--bg1) 0%, var(--bg2) 62%, var(--bg-solid) 100%);
+    color: var(--ink);
+    font-family: "Rajdhani", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+/* ---- Active dashboard iframe ---- */
+#skin-frame {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    border: 0;
+    background: var(--bg-solid);
+    display: none;
+}
+#skin-frame.active { display: block; }
+
+/* ---- Settings cog button, top-right ---- */
+.cog-btn {
+    position: fixed;
+    top: max(10px, env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
+    z-index: 30;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--accent-dim);
+    border-radius: 50%;
+    background: rgba(12, 16, 22, .72);
+    color: var(--accent);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transition: background .15s ease, transform .06s ease;
+}
+.cog-btn:active { transform: scale(.92) rotate(30deg); }
+.cog-btn svg { width: 18px; height: 18px; display: block; }
+
+/* ---- Empty state ---- */
+.empty {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(1000px 600px at 50% -10%, var(--bg1) 0%, var(--bg2) 70%);
+}
+.empty.hidden { display: none; }
+.empty-card {
+    text-align: center;
+    padding: 0 24px;
+}
+.empty-card h1 {
+    font-size: clamp(2rem, 7vw, 3.4rem);
+    letter-spacing: .16em;
+    font-weight: 800;
+    margin: 0 0 12px;
+    color: var(--accent);
+    text-shadow: 0 0 22px var(--accent-dim);
+}
+.empty-card p {
+    color: var(--ink-dim);
+    font-size: 1rem;
+    margin: 0 0 22px;
+    max-width: 420px;
+}
+
+/* ---- Buttons ---- */
+.primary-btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    font-size: .95rem;
+    color: var(--btn-ink);
+    background: linear-gradient(180deg, var(--accent), var(--accent-dim));
+    cursor: pointer;
+    transition: transform .06s ease;
+}
+.primary-btn.small { padding: 10px 16px; font-size: .85rem; }
+.primary-btn:active { transform: scale(.97); }
+
+.ghost-btn {
+    flex: 1;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    padding: 10px;
+    background: var(--panel-1);
+    color: var(--ink-dim);
+    font-weight: 700;
+    letter-spacing: .04em;
+    font-size: .82rem;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+}
+.ghost-btn:active { background: var(--track); }
+.ghost-btn:hover { border-color: var(--accent); }
+
+/* ---- Theme buttons (accent cycle + day/night), match the dashboards ---- */
+.theme-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--track);
+    background: var(--panel-1);
+    color: var(--ink);
+    font-weight: 800;
+    letter-spacing: .06em;
+    font-size: .8rem;
+    padding: 10px 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform .06s ease, border-color .15s ease;
+}
+.theme-btn:hover { border-color: var(--accent); }
+.theme-btn:active { transform: scale(.96); }
+.theme-btn .sw {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    flex: 0 0 auto;
+}
+
+/* Compact icon buttons: colour = swatch dot only, mode = sun/moon glyph */
+.theme-color, .theme-mode { flex: 0 0 auto; padding: 10px 14px; gap: 0; }
+.theme-mode .js-mode-label { font-size: 1.25rem; line-height: 1; }
+
+.icon-btn {
+    border: 0;
+    background: transparent;
+    color: var(--ink-dim);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+/* ---- Backdrop + Drawer ---- */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, .55);
+    transition: opacity .2s ease;
+}
+.backdrop.hidden { opacity: 0; pointer-events: none; }
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 41;
+    height: 100%;
+    width: min(360px, 88vw);
+    background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+    border-left: 1px solid var(--line);
+    box-shadow: -20px 0 50px rgba(0, 0, 0, .55);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform .24s cubic-bezier(.4, 0, .2, 1);
+    padding-top: env(safe-area-inset-top);
+}
+.drawer.open { transform: translateX(0); }
+
+.drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid var(--line-soft);
+}
+.drawer-title {
+    font-weight: 800;
+    letter-spacing: .2em;
+    color: var(--accent);
+    font-size: .95rem;
+    text-shadow: 0 0 14px var(--accent-dim);
+}
+
+.drawer-sec {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line-soft);
+}
+.drawer-sec.grow { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.drawer-sec h3 {
+    margin: 0 0 12px;
+    font-size: .66rem;
+    letter-spacing: .22em;
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.ip-row { display: flex; gap: 8px; }
+#ip-input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--input-bg);
+    color: var(--ink);
+    padding: 11px 12px;
+    font-size: 1rem;
+    letter-spacing: .03em;
+}
+#ip-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+
+.status {
+    margin-top: 10px;
+    font-size: .82rem;
+    color: var(--ink-dim);
+}
+.status.ok { color: var(--ok); }
+.status.bad { color: var(--bad); }
+.status.busy { color: var(--busy); }
+
+.row-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+/* ---- Skin list ---- */
+.skin-list {
+    overflow-y: auto;
+    margin: 0 -4px;
+    padding: 0 4px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.skin-empty {
+    color: var(--ink-faint);
+    font-size: .9rem;
+    padding: 8px 2px;
+}
+.skin-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--panel-1) 0%, var(--panel-2) 100%);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+}
+.skin-card:active { background: var(--track); }
+.skin-card:hover { border-color: var(--accent); }
+.skin-card.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent) inset;
+}
+.skin-thumb {
+    width: 92px;
+    height: 56px;
+    flex: 0 0 auto;
+    border-radius: 8px;
+    object-fit: cover;
+    background: var(--bg-solid);
+    border: 1px solid var(--line);
+}
+.skin-meta { min-width: 0; flex: 1 1 auto; }
+.skin-name {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: .92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.skin-author {
+    color: var(--ink-dim);
+    font-size: .76rem;
+    margin-top: 2px;
+}
+
+/* Right-side actions (VIEW preview + ACTIVE badge) */
+.skin-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+.view-btn {
+    border: 1px solid var(--accent-dim);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--accent);
+    font-weight: 800;
+    letter-spacing: .08em;
+    font-size: .62rem;
+    padding: 5px 11px;
+    cursor: pointer;
+    transition: background .15s ease, transform .06s ease;
+}
+.view-btn:hover { background: var(--track); }
+.view-btn:active { transform: scale(.94); }
+.view-btn.hidden { display: none; }
+
+.skin-badge {
+    font-size: .6rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    color: var(--btn-ink);
+    background: var(--accent);
+    padding: 3px 8px;
+    border-radius: 20px;
+    display: none;
+}
+.skin-card.active .skin-badge { display: inline-block; }
+
+.drawer-foot {
+    padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+    font-size: .72rem;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--line-soft);
+}
+
+/* =======================================================================
+   Short / landscape phones (e.g. 6" devices used sideways): the stacked
+   drawer leaves almost no room for the dashboard list. Re-flow the menu
+   into two columns so the DASHBOARDS list gets the full height.
+   ======================================================================= */
+@media (max-height: 600px) and (min-width: 620px) {
+    .drawer {
+        width: min(760px, 96vw);
+        display: grid;
+        grid-template-columns: minmax(240px, 300px) 1fr;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        grid-template-areas:
+            "head   head"
+            "server skins"
+            "appear skins"
+            "foot   foot";
+    }
+    .drawer-head { grid-area: head; padding: 10px 16px; }
+    /* SERVER (1st section) and APPEARANCE (2nd) stack in the left column;
+       the dashboards list (grow) fills the right column across both rows. */
+    .drawer-sec:nth-of-type(1) {
+        grid-area: server;
+        border-bottom: 1px solid var(--line-soft);
+        border-right: 1px solid var(--line-soft);
+        overflow-y: auto;
+        padding: 12px 16px;
+    }
+    .drawer-sec:nth-of-type(2) {
+        grid-area: appear;
+        border-bottom: 0;
+        border-right: 1px solid var(--line-soft);
+        padding: 12px 16px;
+    }
+    .drawer-sec.grow {
+        grid-area: skins;
+        padding: 12px 16px;
+        min-height: 0;
+    }
+    .drawer-foot { grid-area: foot; padding: 8px 16px calc(8px + env(safe-area-inset-bottom)); }
+    .drawer-sec h3 { margin-bottom: 8px; }
+    .status { margin-top: 8px; }
+    .row-actions { margin-top: 10px; }
+    .skin-list { gap: 8px; }
+    .skin-thumb { width: 78px; height: 48px; }
+}
+
+/* Extra-short screens: shave vertical space further. */
+@media (max-height: 430px) and (min-width: 620px) {
+    .skin-thumb { width: 64px; height: 40px; }
+    .skin-card { padding: 6px; }
+    .drawer-foot { display: none; }
+}

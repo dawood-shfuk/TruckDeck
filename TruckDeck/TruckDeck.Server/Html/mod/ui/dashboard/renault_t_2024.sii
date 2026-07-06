@@ -1,0 +1,1829 @@
+SiiNunit
+{
+ui::window : _nameless.wnd {
+ window_handler: null
+ clip_children: true
+ keep_aspect: none
+ user_string_data: ""
+ first_direction_focus_id: 0
+ fitting: false
+ my_children: 7
+ my_children[0]: _nameless._.sharedisplay
+ my_children[1]: _nameless._.display1
+ my_children[2]: _nameless._.display2
+ my_children[3]: _nameless._.display3
+ my_children[4]: _nameless._.display4
+ my_children[5]: _nameless._.display5
+ my_children[6]: _nameless._.display6
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 0
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: null
+}
+
+ui::group : _nameless._.sharedisplay {
+ fitting: false
+ my_children: 39
+ my_children[0]: _nameless._.bcg
+ my_children[1]: _nameless._.temp
+ my_children[2]: _nameless._.speed
+ my_children[3]: _nameless._.spdlmt
+ my_children[4]: _nameless._.cc_group
+ my_children[5]: _nameless._.lblinkr_ico
+ my_children[6]: _nameless._.rblinkr_ico
+ my_children[7]: _nameless._.airprs_warn
+ my_children[8]: _nameless._.icons_ico
+ my_children[9]: _nameless._.icons
+ my_children[10]: _nameless._.acons_ico
+ my_children[11]: _nameless._.acons
+ my_children[12]: _nameless._.motoh_ico
+ my_children[13]: _nameless._.motoh_txt
+ my_children[14]: _nameless._.motoh
+ my_children[15]: _nameless._.fuel_ico
+ my_children[16]: _nameless._.fuelw_ico
+ my_children[17]: _nameless._.fuel_rng
+ my_children[18]: _nameless._.fuel_bg
+ my_children[19]: _nameless._.fuel_bar
+ my_children[20]: _nameless._.adblue_ico
+ my_children[21]: _nameless._.adblue_bg
+ my_children[22]: _nameless._.adblue_bar
+ my_children[23]: _nameless._.adblue_perc
+ my_children[24]: _nameless._.drive_mode1
+ my_children[25]: _nameless._.gear_mode1_i
+ my_children[26]: _nameless._.gear_mode1
+ my_children[27]: _nameless._.gear1
+ my_children[28]: _nameless._.retarder1_i
+ my_children[29]: _nameless._.time
+ my_children[30]: _nameless._.tripmeter
+ my_children[31]: _nameless._.odometer
+ my_children[32]: _nameless._.bsmr
+ my_children[33]: _nameless._.bsml
+ my_children[34]: _nameless._.rpmbar1_ico
+ my_children[35]: _nameless._.rpmbar1_txt
+ my_children[36]: _nameless._.rpmbar1
+ my_children[37]: _nameless._.mediaoff_i
+ my_children[38]: _nameless._.mediaoff
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 950
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.bcg {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0 right=1 top=0 bottom=0.375 xscale=stretch yscale=stretch>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.temp {
+ value: "22|C"
+ look_template: txt.renault_t_24.ic_temp
+ text: ""
+ coords_l: 21
+ coords_r: 88
+ coords_t: 502
+ coords_b: 472
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1000
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.speed {
+ value: "67|km/h"
+ look_template: txt.renault_t_24.ic_speed
+ text: ""
+ coords_l: 630
+ coords_r: 810
+ coords_t: 512
+ coords_b: 404
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1020
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.spdlmt {
+ value: 70
+ look_template: txt.renault_t_24.ic_spdlmt
+ text: ""
+ coords_l: 930
+ coords_r: 990
+ coords_t: 520
+ coords_b: 460
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1610
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::group : _nameless._.cc_group {
+ fitting: false
+ my_children: 3
+ my_children[0]: _nameless._.cc_ico
+ my_children[1]: _nameless._.cc_spd_ico
+ my_children[2]: _nameless._.cc_spd
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1240
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.cc_ico {
+ text: "<color value=FFEFEFEF><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0 right=0.0625 top=0.875 bottom=0.9375 xscale=stretch yscale=stretch>"
+ coords_l: 654
+ coords_r: 722
+ coords_t: 403
+ coords_b: 335
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui::text : _nameless._.cc_spd_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat lleft=0 right=0.0625 top=0.8125 bottom=0.875 xscale=stretch yscale=stretch>"
+ coords_l: 718
+ coords_r: 786
+ coords_t: 403
+ coords_b: 335
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui::text_common : _nameless._.cc_spd {
+ value: 90
+ look_template: txt.renault_t_24.ic_gvalbc
+ text: ""
+ coords_l: 710
+ coords_r: 789
+ coords_t: 386
+ coords_b: 351
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1100
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group
+}
+
+ui::text : _nameless._.lblinkr_ico {
+ text: "<color value=FF44DD88><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0 right=0.0625 top=0.9375 bottom=1>"
+ coords_l: 366
+ coords_r: 430
+ coords_t: 466
+ coords_b: 402
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1570
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.rblinkr_ico {
+ text: "<color value=FF44DD88><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch right=0 left=0.0625 top=0.9375 bottom=1>"
+ coords_l: 1010
+ coords_r: 1074
+ coords_t: 466
+ coords_b: 402
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1580
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::group : _nameless._.airprs_warn {
+ fitting: false
+ my_children: 1
+ my_children[0]: _nameless._.airprs_ico
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1260
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.airprs_ico {
+ text: "<color value=FF1111FF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0625 right=0.125 top=0.875 bottom=0.9375>\r\n<ret><offset vshift=10 hshift=20><font face=/font/db_normal.font xscale=1.746 yscale=1.746>!</font>"
+ coords_l: 1364
+ coords_r: 1412
+ coords_t: 513
+ coords_b: 465
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.airprs_warn
+}
+
+ui::text : _nameless._.icons_ico {
+ text: "<color value=FFEFEFEF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.125 right=0.1875 top=0.9375 bottom=1>"
+ coords_l: 50
+ coords_r: 86
+ coords_t: 357
+ coords_b: 321
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.icons {
+ value: "120,0|l/100km"
+ look_template: txt.renault_t_24.ic_gval2sl
+ text: ""
+ coords_l: 98
+ coords_r: 310
+ coords_t: 350
+ coords_b: 322
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1160
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.acons_ico {
+ text: "<color value=FFEFEFEF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0625 right=0.125 top=0.9375 bottom=1>"
+ coords_l: 48
+ coords_r: 84
+ coords_t: 310
+ coords_b: 274
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.acons {
+ value: "120,0|l/100km"
+ look_template: txt.renault_t_24.ic_gval2sl
+ text: ""
+ coords_l: 98
+ coords_r: 310
+ coords_t: 303
+ coords_b: 275
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1170
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.motoh_ico {
+ text: "<color value=FFEFEFEF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.125 right=0.1875 top=0.875 bottom=0.9375>"
+ coords_l: 49
+ coords_r: 85
+ coords_t: 232
+ coords_b: 196
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.motoh_txt {
+ text: "<color value=FFAAAAAA><align hstyle=left><font face=/font/db_din_pro_medium.font xscale=1.2 yscale=1.2>Drive time trip</font></align>"
+ coords_l: 103
+ coords_r: 269
+ coords_t: 241
+ coords_b: 217
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.motoh {
+ value: "03:40|h"
+ look_template: txt.renault_t_24.ic_gval2sl
+ text: ""
+ coords_l: 103
+ coords_r: 315
+ coords_t: 216
+ coords_b: 188
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1390
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.fuel_ico {
+ text: "<color value=FFEFEFEF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.125 right=0.1875 top=0.9375 bottom=1>"
+ coords_l: 193
+ coords_r: 229
+ coords_t: 107
+ coords_b: 71
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.fuelw_ico {
+ text: "<color value=FF24ADF0><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.125 right=0.1875 top=0.9375 bottom=1>"
+ coords_l: 193
+ coords_r: 229
+ coords_t: 107
+ coords_b: 71
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1200
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.fuel_rng {
+ value: "1390|km"
+ look_template: txt.renault_t_24.ic_gval2sl
+ text: ""
+ coords_l: 273
+ coords_r: 382
+ coords_t: 118
+ coords_b: 90
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1080
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.fuel_bg {
+ text: "<color value=FFFFFFFF>\r\n<offset vshift=19><img src=/material/ui/dashboard/renault_t_2024/display.mat width=170 height=8 left=0.0078125 right=0.23046875 top=0.5693359375 bottom=0.5791015625>\r\n<ret><offset vshift=28><img src=/material/ui/dashboard/renault_t_2024/display.mat width=170 height=12 left=0.0068359375 right=0.2314453125 top=0.619140625 bottom=0.634765625>\r\n<color value=FF979797>\r\n<font  face=/font/db_din_pro_cond_bold.font xscale=1 yscale=0.9>\r\n<ret>E\r\n<ret><align hstyle=right>F</align>\r\n</font>"
+ coords_l: 236
+ coords_r: 406
+ coords_t: 110
+ coords_b: 69
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_text_bar : _nameless._.fuel_bar {
+ vertical: false
+ min_size: 20
+ max_size: 190
+ min_value: 0
+ max_value: 1
+ text: "<color value=FFFFFFFF>\r\n<margin left=10 right=-10><offset vshift=17><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<align hstyle=right>\r\n<ret><img src=/material/ui/dashboard/renault_t_2024/display.mat width=20 height=20 left=0.25 right=0.3125 top=0.6875 bottom=0.75>\r\n</align>\r\n\r\n"
+ coords_l: 226
+ coords_r: 416
+ coords_t: 97
+ coords_b: 66
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1070
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.adblue_ico {
+ text: "<color value=FFFFB455><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.1875 right=0.25 top=0.875 bottom=0.9375>"
+ coords_l: 1037
+ coords_r: 1075
+ coords_t: 108
+ coords_b: 70
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.adblue_bg {
+ text: "<color value=FFFFFFFF>\r\n<offset vshift=19><img src=/material/ui/dashboard/renault_t_2024/display.mat width=170 height=8 left=0.0078125 right=0.23046875 top=0.5693359375 bottom=0.5791015625>\r\n<ret><offset vshift=28><img src=/material/ui/dashboard/renault_t_2024/display.mat width=170 height=12 left=0.0068359375 right=0.2314453125 top=0.619140625 bottom=0.634765625>\r\n<color value=FF979797>\r\n<font  face=/font/db_din_pro_cond_bold.font xscale=1 yscale=0.9>\r\n<ret>E\r\n<ret><align hstyle=right>F</align>\r\n</font>"
+ coords_l: 1076
+ coords_r: 1246
+ coords_t: 110
+ coords_b: 69
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_text_bar : _nameless._.adblue_bar {
+ vertical: false
+ min_size: 20
+ max_size: 190
+ min_value: 0
+ max_value: 1
+ text: "<color value=FFFFFFFF>\r\n<margin left=10 right=-10><offset vshift=17><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<align hstyle=right>\r\n<ret><img src=/material/ui/dashboard/renault_t_2024/display.mat width=20 height=20 left=0.25 right=0.3125 top=0.6875 bottom=0.75>\r\n</align>\r\n\r\n"
+ coords_l: 1066
+ coords_r: 1256
+ coords_t: 97
+ coords_b: 66
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1140
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.adblue_perc {
+ value: 50
+ look_template: txt.renault_t_24.ic_gvalpsr
+ text: ""
+ coords_l: 1102
+ coords_r: 1183
+ coords_t: 118
+ coords_b: 90
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1520
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.drive_mode1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.1875 right=0.25 top=0.9375 bottom=1>"
+ coords_l: 515
+ coords_r: 551
+ coords_t: 164
+ coords_b: 128
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.gear_mode1_i {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0.2880859375 right=0.3505859375 top=0.56640625 bottom=0.599609375 xscale=stretch yscale=stretch>"
+ coords_l: 655
+ coords_r: 744
+ coords_t: 168
+ coords_b: 120
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.gear_mode1 {
+ value: A
+ look_template: txt.renault_t_24.ic_wvalc
+ text: ""
+ coords_l: 660
+ coords_r: 694
+ coords_t: 153
+ coords_b: 117
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1310
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.gear1 {
+ value: 3
+ look_template: txt.renault_t_24.ic_wvalbc
+ text: ""
+ coords_l: 695
+ coords_r: 744
+ coords_t: 159
+ coords_b: 123
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1300
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.retarder1_i {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.125 right=0.1875 top=0.75 bottom=0.8125>"
+ coords_l: 830
+ coords_r: 880
+ coords_t: 171
+ coords_b: 121
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1290
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.time {
+ value: "11:34"
+ look_template: txt.renault_t_24.ic_wvalr
+ text: ""
+ coords_l: 169
+ coords_r: 247
+ coords_t: 44
+ coords_b: 16
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1050
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.tripmeter {
+ value: "4420.5|km"
+ look_template: txt.renault_t_24.ic_tripm
+ text: ""
+ coords_l: 1073
+ coords_r: 1230
+ coords_t: 44
+ coords_b: 16
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1210
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text_common : _nameless._.odometer {
+ value: "1234567|km"
+ look_template: txt.renault_t_24.ic_odo
+ text: ""
+ coords_l: 1266
+ coords_r: 1424
+ coords_t: 44
+ coords_b: 16
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1030
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bsmr {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0068359375 right=0.208984375 top=0.662109375 bottom=0.7421875>"
+ coords_l: 818
+ coords_r: 1120
+ coords_t: 540
+ coords_b: 424
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1670
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.bsml {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch right=0.0068359375 left=0.208984375 top=0.662109375 bottom=0.7421875>"
+ coords_l: 322
+ coords_r: 624
+ coords_t: 540
+ coords_b: 424
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1660
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.rpmbar1_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0078125 right=0.345703125 top=0.53515625 bottom=0.5625>"
+ coords_l: 475
+ coords_r: 961
+ coords_t: 122
+ coords_b: 83
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.rpmbar1_txt {
+ text: "<color value=FF979797><font face=/font/db_din_pro_medium.font xscale=0.7 yscale=0.6>10<offset hshift=120>15<offset hshift=120>20<align hstyle=right>rpm x 100</align></font>"
+ coords_l: 587
+ coords_r: 963
+ coords_t: 76
+ coords_b: 59
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui_text_bar : _nameless._.rpmbar1 {
+ vertical: false
+ min_size: 22
+ max_size: 442
+ min_value: 700
+ max_value: 2250
+ text: "<color value=FFFFFFFF><align hstyle=right><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0.296875 right=0.3125 top=0.607421875 bottom=0.6337890625 width=22 height=38></align>"
+ coords_l: 500
+ coords_r: 837
+ coords_t: 116
+ coords_b: 76
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1700
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.mediaoff_i {
+ text: "<color value=FF979797><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.3125 right=0.375 top=0.75 bottom=0.8125>"
+ coords_l: 1156
+ coords_r: 1192
+ coords_t: 210
+ coords_b: 174
+ area_l: 1156
+ area_r: 1192
+ area_t: 210
+ area_b: 174
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::text : _nameless._.mediaoff {
+ text: "<color value=FF979797><align hstyle=left><font face=/font/db_din_pro_medium.font xscale=1.2 yscale=1.1>Media off</font></align>"
+ coords_l: 1208
+ coords_r: 1374
+ coords_t: 199
+ coords_b: 175
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.sharedisplay
+}
+
+ui::group : _nameless._.display1 {
+ fitting: false
+ my_children: 4
+ my_children[0]: _nameless._.airp_ico
+ my_children[1]: _nameless._.airp_bar_bcg
+ my_children[2]: _nameless._.airp_bar
+ my_children[3]: _nameless._.airp
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 100
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.airp_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0625 right=0.125 top=0.875 bottom=0.9375>"
+ coords_l: 1252
+ coords_r: 1294
+ coords_t: 386
+ coords_b: 344
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text : _nameless._.airp_bar_bcg {
+ text: "<color value=FFFFFFFF>\r\n<offset hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=10 left=0.0068359375 right=0.283203125 top=0.5859375 bottom=0.5966796875>\r\n<ret><offset vshift=50 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=10 left=0.0068359375 right=0.283203125 bottom=0.5859375 top=0.5966796875>\r\n<ret><offset vshift=10 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<ret><offset vshift=38 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<font  face=/font/db_din_pro_medium.font xscale=0.9 yscale=0.9>\r\n<ret><offset vshift=10 hshift=3>1\r\n<ret><offset vshift=40 hshift=3>2\r\n<ret><offset vshift=23 hshift=70>8<offset hshift=95>12\r\n</font>"
+ coords_l: 1170
+ coords_r: 1380
+ coords_t: 344
+ coords_b: 284
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui_text_bar : _nameless._.airp_bar {
+ vertical: false
+ min_size: 26
+ max_size: 214
+ min_value: 6
+ max_value: 13
+ text: "<color value=FFFFFFFF>\r\n<margin left=13 right=-13><offset vshift=15><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<ret><margin left=13 right=-13><offset vshift=43><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<align hstyle=right>\r\n<ret><offset vshift=-6><img src=/material/ui/dashboard/renault_t_2024/display.mat width=26 height=26 left=0.25 right=0.3125 top=0.6875 bottom=0.75>\r\n<ret><offset vshift=48><img src=/material/ui/dashboard/renault_t_2024/display.mat width=26 height=26 left=0.25 right=0.3125 bottom=0.6875 top=0.75>\r\n</align>\r\n\r\n"
+ coords_l: 1178
+ coords_r: 1392
+ coords_t: 348
+ coords_b: 281
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1120
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::text_common : _nameless._.airp {
+ value: "12,0|bar"
+ look_template: txt.renault_t_24.ic_wdval2sr
+ text: ""
+ coords_l: 1258
+ coords_r: 1383
+ coords_t: 373
+ coords_b: 253
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1370
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display1
+}
+
+ui::group : _nameless._.display2 {
+ fitting: false
+ my_children: 2
+ my_children[0]: _nameless._.volt_bcg
+ my_children[1]: _nameless._.volt
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 200
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.volt_bcg {
+ text: "<color value=3FFFFFFF>\r\n<offset vshift=36><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch height=4 left=0.1240234375 right=0.3134765625 top=0.6416015625 bottom=0.6484375>\r\n<color value=FFAAAAAA>\r\n<font  face=/font/db_din_pro_medium.font xscale=1 yscale=1>\r\n<ret><align hstyle=center><offset vshift=10 hshift=3>Volt / Amp Meter</align>\r\n</font>\r\n<font  face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.3>\r\n<ret><align hstyle=right><offset vshift=57 hshift=3><color value=FFFFFFFF>---<color value=FFAAAAAA> A</align>\r\n</font>"
+ coords_l: 1170
+ coords_r: 1380
+ coords_t: 359
+ coords_b: 280
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::text_common : _nameless._.volt {
+ value: "13.7|V"
+ look_template: txt.renault_t_24.ic_wval2sl
+ text: ""
+ coords_l: 1166
+ coords_r: 1383
+ coords_t: 306
+ coords_b: 249
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1320
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display2
+}
+
+ui::group : _nameless._.display3 {
+ fitting: false
+ my_children: 3
+ my_children[0]: _nameless._.oilp_ico
+ my_children[1]: _nameless._.oilp_bar_bcg
+ my_children[2]: _nameless._.oilp_bar
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 300
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.oilp_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.375 right=0.4375 top=0.8125 bottom=0.875>"
+ coords_l: 1252
+ coords_r: 1294
+ coords_t: 362
+ coords_b: 320
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::text : _nameless._.oilp_bar_bcg {
+ text: "<color value=FFFFFFFF>\r\n<offset vshift=16><img src=/material/ui/dashboard/renault_t_2024/display.mat width=210 height=10 left=0.0068359375 right=0.283203125 top=0.59765625 bottom=0.61328125>\r\n<ret><offset vshift=26><img src=/material/ui/dashboard/renault_t_2024/display.mat width=210 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<ret><offset vshift=26 hshift=140><img src=/material/ui/dashboard/renault_t_2024/display.mat width=70 height=12 left=0.0068359375 right=0.103515625 top=0.640625 bottom=0.65625>\r\n<font  face=/font/db_din_pro_cond_bold.font xscale=0.9 yscale=0.9>\r\n<ret>Low\r\n<ret><align hstyle=right>High</align>\r\n</font>"
+ coords_l: 1170
+ coords_r: 1380
+ coords_t: 335
+ coords_b: 295
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui_text_bar : _nameless._.oilp_bar {
+ vertical: false
+ min_size: 18
+ max_size: 228
+ min_value: 0
+ max_value: 8
+ text: "<color value=FFFFFFFF>\r\n<margin left=10 right=-10><offset vshift=16><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<align hstyle=right>\r\n<ret><img src=/material/ui/dashboard/renault_t_2024/display.mat width=20 height=20 left=0.25 right=0.3125 top=0.6875 bottom=0.75>\r\n</align>\r\n\r\n"
+ coords_l: 1161
+ coords_r: 1389
+ coords_t: 324
+ coords_b: 294
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1110
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display3
+}
+
+ui::group : _nameless._.display4 {
+ fitting: false
+ my_children: 3
+ my_children[0]: _nameless._.wtemp_ico
+ my_children[1]: _nameless._.wtemp_bar_bc
+ my_children[2]: _nameless._.wtemp_bar
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 400
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.wtemp_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0625 right=0.125 top=0.75 bottom=0.8125>"
+ coords_l: 1252
+ coords_r: 1294
+ coords_t: 362
+ coords_b: 320
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::text : _nameless._.wtemp_bar_bc {
+ text: "<color value=FFFFFFFF>\r\n<offset vshift=16><img src=/material/ui/dashboard/renault_t_2024/display.mat width=210 height=10 right=0.0068359375 left=0.283203125 top=0.59765625 bottom=0.61328125>\r\n<ret><offset vshift=26><img src=/material/ui/dashboard/renault_t_2024/display.mat width=210 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<ret><offset vshift=26 hshift=140><img src=/material/ui/dashboard/renault_t_2024/display.mat width=70 height=12 left=0.0068359375 right=0.103515625 top=0.640625 bottom=0.65625>\r\n<font  face=/font/db_din_pro_cond_bold.font xscale=0.9 yscale=0.9>\r\n<ret>Low\r\n<ret><align hstyle=right>High</align>\r\n</font>"
+ coords_l: 1170
+ coords_r: 1380
+ coords_t: 335
+ coords_b: 295
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui_text_bar : _nameless._.wtemp_bar {
+ vertical: false
+ min_size: 18
+ max_size: 228
+ min_value: 0
+ max_value: 130
+ text: "<color value=FFFFFFFF>\r\n<margin left=10 right=-10><offset vshift=16><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<align hstyle=right>\r\n<ret><img src=/material/ui/dashboard/renault_t_2024/display.mat width=20 height=20 left=0.25 right=0.3125 top=0.6875 bottom=0.75>\r\n</align>\r\n\r\n"
+ coords_l: 1161
+ coords_r: 1389
+ coords_t: 324
+ coords_b: 294
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1150
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display4
+}
+
+ui::group : _nameless._.display5 {
+ fitting: false
+ my_children: 16
+ my_children[0]: _nameless._.nav_bcg
+ my_children[1]: _nameless._.navspeed_bcg
+ my_children[2]: _nameless._.navspeed
+ my_children[3]: _nameless._.cc_group1
+ my_children[4]: _nameless._.airp_ico2
+ my_children[5]: _nameless._.air_bar_bcg2
+ my_children[6]: _nameless._.air_bar2
+ my_children[7]: _nameless._.airp2
+ my_children[8]: _nameless._.eta
+ my_children[9]: _nameless._.rpmbar2_ico
+ my_children[10]: _nameless._.rpmbar2
+ my_children[11]: _nameless._.drive_mode2
+ my_children[12]: _nameless._.gear_mode2_i
+ my_children[13]: _nameless._.gear_mode2
+ my_children[14]: _nameless._.gear2
+ my_children[15]: _nameless._.retarder2_i
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 500
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.nav_bcg {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch height=478 left=0.413 right=0.4131 top=0.304 bottom=0.3041>\r\n<color value=FF423733>\r\n<ret><offset hshift=280 vshift=100><img src=/material/ui/white.mat width=880 height=355 xscale=stretch yscale=stretch>\r\n<color value=FFFFFFFF>\r\n<ret><offset hshift=280 vshift=100><img src=/material/ui/dashboard/bare_map.mat width=880 height=355 left=0.125 right=0.875 bottom=0.35388 top=0.6811>\r\n<ret><offset vshift=100 hshift=280><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=177 left=0 right=0.3173828125 top=0.380859375 bottom=0.505859375>\r\n<ret><offset vshift=100 hshift=720><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=177 right=0 left=0.3173828125 top=0.380859375 bottom=0.505859375>\r\n<ret><offset vshift=277 hshift=280><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=178 left=0 right=0.3173828125 bottom=0.380859375 top=0.505859375>\r\n<ret><offset vshift=277 hshift=720><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=178 right=0 left=0.3173828125 bottom=0.380859375 top=0.505859375>\r\n<ret><offset hshift=1135 vshift=145><img src=/material/ui/dashboard/renault_t_2024/display.mat width=277 height=250 left=0.6953125 right=0.8876953125 top=0.37890625 bottom=0.552734375>\r\n<ret><offset hshift=28 vshift=168><img src=/material/ui/dashboard/renault_t_2024/display.mat width=277 height=204 left=0.6953125 right=0.8876953125 top=0.556640625 bottom=0.697265625>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.navspeed_bcg {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.388671875 right=0.66015625 top=0.6669921875 bottom=0.728515625>"
+ coords_l: 524
+ coords_r: 918
+ coords_t: 524
+ coords_b: 436
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.navspeed {
+ value: "67|km/h"
+ look_template: txt.renault_t_24.ic_navspeed
+ text: ""
+ coords_l: 630
+ coords_r: 810
+ coords_t: 512
+ coords_b: 404
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1020
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::group : _nameless._.cc_group1 {
+ fitting: false
+ my_children: 3
+ my_children[0]: _nameless._.cc_ico1
+ my_children[1]: _nameless._.cc_spd_ico1
+ my_children[2]: _nameless._.cc_spd1
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1240
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.cc_ico1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0 right=0.0625 top=0.875 bottom=0.9375 xscale=stretch yscale=stretch>"
+ coords_l: 652
+ coords_r: 720
+ coords_t: 443
+ coords_b: 375
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group1
+}
+
+ui::text : _nameless._.cc_spd_ico1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat lleft=0 right=0.0625 top=0.8125 bottom=0.875 xscale=stretch yscale=stretch>"
+ coords_l: 720
+ coords_r: 788
+ coords_t: 443
+ coords_b: 375
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group1
+}
+
+ui::text_common : _nameless._.cc_spd1 {
+ value: 90
+ look_template: txt.renault_t_24.ic_wvalbc
+ text: ""
+ coords_l: 710
+ coords_r: 789
+ coords_t: 425
+ coords_b: 390
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1100
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.cc_group1
+}
+
+ui::text : _nameless._.airp_ico2 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0625 right=0.125 top=0.875 bottom=0.9375>"
+ coords_l: 1252
+ coords_r: 1294
+ coords_t: 386
+ coords_b: 344
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.air_bar_bcg2 {
+ text: "<color value=FFFFFFFF>\r\n<offset hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=10 left=0.0068359375 right=0.283203125 top=0.5859375 bottom=0.5966796875>\r\n<ret><offset vshift=50 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=10 left=0.0068359375 right=0.283203125 bottom=0.5859375 top=0.5966796875>\r\n<ret><offset vshift=10 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<ret><offset vshift=38 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<font  face=/font/db_din_pro_medium.font xscale=0.9 yscale=0.9>\r\n<ret><offset vshift=10 hshift=3>1\r\n<ret><offset vshift=40 hshift=3>2\r\n<ret><offset vshift=23 hshift=70>8<offset hshift=95>12\r\n</font>"
+ coords_l: 1170
+ coords_r: 1380
+ coords_t: 344
+ coords_b: 284
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui_text_bar : _nameless._.air_bar2 {
+ vertical: false
+ min_size: 26
+ max_size: 214
+ min_value: 6
+ max_value: 13
+ text: "<color value=FFFFFFFF>\r\n<margin left=13 right=-13><offset vshift=15><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<ret><margin left=13 right=-13><offset vshift=43><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<align hstyle=right>\r\n<ret><offset vshift=-6><img src=/material/ui/dashboard/renault_t_2024/display.mat width=26 height=26 left=0.25 right=0.3125 top=0.6875 bottom=0.75>\r\n<ret><offset vshift=48><img src=/material/ui/dashboard/renault_t_2024/display.mat width=26 height=26 left=0.25 right=0.3125 bottom=0.6875 top=0.75>\r\n</align>\r\n\r\n"
+ coords_l: 1178
+ coords_r: 1392
+ coords_t: 348
+ coords_b: 281
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1120
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.airp2 {
+ value: "12,0|bar"
+ look_template: txt.renault_t_24.ic_wdval2sr
+ text: ""
+ coords_l: 1258
+ coords_r: 1383
+ coords_t: 373
+ coords_b: 253
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1370
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.eta {
+ value: "22:55"
+ look_template: txt.renault_t_24.ic_eta
+ text: ""
+ coords_l: 1152
+ coords_r: 1294
+ coords_t: 217
+ coords_b: 164
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1530
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.rpmbar2_ico {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0078125 right=0.345703125 top=0.53515625 bottom=0.552734375>"
+ coords_l: 475
+ coords_r: 961
+ coords_t: 95
+ coords_b: 70
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui_text_bar : _nameless._.rpmbar2 {
+ vertical: false
+ min_size: 18
+ max_size: 436
+ min_value: 700
+ max_value: 2250
+ text: "<color value=FFFFFFFF><align hstyle=right><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0.296875 right=0.3125 top=0.607421875 bottom=0.6337890625 width=13 height=22></align>"
+ coords_l: 500
+ coords_r: 735
+ coords_t: 89
+ coords_b: 64
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1700
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.drive_mode2 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.1875 right=0.25 top=0.9375 bottom=1>"
+ coords_l: 515
+ coords_r: 551
+ coords_t: 136
+ coords_b: 100
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.gear_mode2_i {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat left=0.2880859375 right=0.3505859375 top=0.56640625 bottom=0.599609375 xscale=stretch yscale=stretch>"
+ coords_l: 655
+ coords_r: 744
+ coords_t: 141
+ coords_b: 93
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.gear_mode2 {
+ value: A
+ look_template: txt.renault_t_24.ic_wvalc
+ text: ""
+ coords_l: 660
+ coords_r: 694
+ coords_t: 126
+ coords_b: 90
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1310
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text_common : _nameless._.gear2 {
+ value: 3
+ look_template: txt.renault_t_24.ic_wvalbc
+ text: ""
+ coords_l: 695
+ coords_r: 744
+ coords_t: 132
+ coords_b: 96
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1300
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::text : _nameless._.retarder2_i {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.125 right=0.1875 top=0.75 bottom=0.8125>"
+ coords_l: 830
+ coords_r: 880
+ coords_t: 143
+ coords_b: 93
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1290
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display5
+}
+
+ui::group : _nameless._.display6 {
+ fitting: false
+ my_children: 11
+ my_children[0]: _nameless._.nav_bcg1
+ my_children[1]: _nameless._.navspeed_bg1
+ my_children[2]: _nameless._.navspeed1
+ my_children[3]: _nameless._.notif_bcg
+ my_children[4]: _nameless._.fuel_warn
+ my_children[5]: _nameless._.dmg_warn
+ my_children[6]: _nameless._.airp_ico3
+ my_children[7]: _nameless._.air_bar_bcg3
+ my_children[8]: _nameless._.air_bar3
+ my_children[9]: _nameless._.airp3
+ my_children[10]: _nameless._.eta2
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 600
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+ui::text : _nameless._.nav_bcg1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch height=470 left=0.413 right=0.4131 top=0.304 bottom=0.3041>\r\n<color value=FF423733>\r\n<ret><offset hshift=280 vshift=100><img src=/material/ui/white.mat width=880 height=355 xscale=stretch yscale=stretch>\r\n<color value=FFFFFFFF>\r\n<ret><offset hshift=280 vshift=100><img src=/material/ui/dashboard/bare_map.mat width=880 height=355 left=0.125 right=0.875 bottom=0.35388 top=0.6811>\r\n<ret><offset vshift=100 hshift=280><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=177 left=0 right=0.3173828125 top=0.380859375 bottom=0.505859375>\r\n<ret><offset vshift=100 hshift=720><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=177 right=0 left=0.3173828125 top=0.380859375 bottom=0.505859375>\r\n<ret><offset vshift=277 hshift=280><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=178 left=0 right=0.3173828125 bottom=0.380859375 top=0.505859375>\r\n<ret><offset vshift=277 hshift=720><img src=/material/ui/dashboard/renault_t_2024/display.mat width=440 height=178 right=0 left=0.3173828125 bottom=0.380859375 top=0.505859375>\r\n<ret><offset hshift=1135 vshift=145><img src=/material/ui/dashboard/renault_t_2024/display.mat width=277 height=250 left=0.6953125 right=0.8876953125 top=0.37890625 bottom=0.552734375>\r\n<ret><offset hshift=28 vshift=168><img src=/material/ui/dashboard/renault_t_2024/display.mat width=277 height=204 left=0.6953125 right=0.8876953125 top=0.556640625 bottom=0.697265625>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.navspeed_bg1 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.388671875 right=0.66015625 top=0.6669921875 bottom=0.728515625>"
+ coords_l: 524
+ coords_r: 918
+ coords_t: 524
+ coords_b: 436
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text_common : _nameless._.navspeed1 {
+ value: ""#"67|km/h"
+ look_template: txt.renault_t_24.ic_navspeed
+ text: ""
+ coords_l: 630
+ coords_r: 810
+ coords_t: 512
+ coords_b: 404
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0#1020
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.notif_bcg {
+ text: "<color value=AA0D0D0D><img src=/material/ui/white.mat xscale=stretch height=480>\r\n<color value=FFFFFFFF>\r\n<ret><offset vshift=130 hshift=470><img src=/material/ui/dashboard/renault_t_2024/display.mat width=500 height=400 left=0.3583984375 right=0.6904296875 top=0.3798828125 bottom=0.6591796875>\r\n<font  face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.3>\r\n<ret><offset vshift=200><align hstyle=center>NOTIFICATIONS</align>\r\n<ret><offset vshift=350><align hstyle=center>No active notifications</align>\r\n</font>\r\n<ret><offset vshift=230><align hstyle=center>\r\n<img src=/material/ui/white.mat width=24 height=4><offset hshift=6 vshift=-1>\r\n<img src=/material/ui/white.mat width=24 height=6><offset hshift=6 vshift=1>\r\n<img src=/material/ui/white.mat width=24 height=4><offset hshift=6>\r\n<img src=/material/ui/white.mat width=24 height=4>\r\n</align>\r\n<ret><offset vshift=200 hshift=540><img src=/material/ui/dashboard/renault_t_2024/display.mat width=30 height=30 right=0.3125 left=0.375 top=0.875 bottom=0.9375>\r\n<ret><offset vshift=200 hshift=880><img src=/material/ui/dashboard/renault_t_2024/display.mat width=30 height=30 left=0.3125 right=0.375 top=0.875 bottom=0.9375>"
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 7
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::group : _nameless._.fuel_warn {
+ fitting: false
+ my_children: 1
+ my_children[0]: _nameless.1ae5.f320
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1200
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless.1ae5.f320 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch height=470 left=0.5243 right=0.5244 top=0.5448 bottom=0.5449>\r\n<color value=FF4488FF><font  face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.3>\r\n<ret><offset vshift=80><align hstyle=center>Fuel level low</align>\r\n</font>"
+ coords_l: 485
+ coords_r: 957
+ coords_t: 283
+ coords_b: 63
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 8
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.fuel_warn
+}
+
+ui::group : _nameless._.dmg_warn {
+ fitting: false
+ my_children: 1
+ my_children[0]: _nameless.57b0.92d0
+ coords_l: 0
+ coords_r: 1440
+ coords_t: 540
+ coords_b: 0
+ area_l: 0
+ area_r: 1440
+ area_t: 540
+ area_b: 0
+ id: 1190
+ layer: 1
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless.57b0.92d0 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch height=470 left=0.5243 right=0.5244 top=0.5448 bottom=0.5449>\r\n<color value=FF4488FF><font  face=/font/db_din_pro_medium.font xscale=1.3 yscale=1.3>\r\n<ret><offset vshift=80><align hstyle=center>Vehicle damaged<br>Visit service, please.</align>\r\n</font>"
+ coords_l: 485
+ coords_r: 957
+ coords_t: 283
+ coords_b: 63
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 9
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.dmg_warn
+}
+
+ui::text : _nameless._.airp_ico3 {
+ text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/renault_t_2024/display.mat xscale=stretch yscale=stretch left=0.0625 right=0.125 top=0.875 bottom=0.9375>"
+ coords_l: 1252
+ coords_r: 1294
+ coords_t: 386
+ coords_b: 344
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text : _nameless._.air_bar_bcg3 {
+ text: "<color value=FFFFFFFF>\r\n<offset hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=10 left=0.0068359375 right=0.283203125 top=0.5859375 bottom=0.5966796875>\r\n<ret><offset vshift=50 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=10 left=0.0068359375 right=0.283203125 bottom=0.5859375 top=0.5966796875>\r\n<ret><offset vshift=10 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<ret><offset vshift=38 hshift=20><img src=/material/ui/dashboard/renault_t_2024/display.mat width=190 height=12 left=0.0068359375 right=0.283203125 top=0.619140625 bottom=0.634765625>\r\n<font  face=/font/db_din_pro_medium.font xscale=0.9 yscale=0.9>\r\n<ret><offset vshift=10 hshift=3>1\r\n<ret><offset vshift=40 hshift=3>2\r\n<ret><offset vshift=23 hshift=70>8<offset hshift=95>12\r\n</font>"
+ coords_l: 1170
+ coords_r: 1380
+ coords_t: 344
+ coords_b: 284
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 0
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui_text_bar : _nameless._.air_bar3 {
+ vertical: false
+ min_size: 26
+ max_size: 214
+ min_value: 6
+ max_value: 13
+ text: "<color value=FFFFFFFF>\r\n<margin left=13 right=-13><offset vshift=15><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<ret><margin left=13 right=-13><offset vshift=43><img src=/material/ui/white.mat xscale=stretch height=10></margin>\r\n<align hstyle=right>\r\n<ret><offset vshift=-6><img src=/material/ui/dashboard/renault_t_2024/display.mat width=26 height=26 left=0.25 right=0.3125 top=0.6875 bottom=0.75>\r\n<ret><offset vshift=48><img src=/material/ui/dashboard/renault_t_2024/display.mat width=26 height=26 left=0.25 right=0.3125 bottom=0.6875 top=0.75>\r\n</align>\r\n\r\n"
+ coords_l: 1178
+ coords_r: 1392
+ coords_t: 348
+ coords_b: 281
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1120
+ layer: 6
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text_common : _nameless._.airp3 {
+ value: "12,0|bar"
+ look_template: txt.renault_t_24.ic_wdval2sr
+ text: ""
+ coords_l: 1258
+ coords_r: 1383
+ coords_t: 373
+ coords_b: 253
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1370
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+ui::text_common : _nameless._.eta2 {
+ value: "22:55"
+ look_template: txt.renault_t_24.ic_eta
+ text: ""
+ coords_l: 1152
+ coords_r: 1294
+ coords_t: 217
+ coords_b: 164
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+ id: 1530
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.display6
+}
+
+}
+
+
+
+

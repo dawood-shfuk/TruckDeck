@@ -1,0 +1,56 @@
+TruckDeck NAV
+Author: Dawood
+Version: 1.50
+Release Date: July 2026
+
+============================================================
+DESCRIPTION
+============================================================
+
+TruckDeck NAV is a specialized GPS mirror mod designed to work 
+seamlessly with the TruckDeck Telemetry Server. It provides 
+a high-quality, transparent GPS and PC display that can be 
+mounted in various positions within the truck cabin.
+
+FEATURES:
+- Mirror your web-based GPS/NAV directly into the game.
+- Transparent GPS/PC display for minimal obstruction.
+- Can be mounted in the corner of the windshield.
+- PC display can be installed in the driver's plate.
+- Full compatibility with the latest ETS2 game versions.
+
+============================================================
+SUPPORTED TRUCKS
+============================================================
+
+This mod includes comprehensive support for a wide range of 
+SCS and community-created trucks:
+
+SCS TRUCKS (Latest 2024-2026 Models):
+- DAF 2021, DAF XD, DAF XF, DAF XF Euro 6
+- Iveco Hi-Way, Iveco Stralis, Iveco S-Way
+- MAN TGX, MAN TGX 2020, MAN TGX Euro 6
+- Mercedes-Benz Actros, Mercedes-Benz Actros 2014
+- Renault T, Renault T E-Tech, Renault Premium, Renault Magnum
+- Scania R, Scania S, Scania R 2016, Scania S 2016, Scania Streamline
+- Volvo FH16, Volvo FH16 2012, Volvo FH 2021, Volvo FH 2024
+
+COMMUNITY & CLASSIC MODS:
+- DAF 95ATi, DAF F241, DAF NTT (by XBS)
+- KamAZ 6460, KamAZ 65221 (by Koral)
+- MAN F2000 (by XBS)
+- Mercedes-Benz SK (by XBS)
+- Renault AE, Renault DXI, Renault Integral
+- RJL Scania G, R, R 4-series, Streamline, T & T 4-series
+- Scania 5-series, Scania RS, Scania PGR-Series
+- Sisu M (by XBS)
+- Volvo F88 (by XBS)
+
+============================================================
+INSTALLATION
+============================================================
+1. Copy 'TruckDeck_NAV.scs' to your 'Documents\Euro Truck Simulator 2\mod' folder.
+2. Enable the mod in the in-game Mod Manager.
+3. Use the 'Cabin Accessories' slots to install the GPS/PC units.
+
+Enjoy your drive with TruckDeck NAV!

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Trucker's Command Deck - MOCK PREVIEW (v1.6.3.2 — control buttons use 5px padding)
+    Loads dashboard.html + dashboard.js against fake telemetry.
+    http://<host>:25555/skins/truck_command_deck/mock.html
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Trucker's Command Deck - Mock</title>
+    <link rel="stylesheet" href="dashboard.css?v=1.6.3.2-tcd-pad5">
+</head>
+<body>
+    <div id="tcd-mock-mount">Loading preview...</div>
+
+    <script src="../../scripts/jquery.min.js"></script>
+    <script src="../../scripts/mock-harness.js?v=20250702"></script>
+    <script src="dashboard.js"></script>
+    <script>
+        (function () {
+            $.get('dashboard.html?t=' + Date.now(), function (html) {
+                $('#tcd-mock-mount').replaceWith(html);
+                $('.statusMessage').empty();
+                startMock();
+            }).fail(function () {
+                $('#tcd-mock-mount').text('Could not load dashboard.html');
+            });
+
+            function startMock() {
+                var utils = MockHarness.makeUtils({
+                    triggerGameAction: function (action) { console.log('[mock] command:', action); },
+                    bridgeMouseMove: function (dx, dy) { console.log('[mock] mouse move:', dx, dy); },
+                    bridgeMouseClick: function (button, state) { console.log('[mock] mouse click:', button, state); },
+                    bridgeMouseScroll: function (delta) { console.log('[mock] mouse scroll:', delta); }
+                });
+
+                var dash = new Funbit.Ets.Telemetry.Dashboard();
+                dash.initialize({}, utils);
+
+                dash._saveEconomySession = function () { console.log('[mock] econ session not saved (preview)'); };
+                dash._saveEconLive = function () { /* preview: no-op */ };
+                dash._clearEconLive = function () { /* preview: no-op */ };
+
+                dash.econ.active = false; dash.econ.paused = false;
+                $('.js-econ-toggle').trigger('click');
+
+                function cyc(period, ph, t) { return ((t + ph) % period) < (period * 0.55); }
+
+                var start = Date.now();
+                var prevT = start;
+                var odo = 100000;
+                var fuel = 640;
+                var speed = 72;
+                var startX = -12000;
+                var startZ = 8000;
+
+                function mock(now) {
+                    var t = (now - start) / 1000;
+                    var dt = Math.max(0, (now - prevT) / 1000);
+                    prevT = now;
+
+                    speed = 50 + 42 * (0.5 + 0.5 * Math.sin(t * 0.28));
+                    odo += speed * dt / 3600;
+                    fuel -= (0.30 / 100) * (speed * dt / 3600);
+                    if (fuel < 60) fuel = 640;
+
+                    var cycle = t % 10;
+                    var leftTurn = cycle < 5;
+                    var blinkOn = (Math.floor(t / 0.4) % 2) === 0;
+                    var turning = (cycle > 1 && cycle < 3.2) || (cycle > 6 && cycle < 8.2);
+                    var steer = (turning ? 0.8 : 0.0) * (leftTurn ? -1 : 1);
+                    var epoch = new Date('0001-01-01T00:00:00Z').getTime();
+                    var gx = startX + Math.cos(t * 0.12) * 1200 + t * 18;
+                    var gz = startZ + Math.sin(t * 0.12) * 900 + t * 12;
+                    var gheading = (0.25 + (t * 0.02) % 1) % 1;
+
+                    return {
+                        game: { gameName: 'ETS2', connected: true, time: new Date().toISOString() },
+                        job: { sourceCity: 'Dortmund', destinationCity: 'Sheffield' },
+                        cargo: { cargo: 'Machinery', mass: 22000 },
+                        navigation: {
+                            estimatedDistance: 185000 + 5000 * Math.sin(t * 0.05),
+                            estimatedTime: new Date(epoch + (2.5 * 3600 * 1000)).toISOString(),
+                            speedLimit: 80
+                        },
+                        truck: {
+                            speed: speed,
+                            fuel: fuel,
+                            fuelCapacity: 700,
+                            odometer: odo,
+                            userSteer: steer,
+                            placement: { x: gx, z: gz, heading: gheading },
+                            engineOn: true,
+                            blinkerLeftActive: leftTurn && blinkOn,
+                            blinkerRightActive: !leftTurn && blinkOn,
+                            lightsParkingOn: cyc(13, 0, t),
+                            lightsBeamLowOn: cyc(9, 1, t),
+                            lightsBeamHighOn: cyc(6, 3, t),
+                            lightsBeaconOn: cyc(4, 0, t),
+                            lightsHazardOn: cyc(15, 7, t),
+                            wipersOn: cyc(7, 2, t),
+                            differentialLockOn: cyc(10, 4, t),
+                            liftAxleOn: cyc(12, 6, t),
+                            trailerLiftAxleOn: cyc(14, 2, t),
+                            motorBrakeOn: cyc(5, 1, t),
+                            parkBrakeOn: cyc(16, 0, t),
+                            cruiseControlOn: cyc(8, 3, t)
+                        },
+                        trailer: { attached: true }
+                    };
+                }
+
+                function tick() {
+                    var data = mock(Date.now());
+                    try {
+                        dash.filter(data, utils);
+                        if (dash.render) dash.render(data, utils);
+                    } catch (e) { console.error(e); }
+                }
+                setInterval(tick, 50);
+                tick();
+            }
+        })();
+    </script>
+</body>
+</html>

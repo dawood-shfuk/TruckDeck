@@ -1,0 +1,12 @@
+effect : "eut2.dif.spec.rfx" {
+	additional_ambient : 0.000000
+	diffuse : { 0.147294 , 0.147294 , 0.147294 }
+	reflection : 0.000000
+	shininess : 4.000000
+	specular : { 0.132868 , 0.132868 , 0.132868 }
+	texture : "texture_base" {
+		source : "/vehicle/truck/upgrade/ps_gps/glass_222.tobj"
+		u_address : clamp
+		v_address : clamp
+	}
+}

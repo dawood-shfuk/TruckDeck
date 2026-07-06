@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>TruckDeck DAF - Mock</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="dashboard daf-digital">
+    <div class="statusMessage"></div>
+    <div class="edge-glow left js-edge-l"></div>
+    <div class="edge-glow right js-edge-r"></div>
+
+    <div class="sc-cluster daf-cluster">
+        <div class="sc-top-strip">
+            <div class="sc-top-left">
+                <div class="sc-clock-group"><span class="sc-val js-time">--:--</span></div>
+            </div>
+            <div class="sc-brand"><span class="sc-brand-text">DAF</span></div>
+            <div class="sc-top-right">
+                <div class="sc-theme-btns">
+                    <button class="sc-theme-btn js-theme" type="button" title="Accent colour"><span class="js-theme-swatch"></span></button>
+                    <button class="sc-theme-btn js-mode" type="button" title="Day / night"><span class="js-mode-label">&#9790;</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="daf-upper">
+            <div class="daf-upper-l">
+                <div class="bar-h-wrap">
+                    <span class="bar-h-label">FUEL</span>
+                    <div class="sc-horizontal-bar-bg"><div class="sc-horizontal-bar js-fuel-hbar"></div></div>
+                </div>
+                <span class="sc-val-group"><span class="sc-val js-fuel">--</span><span class="sc-unit">%</span></span>
+            </div>
+            <div class="daf-upper-c gauge-speed" title="Tap to switch KM/H / MPH">
+                <div class="daf-speed js-speed">0</div>
+                <div class="daf-speed-unit js-speed-unit">KM/H</div>
+                <div class="sc-limit js-speedLimit"></div>
+                <div class="bar-h-wrap speed-bar">
+                    <div class="sc-horizontal-bar-bg"><div class="sc-horizontal-bar js-speed-bar"></div></div>
+                </div>
+                <div class="daf-gear gauge-rpm" title="Tap to cycle gear display">
+                    <span class="sc-trans js-trans">MAN</span>
+                    <span class="sc-gear js-gear">N</span>
+                    <span class="daf-gearmode js-gearmode">—</span>
+                </div>
+            </div>
+            <div class="daf-upper-r">
+                <div class="bar-h-wrap">
+                    <span class="bar-h-label">ADBLUE</span>
+                    <div class="sc-horizontal-bar-bg"><div class="sc-horizontal-bar js-adblue-bar"></div></div>
+                </div>
+                <span class="sc-val-group"><span class="sc-val js-adblue-val">--</span><span class="sc-unit">%</span></span>
+                <div class="bar-h-wrap rpm-bar gauge-rpm">
+                    <span class="bar-h-label">RPM</span>
+                    <div class="sc-horizontal-bar-bg"><div class="sc-horizontal-bar js-rpm-bar"></div></div>
+                    <span class="sc-rpm-num js-rpm">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="daf-lower sc-display-wrap">
+            <div class="sc-screen-bar">
+                <span class="screen-label js-screen-label">TELLS</span>
+                <button class="screen-cycle-btn js-screen-cycle" type="button" title="Next screen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 9h8M8 12h5M8 15h3"/></svg>
+                </button>
+            </div>
+            <div class="sc-display js-display">
+                <div class="sc-screen js-screen active" data-id="0" data-title="TELLS">
+                    <div class="sc-tells">
+                        <span class="tell js-tell-side" title="Side lights"></span>
+                        <span class="tell js-tell-low" title="Low beam"></span>
+                        <span class="tell js-tell-high" title="High beam"></span>
+                        <span class="tell js-tell-fogf" title="Front fog"></span>
+                        <span class="tell js-tell-fogr" title="Rear fog"></span>
+                        <span class="tell js-tell-beacon" title="Beacon"></span>
+                        <span class="tell js-tell-hazard" title="Hazard"></span>
+                        <span class="tell js-tell-park" title="Parking brake"></span>
+                        <span class="tell js-tell-diff" title="Diff lock"></span>
+                        <span class="tell js-tell-ebrake" title="Engine brake"></span>
+                        <span class="tell js-tell-ret" title="Retarder"></span>
+                        <span class="tell js-tell-lift" title="Lift axle"></span>
+                        <span class="tell js-tell-trailer" title="Trailer"></span>
+                        <span class="tell js-tell-cruise" title="Cruise control"></span>
+                        <span class="tell js-tell-wipers" title="Wipers"></span>
+                        <span class="tell js-tell-fuel" title="Fuel warning"></span>
+                        <span class="tell js-tell-adblue" title="AdBlue warning"></span>
+                        <span class="tell js-tell-batt" title="Battery"></span>
+                        <span class="tell js-tell-oil" title="Oil pressure"></span>
+                        <span class="tell js-tell-temp" title="Coolant temp"></span>
+                        <span class="tell js-tell-air" title="Air pressure"></span>
+                    </div>
+                </div>
+                <div class="sc-screen js-screen" data-id="1" data-title="TRUCK">
+                    <div class="sc-row"><span>OIL</span><span class="sc-val-group"><b class="js-oilTemp">--</b>&deg;</span></div>
+                    <div class="sc-row"><span>WATER</span><span class="sc-val-group"><b class="js-waterTemp">--</b>&deg;</span></div>
+                    <div class="sc-row"><span>AIR</span><span class="sc-val-group"><b class="js-airPress">--</b> psi</span></div>
+                    <div class="sc-row"><span>STEER</span><span class="sc-val-group"><b class="js-steer-deg">0</b>&deg;<i class="js-steer-dir"></i></span></div>
+                    <div class="sc-row"><span>INCLINE</span><span class="sc-val-group"><b class="js-incl-deg">0</b>&deg;</span></div>
+                </div>
+                <div class="sc-screen js-screen" data-id="2" data-title="TRIP">
+                    <div class="sc-row"><span>CARGO</span><span class="sc-val-group"><b class="js-cargo">--</b></span></div>
+                    <div class="sc-row"><span>DEST</span><span class="sc-val-group"><b class="js-destination">--</b></span></div>
+                    <div class="sc-row"><span>DIST</span><span class="sc-val-group"><b class="js-dist">--</b> <i class="js-dist-unit">KM</i></span></div>
+                    <div class="sc-row"><span>ETA</span><span class="sc-val-group"><b class="js-eta">--:--</b></span></div>
+                </div>
+                <div class="sc-screen js-screen" data-id="3" data-title="FUEL">
+                    <div class="sc-row"><span>FUEL</span><span class="sc-val-group"><b class="js-fuel">--</b>%</span></div>
+                    <div class="sc-row"><span>ADBLUE</span><span class="sc-val-group"><b class="js-adblue-val">--</b>%</span></div>
+                    <div class="sc-row"><span>RANGE</span><span class="sc-val-group"><b class="js-range">--</b> <i class="js-range-unit">KM</i></span></div>
+                </div>
+                <div class="sc-screen js-screen" data-id="4" data-title="STATUS">
+                    <div class="sc-row"><span>ENGINE</span><span class="sc-val-group"><b class="js-wearEngine">--</b>%</span></div>
+                    <div class="sc-row"><span>TRANS</span><span class="sc-val-group"><b class="js-wearTransmission">--</b>%</span></div>
+                    <div class="sc-row"><span>CABIN</span><span class="sc-val-group"><b class="js-wearCabin">--</b>%</span></div>
+                    <div class="sc-row"><span>CHASSIS</span><span class="sc-val-group"><b class="js-wearChassis">--</b>%</span></div>
+                    <div class="sc-row"><span>WHEELS</span><span class="sc-val-group"><b class="js-wearWheels">--</b>%</span></div>
+                </div>
+                <div class="sc-screen js-screen" data-id="5" data-title="DASH">
+                    <div class="sc-cruise-group"><div class="sc-icon icon-cruise"></div><span class="sc-val js-cruise">CRUISE OFF</span></div>
+                </div>
+                <div class="sc-screen js-screen" data-id="6" data-title="TRIP">
+                    <div class="sc-row"><span>FUEL AVG</span><span class="sc-val-group"><b class="js-econ-rate">--</b> <i class="js-econ-rateunit">L/100KM</i></span></div>
+                    <div class="sc-row"><span>TRIP DIST</span><span class="sc-val-group"><b class="js-econ-dist">--</b> <i class="js-econ-distunit">KM</i></span></div>
+                    <div class="sc-row"><span>FUEL USED</span><span class="sc-val-group"><b class="js-econ-fuel">--</b> <i class="js-econ-fuelunit">L</i></span></div>
+                </div>
+                <div class="sc-screen js-screen" data-id="7" data-title="INFO">
+                    <div class="sc-row"><span>TIME</span><span class="sc-val-group"><b class="js-time">--:--</b></span></div>
+                    <div class="sc-row"><span>ODO</span><span class="sc-val-group"><b class="js-odometer">--</b> <i class="js-dist-unit">KM</i></span></div>
+                    <div class="sc-row"><span>BATT</span><span class="sc-val-group"><b class="js-batt">--</b> V</span></div>
+                    <div class="sc-row"><span>OIL P.</span><span class="sc-val-group"><b class="js-oilPress">--</b></span></div>
+                </div>
+                <div class="sc-screen js-screen" data-id="8" data-title="SYSTEM">
+                    <div class="sc-big-speed js-speed-dup">0</div>
+                    <div class="sc-big-unit js-speed-unit-dup">KM/H</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sc-bottom-strip">
+            <div class="sc-indicators">
+                <div class="sc-tell js-tell-blinkL"></div>
+                <div class="sc-tell js-tell-blinkR"></div>
+                <div class="sc-tell js-tell-side"></div>
+                <div class="sc-tell js-tell-low"></div>
+                <div class="sc-tell js-tell-high"></div>
+                <div class="sc-tell js-tell-park"></div>
+                <div class="sc-tell js-tell-ret"></div>
+                <div class="sc-tell js-tell-diff"></div>
+                <div class="sc-tell js-tell-hazard"></div>
+            </div>
+            <div class="sc-trip-bar">
+                <span class="trip-item">DIST <span class="sc-val-group"><b class="js-dist">--</b><i class="js-dist-unit">KM</i></span></span>
+                <span class="trip-item eta">ETA <b class="js-eta">--:--</b></span>
+                <span class="trip-item ttg">TIME <b class="js-ttg">--</b></span>
+                <span class="trip-item job">JOB <b class="js-deadline">--</b></span>
+                <span class="trip-item rest">REST <b class="js-rest">--</b></span>
+            </div>
+            <div class="sc-country js-country" hidden>
+                <span class="sc-country-flag js-country-flag" aria-hidden="true"></span>
+                <span class="sc-country-name js-country-name"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="../../scripts/jquery.min.js"></script>
+    <script src="../../scripts/mock-harness.js?v=20250703"></script>
+    <script src="../../scripts/country-lookup.js"></script>
+    <script src="dashboard.js"></script>
+    <script>
+        (function () {
+            var utils = MockHarness.makeUtils();
+            var dash = new Funbit.Ets.Telemetry.Dashboard();
+            dash.initialize({}, utils);
+            MockHarness.bootCountries(dash);
+            function mock(t) {
+                var rpm = (0.5 + 0.46 * Math.sin(t * 1.25)) * 2500;
+                var speed = 38 + 72 * (0.5 + 0.5 * Math.sin(t * 0.55));
+                var fuelPct = 0.58 + 0.12 * Math.sin(t * 0.2);
+                var adbluePct = 0.72 + 0.08 * Math.sin(t * 0.15);
+                var phase = Math.floor(t / 4) % 3;
+                function cyc(period, ph) { return ((t + ph) % period) < (period * 0.55); }
+                return {
+                    game: { gameName: 'ETS2', time: new Date().toISOString(), nextRestStopTime: '0001-01-01T06:42:00Z' },
+                    job: { sourceCity: 'S�dert�lje', destinationCity: 'Hamburg', remainingTime: new Date(new Date('0001-01-01T00:00:00Z').getTime() + 11 * 3600000).toISOString(), deadlineTime: '0001-01-01T18:30:00Z' },
+                    cargo: { cargo: 'Timber', mass: 18500 },
+                    navigation: { estimatedDistance: 96400, estimatedTime: '0001-01-01T01:22:00Z', speedLimit: 80 },
+                    truck: {
+                        speed: speed, engineRpm: rpm, engineRpmMax: 2500,
+                        gear: Math.max(1, Math.round(speed / 12)), displayedGear: Math.max(1, Math.round(speed / 12)),
+                        shifterType: (Math.floor(t / 8) % 2) === 0 ? 'automatic' : 'manual',
+                        userSteer: 0.7 * Math.sin(t * 0.8),
+                        placement: { pitch: 0.028 * Math.sin(t * 0.35), x: -2770 + 14000 * Math.sin(t * 0.07), z: -370 + 9000 * Math.cos(t * 0.05) },
+                        fuel: 600 * fuelPct, fuelCapacity: 600, fuelAverageConsumption: 0.31,
+                        adblue: 80 * adbluePct, adblueCapacity: 80,
+                        oilTemperature: 97, waterTemperature: 92, airPressure: 128, oilPressure: 4.2, batteryVoltage: 24.6,
+                        odometer: 482350 + t * 0.4, cruiseControlOn: cyc(12, 0), cruiseControlSpeed: 80,
+                        blinkerLeftActive: (phase === 0 || phase === 2), blinkerRightActive: (phase === 1 || phase === 2),
+                        lightsParkingOn: cyc(9, 0), lightsBeamLowOn: cyc(9, 1), lightsBeamHighOn: cyc(6, 3),
+                        lightsFogOn: cyc(11, 2), lightsRearFogOn: cyc(13, 5), lightsBeaconOn: cyc(2.4, 0),
+                        parkBrakeOn: cyc(14, 0), differentialLockOn: cyc(10, 4), motorBrakeOn: cyc(7, 2),
+                        retarderBrake: cyc(8, 1) ? 3 : 0, liftAxleOn: cyc(12, 6), wipersOn: cyc(5, 0),
+                        fuelWarningOn: cyc(15, 3), adblueWarningOn: cyc(16, 7), batteryVoltageWarningOn: cyc(17, 2),
+                        oilPressureWarningOn: cyc(18, 5), waterTemperatureWarningOn: cyc(19, 9), airPressureWarningOn: cyc(13, 1),
+                        wearEngine: 0.18, wearTransmission: 0.12, wearCabin: 0.08, wearChassis: 0.14, wearWheels: 0.10,
+                        make: 'DAF', licensePlateCountry: 'Germany', licensePlateCountryId: 'germany'
+                    },
+                    trailer: { attached: true }
+                };
+            }
+            var start = Date.now();
+            function tick() {
+                var t = (Date.now() - start) / 1000;
+                var data = mock(t);
+                try { dash.filter(data, utils); if (dash.render) dash.render(data, utils); } catch (e) { console.error(e); }
+            }
+            setInterval(tick, 50); tick();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+SiiNunit
+{
+ui::window : _nameless.wnd {
+ window_handler: null
+ clip_children: true
+ keep_aspect: none
+ user_string_data: ""
+ first_direction_focus_id: 0
+ fitting: false
+ my_children: 4
+ my_children[0]: _nameless._.map
+ my_children[1]: _nameless._.speedlimit
+ my_children[2]: _nameless._.speed
+ my_children[3]: _nameless._.time.group
+ coords_l: 0
+ coords_r: 512
+ coords_t: 384
+ coords_b: 0
+ id: 0
+ layer: 0
+ tab: -1
+ pointer: -1
+ my_parent: null
+ area_l: 0
+ area_r: 512
+ area_t: 384
+ area_b: 0
+}
+#---------------------------------------------------------------
+ui::text : _nameless._.map {
+ text: "<img src=/material/ui/dashboard/bare_map.mat xscale=stretch yscale=stretch left=0.3 right=0.7 bottom=0.35 top=0.65>"
+ coords_l: 0
+ coords_r: 512
+ coords_t: 384
+ coords_b: 0
+ id: 0
+ layer: 2
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+#---------------------------------------------------------------
+ui::text_common : _nameless._.speedlimit {
+ value: "0"
+ look_template: txt.mod_strong.speedlimit
+ text: ""
+ coords_l: 19
+ coords_r: 109
+ coords_t: 364
+ coords_b: 274
+ id: 1610
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+}
+
+ui::text_common : _nameless._.speed {
+ value: "0"
+ look_template: txt.mod_strong.speed
+ text: ""
+ coords_l: 255
+ coords_r: 492
+ coords_t: 364
+ coords_b: 274
+ id: 1020
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+#---------------------------------------------------------------
+ui::group : _nameless._.time.group {
+ fitting: false
+ my_children: 5
+ my_children[0]: _nameless._.time.bcg
+ my_children[1]: _nameless._.time.value
+ my_children[2]: _nameless._.time.eta
+ my_children[3]: _nameless._.time.rest
+ my_children[4]: _nameless._.time.trip
+ coords_l: 0
+ coords_r: 512
+ coords_t: 45
+ coords_b: 0
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+}
+
+ui::text : _nameless._.time.bcg {
+ text: "<color value=FFA05050><img src=/material/ui/white.mat xscale=stretch yscale=stretch>"
+ coords_l: 0
+ coords_r: 512
+ coords_t: 45
+ coords_b: 0
+ id: 0
+ layer: 3
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.time.group
+}
+
+ui::text_common : _nameless._.time.value {
+ value: "00:00"
+ look_template: txt.mod_strong.time
+ text: ""
+ coords_l: 160
+ coords_r: 340
+ coords_t: 45
+ coords_b: 5
+ id: 1050
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.time.group
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+}
+
+ui::text_common : _nameless._.time.eta {
+ value: "00:00"
+ look_template: txt.mod_strong.eta_pc
+ text: ""
+ coords_l: 0
+ coords_r: 160
+ coords_t: 45
+ coords_b: 5
+ id: 1530
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.time.group
+}
+
+ui::text_common : _nameless._.time.rest {
+ value: "00:00"
+ look_template: txt.mod_strong.rest
+ text: ""
+ coords_l: 340
+ coords_r: 512
+ coords_t: 45
+ coords_b: 5
+ id: 1540
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.time.group
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+}
+
+ui::text_common : _nameless._.time.trip {
+ value: "0|"
+ look_template: txt.mod_strong.trip_pc
+ text: ""
+ coords_l: 340
+ coords_r: 512
+ coords_t: 45
+ coords_b: 5
+ id: 1210
+ layer: 4
+ tab: -1
+ pointer: -1
+ my_parent: _nameless.wnd
+}
+
+}
+
+
+
+

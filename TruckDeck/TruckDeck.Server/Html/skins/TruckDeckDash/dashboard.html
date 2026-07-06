@@ -1,0 +1,223 @@
+<div class="dashboard tdd">
+    <!-- Connection overlay (text injected by the core; hidden when empty) -->
+    <div class="statusMessage">CONNECTING TO SIMULATOR...</div>
+
+    <!-- Turn-signal edge overlays (whole side glows green while blinking) -->
+    <div class="edge-glow left js-edge-l"></div>
+    <div class="edge-glow right js-edge-r"></div>
+
+    <!-- Top bar: display-menu buttons (left) + RPM bar (0 - 25000).
+         Kept on the left so the host app's top-right menu button never covers them. -->
+    <div class="tdd-shift">
+        <div class="tdd-controls">
+            <button class="theme-btn theme-color js-theme" type="button" title="Cycle colour scheme">
+                <span class="sw"></span>
+            </button>
+            <button class="theme-btn theme-mode js-mode" type="button" title="Toggle day / night">
+                <span class="js-mode-label">&#9790;</span>
+            </button>
+        </div>
+
+        <div class="tdd-fuel-wrap">
+            <span class="tdd-fuel-icon js-fuel-icon" aria-hidden="true" title="Fuel level"></span>
+            <div class="tdd-fuel-bars js-fuel-bars" title="Fuel Level">
+                <div class="fuel-unit"></div><div class="fuel-unit"></div><div class="fuel-unit"></div>
+                <div class="fuel-unit"></div><div class="fuel-unit"></div><div class="fuel-unit"></div>
+                <div class="fuel-unit"></div><div class="fuel-unit"></div><div class="fuel-unit"></div><div class="fuel-unit"></div>
+            </div>
+        </div>
+
+        <div class="tdd-rpm-group">
+            <span class="tdd-scale">0</span>
+            <span class="tdd-rpm-icon js-rpm-icon" aria-hidden="true" title="Engine RPM"></span>
+            <div class="tdd-rpm-bars js-rpm-bars">
+                <div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div>
+                <div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div>
+                <div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div>
+                <div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div>
+                <div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div><div class="rpm-unit"></div>
+            </div>
+            <span class="tdd-scale">25K</span>
+        </div>
+    </div>
+
+    <!-- Main cluster -->
+    <div class="tdd-main">
+
+        <!-- Left readouts -->
+        <div class="tdd-stats">
+            <div class="att att-steer">
+                <span class="s-label">STEER</span>
+                <div class="steer-wheel js-steer"><span class="steer-spoke"></span></div>
+                <span class="att-val"><b class="js-steer-deg">0</b>&deg;<i class="js-steer-dir"></i></span>
+            </div>
+            <div class="stat warn-temp" data-k="oil">
+                <span class="s-label">OIL TEMP</span>
+                <span class="s-val js-oilTemp">--</span>
+                <span class="s-unit">&deg;C</span>
+            </div>
+            <div class="stat warn-temp" data-k="water">
+                <span class="s-label">WATER TEMP</span>
+                <span class="s-val js-waterTemp">--</span>
+                <span class="s-unit">&deg;C</span>
+            </div>
+            <div class="stat" data-k="air">
+                <span class="s-label">AIR PRESS</span>
+                <span class="s-val js-airPress">--</span>
+                <span class="s-unit">PSI</span>
+            </div>
+        </div>
+
+        <!-- Centre: speed + RPM gauges, with the speed limit between them -->
+        <div class="tdd-gauges">
+            <!-- Speed gauge (tap to switch KM/H <-> MPH) -->
+            <div class="tdd-gauge gauge-speed" title="Tap to switch KM/H / MPH">
+                <span class="ring-big js-speed">0</span>
+                <span class="ring-unit js-speed-unit">KM/H</span>
+                <span class="ring-sub js-cruise">CRUISE OFF</span>
+            </div>
+
+            <!-- Centre column between the gauges: speed limit on top, then the
+                 dashboard tell-tale lights below it. -->
+            <div class="tdd-center">
+
+                <div class="tdd-screen-bar">
+                    <span class="screen-label js-screen-label">TELLS</span>
+                    <button class="screen-cycle-btn js-screen-cycle" type="button" title="Next screen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 9h8M8 12h5M8 15h3"/></svg>
+                    </button>
+                </div>
+
+                <div class="tdd-display js-display">
+                    <div class="screen js-screen screen-tells active" data-id="0" data-title="TELLS">
+                        <div class="rc-tells">
+                            <span class="tell c-green js-tell-side">SIDE</span>
+                            <span class="tell c-green js-tell-low">LOW</span>
+                            <span class="tell c-blue js-tell-high">HIGH</span>
+                            <span class="tell c-green js-tell-fogf">FOG</span>
+                            <span class="tell c-amber js-tell-fogr">RFOG</span>
+                            <span class="tell c-amber js-tell-beacon">BCN</span>
+                            <span class="tell c-red js-tell-hazard">HAZ</span>
+                            <span class="tell c-red js-tell-park">PARK</span>
+                            <span class="tell c-amber js-tell-diff">DIFF</span>
+                            <span class="tell c-amber js-tell-ebrake">E-BRK</span>
+                            <span class="tell c-amber js-tell-ret">RET</span>
+                            <span class="tell c-amber js-tell-lift">AXLE</span>
+                            <span class="tell c-green js-tell-trailer">TRLR</span>
+                            <span class="tell c-green js-tell-cruise">CC</span>
+                            <span class="tell c-green js-tell-wipers">WIP</span>
+                            <span class="tell c-amber js-tell-fuel">FUEL</span>
+                            <span class="tell c-amber js-tell-adblue">ADB</span>
+                            <span class="tell c-red js-tell-batt">BATT</span>
+                            <span class="tell c-red js-tell-oil">OIL</span>
+                            <span class="tell c-red js-tell-temp">TEMP</span>
+                            <span class="tell c-red js-tell-air">AIR</span>
+                        </div>
+                    </div>
+
+                    <div class="screen js-screen screen-truck" data-id="1" data-title="TRUCK">
+                        <div class="info-row"><span>OIL</span><b class="js-oilTemp">--</b>&deg;</div>
+                        <div class="info-row"><span>WATER</span><b class="js-waterTemp">--</b>&deg;</div>
+                        <div class="info-row"><span>AIR</span><b class="js-airPress">--</b></div>
+                    </div>
+
+                    <div class="screen js-screen screen-trip" data-id="2" data-title="TRIP">
+                        <div class="info-row"><span>CARGO</span><b class="js-cargo">--</b></div>
+                        <div class="info-row"><span>DEST</span><b class="js-destination">--</b></div>
+                        <div class="info-row"><span>DIST</span><b class="js-dist">--</b></div>
+                        <div class="info-row"><span>ETA</span><b class="js-eta">--:--</b></div>
+                    </div>
+
+                    <div class="screen js-screen screen-fuel" data-id="3" data-title="FUEL">
+                        <div class="info-row"><span>FUEL</span><b class="js-fuel">--</b>%</div>
+                        <div class="info-row"><span>ADBLUE</span><b class="js-adblue-val">--</b>%</div>
+                        <div class="info-row"><span>RANGE</span><b class="js-range">--</b></div>
+                    </div>
+
+                    <div class="screen js-screen screen-status" data-id="4" data-title="STATUS">
+                        <div class="info-row"><span>ENG DMG</span><b class="js-wearEngine">--</b>%</div>
+                        <div class="info-row"><span>TRANS DMG</span><b class="js-wearTransmission">--</b>%</div>
+                        <div class="info-row"><span>CAB DMG</span><b class="js-wearCabin">--</b>%</div>
+                        <div class="info-row"><span>CHAS DMG</span><b class="js-wearChassis">--</b>%</div>
+                        <div class="info-row"><span>WHL DMG</span><b class="js-wearWheels">--</b>%</div>
+                    </div>
+
+                    <div class="screen js-screen screen-dash" data-id="5" data-title="DASH">
+                        <div class="info-row"><span>SPEED</span><b class="js-speed">--</b></div>
+                        <div class="info-row"><span>GEAR</span><b class="js-gear">--</b></div>
+                        <div class="info-row"><span>CRUISE</span><b class="js-cruise">--</b></div>
+                    </div>
+
+                    <div class="screen js-screen screen-trip" data-id="6" data-title="TRIP">
+                        <div class="info-row"><span>FUEL AVG</span><b class="js-econ-rate">--</b></div>
+                        <div class="info-row"><span>RANGE</span><b class="js-range">--</b></div>
+                    </div>
+
+                    <div class="screen js-screen screen-info" data-id="7" data-title="INFO">
+                        <div class="info-row"><span>TIME</span><b class="js-time">--:--</b></div>
+                        <div class="info-row"><span>ODO</span><b class="js-odometer">--</b></div>
+                    </div>
+
+                    <div class="screen js-screen screen-system" data-id="8" data-title="SYSTEM">
+                        <div class="info-row"><span>BATT</span><b class="js-batt">--</b>V</div>
+                        <div class="info-row"><span>OIL P.</span><b class="js-oilPress">--</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RPM gauge with gear in the centre -->
+            <div class="tdd-gauge gauge-rpm">
+                <span class="ring-trans js-trans">MAN</span>
+                <span class="ring-big js-gear">N</span>
+                <span class="ring-unit">GEAR</span>
+                <span class="ring-rpm js-rpm">0</span>
+                <span class="ring-rpmunit">RPM</span>
+            </div>
+        </div>
+
+        <!-- Right readouts -->
+        <div class="tdd-stats">
+            <div class="att att-incline">
+                <span class="s-label">INCLINE</span>
+                <div class="tilt"><span class="tilt-bar js-tilt"></span></div>
+                <span class="att-val"><i class="js-incl-arrow">&middot;</i><b class="js-incl-deg">0.0</b>&deg;</span>
+            </div>
+            <div class="stat" data-k="fuel">
+                <span class="s-label">FUEL</span>
+                <span class="s-val js-fuel">--</span>
+                <span class="s-unit">%</span>
+            </div>
+            <div class="stat" data-k="range">
+                <span class="s-label">RANGE</span>
+                <span class="s-val js-range">--</span>
+                <span class="s-unit js-range-unit">KM</span>
+            </div>
+            <div class="stat" data-k="dmg">
+                <span class="s-label">DAMAGE</span>
+                <span class="s-val js-damage">--</span>
+                <span class="s-unit">%</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom status strip -->
+    <div class="tdd-bottom">
+        <div class="clock">
+            <span class="js-time">--:--</span>
+        </div>
+
+        <div class="trip">
+            <span class="trip-item">DIST&nbsp;<b class="js-dist">--</b><i class="js-dist-unit">KM</i></span>
+            <span class="trip-item">ETA&nbsp;<b class="js-eta">--:--</b></span>
+            <span class="trip-item">TIME&nbsp;<b class="js-ttg">--</b></span>
+            <span class="trip-item">JOB&nbsp;<b class="js-deadline">--</b></span>
+            <span class="trip-item">REST&nbsp;<b class="js-rest">--</b></span>
+        </div>
+
+        <div class="tdd-country js-country" hidden>
+            <span class="tdd-country-flag js-country-flag" aria-hidden="true"></span>
+            <span class="tdd-country-name js-country-name"></span>
+        </div>
+    </div>
+</div>

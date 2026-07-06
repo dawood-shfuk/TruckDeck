@@ -1,0 +1,21 @@
+TruckDeck — ready-to-run install (no source code)
+=================================================
+
+Recommended install location:
+  {Your ETS2 or ATS folder}\Telemetry Server
+  Example: D:\SteamLibrary\steamapps\common\Euro Truck Simulator 2\Telemetry Server
+
+The installer will:
+  1. Ask where to install TruckDeck (game Telemetry Server folder recommended)
+  2. Auto-detect Steam ETS2 / ATS installs (at least one required for telemetry plugin)
+  3. Copy telemetry plugin into the game bin\win_x64\plugins folder
+  4. Optionally install TruckDeck NAV mod (.scs) and include Android APK in Extras
+
+After install:
+  - Run TruckDeck.exe as Administrator (first time: firewall + network setup)
+  - Start ETS2 or ATS, enable the SDK prompt when the game loads the plugin
+  - Open http://127.0.0.1:25555/ in a browser for dashboards
+
+Manual install (if you only have the release zip):
+  1. Copy the TruckDeck folder to your chosen location
+  2. Run TruckDeck.exe as Administrator and complete the setup wizard

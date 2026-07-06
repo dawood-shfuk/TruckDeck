@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TruckDeck Downloads</title>
+    <link rel="apple-touch-icon" href="images/app-icon.png"/>
+    <link rel="shortcut icon" href="images/app-icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;"/>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="index-theme.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+</head>
+<body class="downloads-page">
+    <header><h1><img class="app-icon" src="images/app-icon.png" /> TruckDeck Downloads</h1></header>
+    <div class="rc-toolbar">
+        <button class="theme-btn js-theme" type="button" title="Cycle colour scheme">
+            <span class="sw"></span><span class="js-theme-label">LIME</span>
+        </button>
+        <button class="theme-btn js-mode" type="button" title="Toggle day / night">
+            <span class="js-mode-label">NIGHT</span>
+        </button>
+    </div>
+
+    <p class="downloads-back"><a href="/">&#8592; Back to dashboard menu</a></p>
+
+    <div class="downloads-wrap">
+        <div class="downloads-hero">
+            <p class="home-callsign">LOAD DOCK · v<span class="js-app-version">%TRUCKDECK_VERSION%</span></p>
+            <h2 class="downloads-title">Grab what you need for the road</h2>
+            <p class="downloads-lede">Windows installer, Android companion app, and the in-game NAV mod. Files on this PC are used when available; otherwise downloads come from the official site.</p>
+            <p class="downloads-official">
+                <a href="https://truckdeck.site/downloads" target="_blank" rel="noopener">truckdeck.site/downloads</a>
+                <span> — secure HTTPS downloads with SHA-256 checksums</span>
+            </p>
+        </div>
+
+        <article class="download-card download-card-wide" id="card-setup">
+            <h3>TruckDeck Windows installer</h3>
+            <p>Full telemetry server, dashboards, Map Generator, plugin setup, and optional NAV mod — recommended for new installs.</p>
+            <ul class="download-steps">
+                <li>Run <code>TruckDeck-Setup.exe</code> as Administrator.</li>
+                <li>Point the wizard at your ETS2 and/or ATS Steam folder (leave blank for a game you do not own).</li>
+                <li>Launch TruckDeck and open <code>http://127.0.0.1:25555/</code> in your browser.</li>
+            </ul>
+            <a class="download-btn primary" id="btn-setup" href="https://truckdeck.site/downloads/TruckDeck-Setup.exe" target="_blank" rel="noopener">Download Windows installer</a>
+            <p class="download-status" id="status-setup">Checking availability&hellip;</p>
+        </article>
+
+        <div class="download-grid">
+            <article class="download-card" id="card-apk">
+                <div class="download-card-head">
+                    <img class="download-thumb" src="images/app-icon.png" alt="" width="64" height="64">
+                    <div>
+                        <h3>TruckDeck Android APK</h3>
+                        <p class="download-meta">Mobile dashboard client</p>
+                    </div>
+                </div>
+                <p>Install on your phone or tablet, point it at your PC&rsquo;s server IP, and run any TruckDeck or Funbit skin beside the wheel.</p>
+                <ul class="download-steps">
+                    <li>Enable &ldquo;Install unknown apps&rdquo; for your browser or file manager.</li>
+                    <li>Download and open the APK.</li>
+                    <li>Enter the same Server IP shown on the menu (e.g. your PC&rsquo;s LAN address).</li>
+                </ul>
+                <a class="download-btn primary" id="btn-apk" href="https://truckdeck.site/downloads/TruckDeck.apk" target="_blank" rel="noopener">Download APK</a>
+                <p class="download-status" id="status-apk">Checking availability&hellip;</p>
+            </article>
+
+            <article class="download-card" id="card-mod">
+                <div class="download-card-head">
+                    <img class="download-thumb" src="skins/truckdeck_nav/dashboard.jpg" alt="TruckDeck NAV preview">
+                    <div>
+                        <h3>TruckDeck NAV mod</h3>
+                        <p class="download-meta"><code>TruckDeck_NAV.scs</code> · ETS2</p>
+                    </div>
+                </div>
+                <p>Mirror your web-based NAV into the truck cabin — transparent GPS and PC displays for supported SCS and community trucks.</p>
+                <ul class="download-steps">
+                    <li>Copy <code>TruckDeck_NAV.scs</code> to <code>Documents\Euro Truck Simulator 2\mod</code>.</li>
+                    <li>Enable the mod in the Mod Manager (place above truck mods if needed).</li>
+                    <li>Install cabin GPS/PC accessories on your truck.</li>
+                    <li>Open TruckDeck NAV on your phone or browser while driving.</li>
+                </ul>
+                <a class="download-btn primary" id="btn-mod" href="https://truckdeck.site/downloads/TruckDeck_NAV.scs" target="_blank" rel="noopener">Download NAV mod</a>
+                <p class="download-status" id="status-mod">Checking availability&hellip;</p>
+            </article>
+        </div>
+    </div>
+
+    <section class="donation-board" id="donation-board" aria-labelledby="donation-heading">
+        <div class="donation-board-inner">
+            <header class="donation-header">
+                <p class="donation-badge">Community driven</p>
+                <h2 class="donation-title" id="donation-heading">Support TruckDeck development</h2>
+                <p class="donation-lede">TruckDeck is free for the community. If it keeps your rig online, consider fueling the project — every contribution helps.</p>
+            </header>
+
+            <div class="donation-grid">
+                <article class="donation-tier">
+                    <div class="donation-tier-icon" aria-hidden="true">&#x26FD;</div>
+                    <h3>Fuel the rig</h3>
+                    <p>Keep the servers running and the maps updated. Your contribution covers hosting and bandwidth so TruckDeck stays free for everyone.</p>
+                    <img class="donation-qr" src="images/donate/qr-fuel.png" width="120" height="120" alt="PayPal QR code — Fuel the rig">
+                    <div class="donate-paypal-slot" id="donate-btn-fuel"></div>
+                </article>
+
+                <article class="donation-tier">
+                    <div class="donation-tier-icon" aria-hidden="true">&#x26A1;</div>
+                    <h3>Boost the tech</h3>
+                    <p>Help us build the next generation of features. Funds go directly into new dashboard skins, hardware testing, and NAV improvements.</p>
+                    <img class="donation-qr" src="images/donate/qr-boost.png" width="120" height="120" alt="PayPal QR code — Boost the tech">
+                    <div class="donate-paypal-slot" id="donate-btn-boost"></div>
+                </article>
+
+                <article class="donation-tier">
+                    <div class="donation-tier-icon" aria-hidden="true">&#x1F451;</div>
+                    <h3>Fleet commander</h3>
+                    <p>Join the inner circle. Support long-term stability, deep-dive R&amp;D, and the premium tools that keep TruckDeck ahead of the curve.</p>
+                    <img class="donation-qr" src="images/donate/qr-fleet.png" width="120" height="120" alt="PayPal QR code — Fleet commander">
+                    <div class="donate-paypal-slot" id="donate-btn-fleet"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="brand-footer">TruckDeck</div>
+        <div class="version-line">Version <span class="js-app-version">%TRUCKDECK_VERSION%</span></div>
+        <div class="copyright">Copyright &copy; TruckDeck</div>
+    </footer>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="index-theme.js"></script>
+    <script src="downloads.js"></script>
+    <script src="donations.js"></script>
+</body>
+</html>

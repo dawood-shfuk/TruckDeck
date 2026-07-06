@@ -1,0 +1,99 @@
+SiiNunit
+{
+# For modders: Please do not modify this file if you want to add a new entry. Create in
+# this directory a new file "<base_name>.<idofyourmod>.sii" where <base_name> is name of
+# base file without the extension (e.g. "dashboard" for "/ui/template/dashboard.sii") and <idofyourmod> is
+# some string which is unlikely to conflict with other mod.
+#
+# Warning: Even if the units are specified in more than one source file, they share the
+# same namespace so suffixes or prefixes should be used to avoid conflicts.
+
+#
+# Scania Smart Dash 2025
+#
+
+ui::text_template : txt.scania_sd_25.speed {
+	name: "zDB Scania Smart Dash 2025 Speed"
+	text: "<color value=FFF0DBCC><align hstyle=center><font face=/font/db_scania_sans_cy_headline_outlined.font xscale=3.7 yscale=4>%0</font></align><ret><align hstyle=right><offset vshift=7 hshift=20><font face=/font/db_scania_sans_cy_cond.font xscale=0.96 yscale=0.96><color value=FF867B72>%1</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.speed_big {
+	name: "zDB Scania Smart Dash 2025 Speed Big"
+	text: "<color value=FFF0DBCC><align hstyle=center><font face=/font/db_scania_sans_cy_headline_outlined.font xscale=6.5 yscale=7>%0</font></align><ret><align hstyle=right><offset vshift=7 hshift=20><font face=/font/db_scania_sans_cy_cond.font xscale=0.96 yscale=0.96><color value=FF867B72>%1</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.valr_green {
+	name: "zDB Scania Smart Dash 2025 Single Val Right Green"
+	text: "<color value=FF9FB200><align hstyle=right><font face=/font/db_scania_sans_cy_cond.font xscale=1.35 yscale=1.35>%0</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.vall_gray {
+	name: "zDB Scania Smart Dash 2025 Single Val Left Gray"
+	text: "<color value=FF867B72><align hstyle=left><font face=/font/db_scania_sans_cy_cond.font xscale=1.35 yscale=1.35>%0</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.valr_gray {
+	name: "zDB Scania Smart Dash 2025 Single Val Right Gray"
+	text: "<color value=FF867B72><align hstyle=right><font face=/font/db_scania_sans_cy_cond.font xscale=1.35 yscale=1.35>%0</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.val2r_white {
+	name: "zDB Scania Smart Dash 2025 Double Val Right Whitey"
+	text: "<color value=FFF0DBCC><align hstyle=right><font face=/font/db_scania_sans_cy_cond.font xscale=1.28 yscale=1.28>%0 %1</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.valr_white {
+	name: "zDB Scania Smart Dash 2025 Single Val Right Whitey"
+	text: "<color value=FFF0DBCC><align hstyle=right><font face=/font/db_scania_sans_cy_cond.font xscale=1.35 yscale=1.35>%0</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.temp {
+	name: "zDB Scania Smart Dash 2025 Ambient Temp"
+	text: "<color value=FFF0DBCC><align hstyle=right><font face=/font/db_scania_sans_cy_cond.font xscale=1.28 yscale=1.28>%0 °%1</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.trip_dst {
+	name: "zDB Scania Smart Dash 2025 Trip Distance"
+	text: "<color value=FFF0DBCC><align hstyle=right><font face=/font/db_scania_sans_cy_cond.font xscale=1.28 yscale=1.28>%0</font><offset vshift=4><font face=/font/db_scania_sans_cy_cond.font xscale=1 yscale=1>.0 %1</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.val2_bgray {
+	name: "zDB Scania Smart Dash 2025 Double Val BGray"
+	text: "<color value=FFB0A195><align hstyle=left><font face=/font/db_scania_sans_cy_cond.font xscale=1.06 yscale=1.06>%0</font><offset vshift=4><font face=/font/db_scania_sans_cy_cond.font xscale=0.84 yscale=0.84> %1</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.val2_white {
+	name: "zDB Scania Smart Dash 2025 Double Val Whitey"
+	text: "<color value=FFF0DBCC><align hstyle=left><font face=/font/db_scania_sans_cy_cond.font xscale=1.28 yscale=1.28>%0 </font><offset vshift=4><font face=/font/db_scania_sans_cy_cond.font xscale=1 yscale=1>%1</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.spd_lmt {
+	name: "zDB Scania Smart Dash 2025 Speed Limit"
+	text: "<color value=FFFFFFFF><img src=/material/ui/dashboard/scania_2025/display.mat xscale=stretch yscale=stretch left=0.1875 right=0.25 top=0.875 bottom=0.9375><ret><color value=FFF0DBCC><offset vshift=4><align hstyle=center vstyle=center><font face=/font/db_scania_sans_cy_cond.font xscale=1.6 yscale=1.6>%0</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.valprc_white {
+	name: "zDB Scania Smart Dash 2025 Val Percent Whitey"
+	text: "<color value=FFF0DBCC><align hstyle=left><font face=/font/db_scania_sans_cy_cond.font xscale=1.28 yscale=1.28>%0</font><offset vshift=5><font face=/font/db_scania_sans_cy_cond.font xscale=1 yscale=1> %</font></align>"
+}
+
+ui::text_template : txt.scania_sd_25.cid_btn1 {
+	name: "zDB Scania Smart Dash 2025 CID Btn Rounded"
+	text: "<color value=%0><img src=/material/ui/dashboard/scania_2025/display.mat yscale=stretch left=0.5 right=0.53125 top=0.8125 bottom=0.875 width=40><ret><margin left=40 right=-40><img src=/material/ui/dashboard/scania_2025/display.mat yscale=stretch xscale=stretch left=0.53125 right=0.53126 top=0.8125 bottom=0.875></margin><ret><align hstyle=right><img src=/material/ui/dashboard/scania_2025/display.mat yscale=stretch left=0.53125 right=0.5625 top=0.8125 bottom=0.875 width=40></align><color value=%1><ret><align hstyle=right vstyle=center right=-20><img src=/material/ui/dashboard/scania_2025/display.mat width=30 height=30 left=0.4375 right=0.5 top=0.6875 bottom=0.75></align><ret><align hstyle=left vstyle=center left=22><img src=/material/ui/dashboard/scania_2025/display.mat width=30 height=30 left=0.5 right=0.5625 top=0.9375 bottom=1></align><ret><align hstyle=center vstyle=center><img src=/material/ui/dashboard/scania_2025/display.mat %2></align>"
+}
+
+ui::text_template : txt.scania_sd_25.cid_btn2 {
+	name: "zDB Scania Smart Dash 2025 CID Btn Squared"
+	text: "<color value=%0><img src=/material/ui/dashboard/scania_2025/display.mat xscale=stretch yscale=stretch left=0.5 right=0.5625 top=0.875 bottom=0.9375><color value=%1><ret><align hstyle=center vstyle=center><img src=/material/ui/dashboard/scania_2025/display.mat %2></align>"
+}
+
+ui::text_template : txt.scania_sd_25.cid_big_clk {
+	name: "zDB Scania Smart Dash 2025 CID Big Clock"
+	text: "<color value=FFF0DBCC><align hstyle=center><font face=/font/db_scania_sans_cy_headline_outlined.font xscale=3.7 yscale=4>%0</font></align>"
+}
+
+}
+
+
+
+

@@ -1,0 +1,329 @@
+<div class="dashboard tcd">
+    <!-- Connection Overlay -->
+    <div class="statusMessage">CONNECTING TO SIMULATOR...</div>
+
+    <div class="tcd-shell">
+        <div class="tcd-econ">
+            <button class="econ-toggle js-econ-toggle" type="button">
+                <span class="dot"></span><span class="js-econ-label">START ECON</span>
+            </button>
+            <button class="econ-pause js-econ-pause" type="button" hidden>
+                <span class="js-econ-pause-label">PAUSE</span>
+            </button>
+            <button class="econ-unit js-econ-unit" type="button" title="Switch units (KM / MI)">
+                <span class="js-econ-unit-label">KM</span>
+            </button>
+            <div class="econ-stats js-econ-units" title="Tap to switch units (KM / MI)">
+                <span class="econ-it">DIST <b class="js-econ-dist">0.0</b> <span class="js-econ-distunit">KM</span></span>
+                <span class="econ-it">USED <b class="js-econ-fuel">0.0</b> <span class="js-econ-fuelunit">L</span></span>
+                <span class="econ-it">RATE <b class="js-econ-rate">--</b> <span class="js-econ-rateunit">L/100KM</span></span>
+            </div>
+            <div class="tcd-theme">
+                <button class="theme-btn js-theme" type="button" title="Cycle colour scheme">
+                    <span class="sw"></span><span class="js-theme-label">LIME</span>
+                </button>
+                <button class="theme-btn js-mode" type="button" title="Toggle day / night">
+                    <span class="js-mode-label">NIGHT</span>
+                </button>
+            </div>
+            <a class="econ-history" href="../../fuel-economy.html" target="_blank" rel="noopener">LOG</a>
+        </div>
+
+        <div class="tcd-main">
+
+            <!-- ============ DECK PAGE ============ -->
+            <div class="tcd-page tcd-page-deck">
+                <div class="tcd-body">
+                    <aside class="win-rail">
+                        <h4>L WINDOW</h4>
+                        <button class="control-btn momentary win-btn" data-command="windowLeftClose">
+                            <span class="ico">&#9650;</span><span class="lbl">UP</span>
+                        </button>
+                        <button class="control-btn momentary win-btn" data-command="windowLeftOpen">
+                            <span class="ico">&#9660;</span><span class="lbl">DOWN</span>
+                        </button>
+                    </aside>
+
+                    <main class="tcd-grid">
+                        <section class="group accent-amber">
+                            <h3>LIGHTS</h3>
+                            <div class="btn-row lights-row">
+                                <button class="control-btn cycle-btn" data-command="light">
+                                    <span class="ico">&#9728;</span><span class="lbl">HEADLIGHTS</span>
+                                    <span class="ind light-state">OFF</span>
+                                </button>
+                                <button class="control-btn" data-command="highBeam">
+                                    <span class="ico">&#128294;</span><span class="lbl">HIGH BEAM</span>
+                                </button>
+                                <button class="control-btn" data-command="beacons">
+                                    <span class="ico">&#128680;</span><span class="lbl">BEACONS</span>
+                                </button>
+                                <button class="control-btn" data-command="hazards">
+                                    <span class="ico">&#9888;</span><span class="lbl">HAZARDS</span>
+                                </button>
+                                <button class="control-btn park-full" data-command="parkingBrake">
+                                    <span class="ico">&#127359;</span><span class="lbl">PARK BRAKE</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="group accent-green">
+                            <h3>BRAKING SYSTEM</h3>
+                            <div class="btn-row brake-rows">
+                                <button class="control-btn cycle-btn" data-command="engineBrake">
+                                    <span class="ico">&#8650;</span><span class="lbl">ENG BRAKE</span>
+                                    <span class="ind js-eng-brake">OFF</span>
+                                </button>
+                                <button class="control-btn momentary hold-btn" data-command="engineBrakeUp">
+                                    <span class="ico">&#43;</span><span class="lbl">+</span>
+                                </button>
+                                <button class="control-btn momentary hold-btn" data-command="engineBrakeDown">
+                                    <span class="ico">&#8722;</span><span class="lbl">&#8722;</span>
+                                </button>
+                                <button class="control-btn cycle-btn" data-command="autoRetarder">
+                                    <span class="ico">&#9851;</span><span class="lbl">RETARDER</span>
+                                    <span class="ind js-retarder">OFF</span>
+                                </button>
+                                <button class="control-btn momentary hold-btn" data-command="retarderUp">
+                                    <span class="ico">&#43;</span><span class="lbl">+</span>
+                                </button>
+                                <button class="control-btn momentary hold-btn" data-command="retarderDown">
+                                    <span class="ico">&#8722;</span><span class="lbl">&#8722;</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="group accent-cyan">
+                            <h3>TRUCK &amp; TRAILER</h3>
+                            <div class="btn-row axle-rows">
+                                <button class="control-btn engine-btn engine-main" data-command="engine">
+                                    <span class="ico">&#9889;</span><span class="lbl">ENGINE</span>
+                                </button>
+                                <button class="control-btn" data-command="diffLock">
+                                    <span class="ico">&#10006;</span><span class="lbl">DIFF LOCK</span>
+                                </button>
+                                <button class="control-btn" data-command="liftAxle">
+                                    <span class="ico">&#10743;</span><span class="lbl">TRUCK AXLE</span>
+                                </button>
+                                <button class="control-btn trailer-btn" data-command="trailer">
+                                    <span class="ico">&#9951;</span><span class="lbl">TRAILER</span>
+                                </button>
+                                <button class="control-btn" data-command="trailerLiftAxle">
+                                    <span class="ico">&#10743;</span><span class="lbl">TRAILER AXLE</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="group accent-cyan">
+                            <h3>SUSPENSION</h3>
+                            <div class="btn-row susp-row dense">
+                                <button class="control-btn momentary susp-front" data-command="suspFrontUp">
+                                    <span class="ico">&#9650;</span><span class="lbl">FRONT UP</span>
+                                </button>
+                                <button class="control-btn momentary susp-front" data-command="suspFrontDown">
+                                    <span class="ico">&#9660;</span><span class="lbl">FRONT DN</span>
+                                </button>
+                                <button class="control-btn momentary susp-rear" data-command="suspRearUp">
+                                    <span class="ico">&#9650;</span><span class="lbl">REAR UP</span>
+                                </button>
+                                <button class="control-btn momentary susp-rear" data-command="suspRearDown">
+                                    <span class="ico">&#9660;</span><span class="lbl">REAR DN</span>
+                                </button>
+                                <button class="control-btn momentary susp-trailer" data-command="suspTrailerUp">
+                                    <span class="ico">&#9650;</span><span class="lbl">TRL UP</span>
+                                </button>
+                                <button class="control-btn momentary susp-trailer" data-command="suspTrailerDown">
+                                    <span class="ico">&#9660;</span><span class="lbl">TRL DN</span>
+                                </button>
+                                <button class="control-btn momentary susp-reset" data-command="suspReset">
+                                    <span class="ico">&#8635;</span><span class="lbl">RESET</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="group accent-blue">
+                            <h3>CAMERAS</h3>
+                            <div class="btn-row cam-row dense">
+                                <button class="control-btn momentary" data-command="cam1">
+                                    <span class="ico">&#128100;</span><span class="lbl">INTERIOR</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam2">
+                                    <span class="ico">&#128666;</span><span class="lbl">CHASE</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam3">
+                                    <span class="ico">&#128641;</span><span class="lbl">TOP DOWN</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam4">
+                                    <span class="ico">&#9968;</span><span class="lbl">ROOF</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam5">
+                                    <span class="ico">&#128075;</span><span class="lbl">LEAN OUT</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam6">
+                                    <span class="ico">&#9660;</span><span class="lbl">BUMPER</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam7">
+                                    <span class="ico">&#9711;</span><span class="lbl">ON-WHEEL</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam8">
+                                    <span class="ico">&#127916;</span><span class="lbl">DRIVE-BY</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cam9">
+                                    <span class="ico">&#8635;</span><span class="lbl">NEXT</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="group accent-violet">
+                            <h3>CABIN &amp; VIEW</h3>
+                            <div class="btn-row cabin-rows">
+                                <button class="control-btn cycle-btn" data-command="wipers">
+                                    <span class="ico">&#8779;</span><span class="lbl">WIPERS</span>
+                                    <span class="ind js-wipers">OFF</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="cabAdjust">
+                                    <span class="ico">&#8645;</span><span class="lbl">CAB ADJUST</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="services">
+                                    <span class="ico">&#128295;</span><span class="lbl">SERVICES</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="dashMode">
+                                    <span class="ico">&#128421;</span><span class="lbl">DASH MODE</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="photoMode">
+                                    <span class="ico">&#128247;</span><span class="lbl">PHOTO</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="airHorn">
+                                    <span class="ico">&#128223;</span><span class="lbl">AIR HORN</span>
+                                </button>
+                                <button class="control-btn momentary horn-main" data-command="horn">
+                                    <span class="ico">&#128227;</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="group accent-amber">
+                            <h3>RADIO</h3>
+                            <div class="btn-row radio-rows">
+                                <button class="control-btn" data-command="radio">
+                                    <span class="ico">&#128266;</span><span class="lbl">RADIO</span>
+                                </button>
+                                <button class="control-btn momentary hold-btn" data-command="volumeUp">
+                                    <span class="ico">&#9650;</span><span class="lbl">VOL UP</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="radioNext">
+                                    <span class="ico">&#9197;</span><span class="lbl">NEXT</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="radioStar">
+                                    <span class="ico">&#9733;</span><span class="lbl">FAV</span>
+                                </button>
+                                <button class="control-btn momentary hold-btn" data-command="volumeDown">
+                                    <span class="ico">&#9660;</span><span class="lbl">VOL DOWN</span>
+                                </button>
+                                <button class="control-btn momentary" data-command="radioPrev">
+                                    <span class="ico">&#9198;</span><span class="lbl">PREV</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="group group-wide accent-blue">
+                            <h3>SYSTEM</h3>
+                            <div class="btn-row sys-row">
+                                <button class="control-btn momentary sys-map" data-command="map">
+                                    <span class="ico">&#127758;</span><span class="lbl">WORLD MAP</span>
+                                </button>
+                                <button class="control-btn momentary sys-menu" data-command="menu">
+                                    <span class="ico">&#9776;</span><span class="lbl">MENU</span>
+                                </button>
+                                <button class="control-btn nav-btn nav-tall sys-nav" type="button" data-page="nav">
+                                    <span class="ico">&#128506;</span><span class="lbl">NAV</span>
+                                </button>
+                                <button class="control-btn momentary sys-save" data-command="quickSave">
+                                    <span class="ico">&#128190;</span><span class="lbl">QUICK SAVE</span>
+                                </button>
+                                <button class="control-btn nav-btn sys-mouse" type="button" data-page="pcmouse">
+                                    <span class="ico">&#128433;</span><span class="lbl">PC MOUSE</span>
+                                </button>
+                            </div>
+                        </section>
+                    </main>
+
+                    <aside class="win-rail">
+                        <h4>R WINDOW</h4>
+                        <button class="control-btn momentary win-btn" data-command="windowRightClose">
+                            <span class="ico">&#9650;</span><span class="lbl">UP</span>
+                        </button>
+                        <button class="control-btn momentary win-btn" data-command="windowRightOpen">
+                            <span class="ico">&#9660;</span><span class="lbl">DOWN</span>
+                        </button>
+                    </aside>
+                </div>
+            </div>
+
+            <!-- ============ PC MOUSE PAGE ============ -->
+            <div class="tcd-page tcd-page-pcmouse" hidden>
+                <header class="pcm-header">
+                    <button class="control-btn nav-btn" type="button" data-page="deck">
+                        <span class="ico">&#8592;</span><span class="lbl">BACK</span>
+                    </button>
+                    <h2 class="pcm-title">PC MOUSE</h2>
+                </header>
+                <div class="pcm-body">
+                    <p class="pcm-warn js-pcm-warn" hidden></p>
+                    <div class="pcm-touchpad js-pcm-pad" title="Drag to move cursor">
+                        <span class="pcm-pad-hint">TOUCHPAD</span>
+                    </div>
+                    <div class="pcm-mouse-btns">
+                        <button class="control-btn pcm-btn js-pcm-click" type="button" data-button="left">
+                            <span class="ico">&#9679;</span><span class="lbl">LEFT</span>
+                        </button>
+                        <button class="control-btn pcm-btn js-pcm-click" type="button" data-button="middle">
+                            <span class="ico">&#9679;</span><span class="lbl">MIDDLE</span>
+                        </button>
+                        <button class="control-btn pcm-btn js-pcm-click" type="button" data-button="right">
+                            <span class="ico">&#9679;</span><span class="lbl">RIGHT</span>
+                        </button>
+                        <button class="control-btn pcm-btn momentary hold-btn js-pcm-scroll" type="button" data-delta="120">
+                            <span class="ico">&#9650;</span><span class="lbl">SCROLL UP</span>
+                        </button>
+                        <button class="control-btn pcm-btn momentary hold-btn js-pcm-scroll" type="button" data-delta="-120">
+                            <span class="ico">&#9660;</span><span class="lbl">SCROLL DN</span>
+                        </button>
+                    </div>
+                    <section class="pcm-keys group accent-violet">
+                        <h3>KEYBOARD</h3>
+                        <div class="btn-row pcm-key-row">
+                            <button class="control-btn momentary pcm-key" type="button" data-command="kbEnter">
+                                <span class="lbl">ENTER</span>
+                            </button>
+                            <button class="control-btn momentary pcm-key" type="button" data-command="kbEsc">
+                                <span class="lbl">ESC</span>
+                            </button>
+                            <button class="control-btn momentary pcm-key" type="button" data-command="kbTab">
+                                <span class="lbl">TAB</span>
+                            </button>
+                            <button class="control-btn momentary pcm-key" type="button" data-command="kbBackspace">
+                                <span class="lbl">BKSP</span>
+                            </button>
+                            <button class="control-btn momentary pcm-key" type="button" data-command="kbSpace">
+                                <span class="lbl">SPACE</span>
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- ============ TRUCKDECK NAV PAGE ============ -->
+            <div class="tcd-page tcd-page-nav" hidden>
+                <iframe class="nav-frame js-nav-frame" title="TruckDeck NAV" allow="fullscreen"></iframe>
+                <footer class="nav-footer">
+                    <button class="control-btn nav-btn nav-dash-btn" type="button" data-page="deck">
+                        <span class="ico">&#128666;</span><span class="lbl">DASH</span>
+                    </button>
+                </footer>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TruckDeck Dashboard</title>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            if (!params.get('skin')) params.set('skin', 'truckdeck_nav');
+            if (!params.get('ip')) params.set('ip', window.location.hostname || '127.0.0.1');
+            if (!params.get('telemetryPort') && window.location.port) params.set('telemetryPort', window.location.port);
+            window.location.replace('/dashboard-host.html?' + params.toString());
+        })();
+    </script>
+</head>
+<body>Loading dashboard…</body>
+</html>

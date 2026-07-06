@@ -1,0 +1,12 @@
+
+	conflict_with[]: "ps_gps.*.*.gps3"
+	conflict_with[]: "ps_gps_1.*.*.gps3"
+	conflict_with[]: "ps_gps_2.*.*.gps3"
+	conflict_with[]: "ps_gps_b.*.*.gps3"
+	conflict_with[]: "ps_gps_b_bl.*.*.gps3"
+	conflict_with[]: "ps_gps_b1.*.*.gps3"
+	conflict_with[]: "ps_gps_b1_bl.*.*.gps3"
+	conflict_with[]: "ps_gps_b2.*.*.gps3"
+	conflict_with[]: "ps_gps_p.*.*.gps3"
+	conflict_with[]: "ps_gps_p1.*.*.gps3"
+	conflict_with[]: "ps_gps_p2.*.*.gps3"

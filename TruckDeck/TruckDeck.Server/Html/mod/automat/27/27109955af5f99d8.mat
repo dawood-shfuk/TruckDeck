@@ -1,0 +1,20 @@
+effect : "eut2.glass.rfx" {
+	additional_ambient : 0.000000
+	diffuse : { 1.000000 , 1.000000 , 1.000000 }
+	fresnel : { 0.010000 , -1.000000 }
+	shininess : 40.000000
+	specular : { 0.010023 , 0.010023 , 0.010023 }
+	queue_bias : 0
+	glass_tint_color : { 0.436801 , 0.436801 , 0.436801 }
+	glass_tint_opacity : 0.000000
+	texture : "texture_base" {
+		source : "/vehicle/truck/upgrade/ps_gps/film_b_0.tobj"
+		u_address : clamp
+		v_address : clamp
+	}
+	texture : "texture_reflection" {
+		source : "/vehicle/truck/upgrade/ps_gps/film_b_0.tobj"
+		u_address : clamp
+		v_address : clamp
+	}
+}

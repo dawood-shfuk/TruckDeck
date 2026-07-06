@@ -1,0 +1,21 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_b1_bl.scania.rs.set_lglass
+{
+	name: "GPS B"
+	price: 2600
+	unlock: 0
+	icon: "ps_gps/gps_b1"
+
+	look: black
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/gps_box.pmd"
+	exterior_model:"/vehicle/truck/upgrade/ps_gps/gps_box_eu.pmd"
+
+	interior_model_uk:"/vehicle/truck/upgrade/ps_gps/gps_box_uk.pmd"
+
+	ui_path: "/ui/dashboard/ps_gps_mod_b1.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_gps_b.tobj"
+	ui_drawable_size: (512, 512)
+}
+}

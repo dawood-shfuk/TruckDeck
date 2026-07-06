@@ -1,0 +1,20 @@
+SiiNunit
+{
+accessory_addon_int_ui_data : ps_gps_p2.volvo.fh_2024.set_lglass
+{
+	name: "PC P (prototype)"
+	price: 2820
+	unlock: 0
+	icon: "ps_gps/gps_p2"
+
+	interior_model:"/vehicle/truck/upgrade/ps_gps/pc_prj_eu_p.pmd"
+	exterior_model:"/vehicle/truck/upgrade/ps_gps/pc_prj_eu_p.pmd"
+
+	interior_model_uk:"/vehicle/truck/upgrade/ps_gps/pc_prj_uk.pmd"
+	exterior_model_uk:"/vehicle/truck/upgrade/ps_gps/pc_prj_uk.pmd"
+
+	ui_path: "/ui/dashboard/ps_pc_mod.sii"
+	ui_drawable_texture_path: "/vehicle/truck/upgrade/ps_gps/ui_gps_b.tobj"
+	ui_drawable_size: (512, 256)
+}
+}

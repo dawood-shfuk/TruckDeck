@@ -1,0 +1,56 @@
+SiiNunit
+{
+# For modders: Please do not modify this file if you want to add a new entry. Create in
+# this directory a new file "<base_name>.<idofyourmod>.sii" where <base_name> is name of
+# base file without the extension (e.g. "dashboard" for "/ui/template/dashboard.sii") and <idofyourmod> is
+# some string which is unlikely to conflict with other mod.
+#
+# Warning: Even if the units are specified in more than one source file, they share the
+# same namespace so suffixes or prefixes should be used to avoid conflicts.
+
+#
+#Daf 2013 Euro6
+#
+
+ui::text_template : txt.daf2013.text0 {
+	name: "zDB  Daf 2013 Text"
+	text: "<align hstyle=center><font face=/font/db_normal.font xscale=3.492 yscale=3.492>%0</font></align>"
+}
+ui::text_template : txt.daf2013.text1 {
+	name: "zDB  Daf 2013 Text Black"
+	text: "<align hstyle=center><color value=FF000000><font face=/font/db_normal.font xscale=3.492 yscale=3.492>%0</font></align>"
+}
+ui::text_template : txt.daf2013.text2 {
+	name: "zDB  Daf 2013 Text Big"
+	text: "<align hstyle=center><font face=/font/db_normal.font xscale=4.656 yscale=4.656>%0</font></align>"
+}
+ui::text_template : txt.daf2013.speed {
+	name: "zDB  Daf 2013 Speed"
+	text: "<align hstyle=right><font face=/font/db_normal.font xscale=4.656 yscale=4.656>%0 %1</font></align>"
+}
+ui::text_template : txt.daf2013.fuel {
+	name: "zDB  Daf 2013 Fuel"
+	text: "<align hstyle=right right=-170><font face=/font/db_normal.font xscale=4.656 yscale=4.656>%0</font></align><offset vshift=30><font face=/font/db_normal.font xscale=2.328 yscale=2.328> %1</font>"
+}
+ui::text_template : txt.daf2013.temp {
+	name: "zDB  Daf 2013 Temperature"
+	text: "<align hstyle=right><font face=/font/lcd_number.font xscale=1.2 yscale=1.2>%0</font><font face=/font/db_normal.font xscale=1.8624 yscale=1.8624>°%1</font></align>"
+}
+ui::text_template : txt.daf2013.temp2 {
+	name: "zDB  Daf 2013 Temperature Big"
+	text: "<align hstyle=right><font face=/font/db_normal.font xscale=4.656 yscale=4.656>%0 °%1</font></align>"
+}
+ui::text_template : txt.daf2013.text_lcd {
+	name: "zDB  Daf 2013 Text LCD"
+	text: "<align hstyle=right><font face=/font/lcd_number.font xscale=1.2 yscale=1.2>%0</font></align>"
+}
+ui::text_template : txt.daf2013.cc {
+	name: "zDB  Daf 2013 Text LCD Big"
+	text: "<align hstyle=right><font face=/font/lcd_number.font xscale=2 yscale=2>%0</font></align>"
+}
+
+}
+
+
+
+

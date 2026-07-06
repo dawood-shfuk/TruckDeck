@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TruckDeck — ETS2 &amp; ATS Telemetry Dashboards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="hero">
+        <p class="callsign">DISPATCH · TRUCKDECK {{ version }}</p>
+        <h1>Copy that, driver — your rig is online.</h1>
+        <p class="lede">Live telemetry dashboards for Euro Truck Simulator 2 and American Truck Simulator. Phone, tablet, or second screen — OEM clusters, command deck, and NAV.</p>
+        <a class="btn primary" href="{{ url_for('downloads_page') }}">Downloads</a>
+    </header>
+
+    {% if previews %}
+    <section class="previews">
+        <h2>Dashboard skins</h2>
+        <div class="preview-grid">
+            {% for p in previews %}
+            <figure><img src="{{ p.url }}" alt="{{ p.name }}"><figcaption>{{ p.name }}</figcaption></figure>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="features">
+        <article><h3>Live telemetry</h3><p>Speed, fuel, job data, RenCloud extras — real time from your game.</p></article>
+        <article><h3>OEM dashboards</h3><p>Volvo, Scania, Mercedes, MAN, DAF, Renault, and Big Rig Cluster layouts.</p></article>
+        <article><h3>TruckDeck NAV</h3><p>PMTiles maps and routing — generate maps in the desktop app, mirror GPS with the NAV mod.</p></article>
+        <article><h3>Map Generator</h3><p>Build offline PMTiles from your owned DLC in the <strong>TruckDeck Windows app</strong> — local only, no cloud upload.</p></article>
+    </section>
+
+    <footer>
+        <p>TruckDeck {{ version }} · <a href="{{ url_for('downloads_page') }}">Downloads</a></p>
+    </footer>
+</body>
+</html>

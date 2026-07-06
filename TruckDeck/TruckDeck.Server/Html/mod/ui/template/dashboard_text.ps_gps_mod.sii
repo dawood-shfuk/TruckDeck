@@ -1,0 +1,91 @@
+SiiNunit
+{
+
+ui::text_template : txt.mod_strong.speed {
+	name: "ps speed"
+	text: "<align hstyle=right vstyle=center><font face=/font/lcd_number_only.font xscale=0.78 yscale=1.4><offset hshift=2><color value=FF000000>%0<ret><offset hshift=-2>%0<ret><offset vshift=2>%0<ret><offset vshift=-2>%0<ret><color value=FFFFFFFF>%0</font></align>"
+}
+
+ui::text_template : txt.mod_strong.speed_pc {
+	name: "ps speed pc"
+	text: "<align hstyle=center vstyle=center><font face=/font/lcd_number_only.font xscale=1.0 yscale=1.8><color value=FFFFFFFF>%0</font></align>"
+}
+
+ui::text_template : txt.mod_strong.cc {
+	name: "ps cc speed"
+	text: "<align hstyle=center vstyle=center><color value=FFE0E0E0><img src=/material/ui/ps_gps/cc_icon.mat height=24 width=24><offset hshift=2 vshift=-12><color value=FFFFFFFF><font face=/font/lcd_number_only.font xscale=0.336 yscale=0.636>%0</font></align>"
+}
+
+ui::text_template : txt.mod_strong.cc_pc {
+	name: "ps cc speed pc"
+	text: "<align hstyle=center vstyle=center><color value=FFE0E0E0><img src=/material/ui/ps_gps/cc_icon.mat width=35 height=35><offset hshift=5 vshift=-5><color value=FFFFFFFF><font face=/font/lcd_number_only.font xscale=0.36 yscale=0.68>%0</font></align>"
+}
+
+ui::text_template : txt.mod_strong.speedlimit {
+	name: "ps speed limit"
+	text: "<img src=/material/ui/ps_gps/warning.mat xscale=stretch yscale=stretch><ret><align hstyle=center vstyle=center><color value=FF000000><font face=/font/big_bold.font xscale=2.5 yscale=3.0>%0</font></align>"# (ETS xscale=2.5 yscale=3.0 / ATS xscale=3.0 yscale=3.6)
+}
+
+ui::text_template : txt.mod_strong.gear {
+	name: "ps gear"
+	text: "<nowrap><offset vshift=3><align hstyle=center vstyle=center><color value=FFFFFFFF><font face=/font/number_gearbox1.font xscale=1.8 yscale=1.8>%0</font></align></nowrap>"
+}
+
+ui::text_template : txt.mod_strong.gear_pc {
+	name: "ps gear pc"
+	text: "<nowrap><offset hshift=55 vshift=3><align hstyle=left vstyle=center><color value=FFFFFFFF><font face=/font/number_gearbox1.font xscale=1.9 yscale=1.9>%0</font></align></nowrap>"
+}
+
+ui::text_template : txt.mod_strong.fuel {
+	name: "ps fuel"
+	text: "<nowrap><align hstyle=center vstyle=center><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font><color value=FFE0E0E0><font face=/font/db_normal.font xscale=1.455 yscale=1.43> %1</font></align></nowrap>"
+}
+
+ui::text_template : txt.mod_strong.consumption {
+	name: "ps consumption"
+	text: "<nowrap><align hstyle=right right=-18 vstyle=center><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font><color value=FFE0E0E0><font face=/font/db_normal.font xscale=1.455 yscale=1.43> %1</font></align></nowrap>"
+}
+
+ui::text_template : txt.mod_strong.eta {
+	name: "ps eta"
+	text: "<color value=FFA05050><img src=/material/ui/white.mat width=150 yscale=stretch><img src=/material/ui/ps_gps/gr_l.mat width=10 yscale=stretch><ret><align hstyle=center vstyle=center><color value=FFE0E0E0><font face=/font/db_normal.font xscale=1.1 yscale=1.13>ETA </font><offset vshift=-4><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font></align>"
+}
+
+ui::text_template : txt.mod_strong.eta_red {
+	name: "ps eta red"
+	text: "<color value=FFA05050><img src=/material/ui/white.mat width=150 yscale=stretch><img src=/material/ui/ps_gps/gr_l.mat width=10 yscale=stretch><ret><align hstyle=center vstyle=center><color value=FF0000FF><font face=/font/db_normal.font xscale=1.1 yscale=1.13>ETA </font><offset vshift=-4><color value=FF0000FF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font></align>"
+}
+
+ui::text_template : txt.mod_strong.rest {
+	name: "ps rest"
+	text: "<color value=FFA05050><img src=/material/ui/ps_gps/gr_r.mat width=10 yscale=stretch><ret><offset hshift=10><img src=/material/ui/white.mat xscale=stretch yscale=stretch><ret><align hstyle=center vstyle=center><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font><color value=FFE0E0E0><img src=/material/ui/ps_gps/rest.mat></align>"
+}
+
+ui::text_template : txt.mod_strong.trip {
+	name: "ps trip"
+	text: "<color value=FFA05050><img src=/material/ui/ps_gps/gr_r.mat width=10 yscale=stretch><ret><offset hshift=10><img src=/material/ui/white.mat xscale=stretch yscale=stretch><ret><offset hshift=10><nowrap><align hstyle=center vstyle=center><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font><color value=FFE0E0E0><font face=/font/db_normal.font xscale=1.455 yscale=1.43> %1</font></align></nowrap>"
+}
+
+ui::text_template : txt.mod_strong.eta_pc {
+	name: "ps eta pc"
+	text: "<align hstyle=center vstyle=center><color value=FFE0E0E0><font face=/font/db_normal.font xscale=1.1 yscale=1.13>ETA </font><offset vshift=-4><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font></align>"
+}
+
+ui::text_template : txt.mod_strong.trip_pc {
+	name: "ps trip pc"
+	text: "<offset hshift=10><nowrap><align hstyle=center vstyle=center><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font><color value=FFE0E0E0><font face=/font/db_normal.font xscale=1.455 yscale=1.43> %1</font></align><nowrap>"
+}
+
+ui::text_template : txt.mod_strong.time {
+	name: "ps time"
+	text: "<align hstyle=center vstyle=center><color value=FFFFFFFF><font face=/font/lcd_number.font xscale=0.7 yscale=0.83>%0</font></align>"
+}
+
+}
+
+
+
+
+
+
+
