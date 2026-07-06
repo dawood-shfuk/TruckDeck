@@ -1,41 +1,56 @@
-# GitHub upload checklist
+# GitHub upload — manual steps
 
-1. Create a new repository on GitHub (e.g. `TruckDeck` or `truckdeck-telemetry`)
-2. From this folder:
+**Profile:** [github.com/dawood-shfuk](https://github.com/dawood-shfuk)  
+**Repo URL (after create):** [github.com/dawood-shfuk/TruckDeck](https://github.com/dawood-shfuk/TruckDeck)
+
+Local folder is ready: commit exists, remote is set. You only create the empty repo on GitHub and push.
+
+---
+
+## Quick upload
+
+1. **Create repo** at [github.com/new](https://github.com/new) → name `TruckDeck` → **empty** (no README / .gitignore / license)
+2. **Double-click** [`MANUAL_UPLOAD.bat`](MANUAL_UPLOAD.bat) in this folder, **or** run:
 
 ```powershell
 cd "L:\FUNBIT TS4 src\git source"
-git init
-git add .
-git commit -m "TruckDeck 1.6.3.2 — open source release"
-git branch -M main
-git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
 git push -u origin main
 ```
 
-3. In GitHub repo settings, add website URL: **https://truckdeck.site**
-4. Pin **README.md** — it links downloads and [SUPPORT.md](SUPPORT.md)
-5. Enable Issues for bug reports
+Full troubleshooting and post-upload settings: **[MANUAL_UPLOAD.txt](MANUAL_UPLOAD.txt)**
+
+---
+
+## After first push
+
+| Setting | Value |
+|--------|--------|
+| Website | `https://truckdeck.site` |
+| Issues | On |
+| Topics | `ets2`, `ats`, `telemetry`, `euro-truck-simulator` |
+
+Optional profile README: copy [`docs/PROFILE_README.md`](docs/PROFILE_README.md) into a repo named `dawood-shfuk` (same as your username).
+
+---
 
 ## Re-pack after local changes
 
 ```powershell
 cd "L:\FUNBIT TS4 src\TruckDeck"
 .\build\pack_github.ps1
+
+cd "L:\FUNBIT TS4 src\git source"
+git add .
+git commit -m "Your change summary"
+git push
 ```
 
 Preserves root `README.md`, `CONTRIBUTORS.md`, `SUPPORT.md`, `LICENSE`, `.gitignore` unless you delete them first.
 
-## What is included
+---
 
-- Full `TruckDeck/` source (no `server/` build output, no `*.pmtiles`)
-- Plugin sources (`scs-sdk-plugin`, `trucksim-gps-plugin`)
-- Paper Sun reference mod (`reference/paper-sun-gps-pc-mod/`)
-- Dashboard preview JPEGs (`docs/previews/`)
-- Credits, support links, nginx reference
+## Included / excluded
 
-## What is NOT included (by design)
+**Included:** `TruckDeck/` source, plugin sources, reference mod, preview JPEGs, docs, support links, `nginx.conf`
 
-- `TruckDeck-Setup.exe` — distribute via [truckdeck.site/downloads](https://truckdeck.site/downloads)
-- Generated map tiles (`*.pmtiles`) — create on your PC with Map Generator
-- `TruckDeck_build_*` release folders
+**Not included:** `TruckDeck-Setup.exe` ([truckdeck.site/downloads](https://truckdeck.site/downloads)), `*.pmtiles`, `TruckDeck_build_*` folders
