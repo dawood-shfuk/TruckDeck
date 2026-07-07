@@ -8,7 +8,7 @@ TruckDeck is **community-built software**. It combines original work, forks, and
 
 | Person | Role |
 |--------|------|
-| **Dawood** | TruckDeck maintainer — server, NAV maps, input bridge, installer, website integration, TruckDeckDash, **Trucker's Command Deck**, **TruckDeck NAV**, OEM-style skins (Volvo, Scania, Mercedes, MAN, DAF, Renault), NAV mod fork packaging |
+| **TruckDeck** | Server, NAV maps, input bridge, installer, website integration, TruckDeckDash, **Trucker's Command Deck**, **TruckDeck NAV**, OEM-style skins (Volvo, Scania, Mercedes, MAN, DAF, Renault), NAV mod fork packaging |
 
 **Website:** [https://truckdeck.site](https://truckdeck.site)  
 **Downloads:** [https://truckdeck.site/downloads](https://truckdeck.site/downloads)
@@ -55,7 +55,7 @@ TruckDeck is **community-built software**. It combines original work, forks, and
 | Author | Contribution |
 |--------|----------------|
 | **Paper Sun** | Original **GPS/PC** cabin mod (v1.21) — 3D models, materials, accessory definitions |
-| **Dawood** | TruckDeck NAV fork — rebrand, build script, dashboard UI sync, packaging as `TruckDeck_NAV.scs` |
+| **TruckDeck** | TruckDeck NAV fork — rebrand, build script, dashboard UI sync, packaging as `TruckDeck_NAV.scs` |
 
 See [`docs/MOD_CHANGELOG.md`](docs/MOD_CHANGELOG.md) and [`reference/paper-sun-gps-pc-mod/`](reference/paper-sun-gps-pc-mod/) for the upstream comparison.
 

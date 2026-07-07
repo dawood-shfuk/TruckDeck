@@ -27,10 +27,10 @@ $rencloudSln = Join-Path $root "..\scs-sdk-plugin\scs-telemetry\vs2012\scs-telem
 $gpsSln = Join-Path $root "..\trucksim-gps-plugin\scs-telemetry\vs2012\scs-telemetry.sln"
 
 if (-not (Test-Path $rencloudSln)) {
-    $rencloudSln = "L:\FUNBIT TS4 src\scs-sdk-plugin\scs-telemetry\vs2012\scs-telemetry.sln"
+    throw "RenCloud plugin solution not found at: $rencloudSln"
 }
 if (-not (Test-Path $gpsSln)) {
-    $gpsSln = "L:\FUNBIT TS4 src\trucksim-gps-plugin\scs-telemetry\vs2012\scs-telemetry.sln"
+    throw "TruckSim GPS plugin solution not found at: $gpsSln"
 }
 
 & $msbuild $rencloudSln /p:Configuration=Release /p:Platform=Win32 /v:m

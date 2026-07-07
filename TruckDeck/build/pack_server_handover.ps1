@@ -1,5 +1,5 @@
-# Full server handover pack for truckdeck.site (landing :25855 + nginx static downloads).
-# Output: FUNBIT TS4 src\TruckDeck_build_{version}\
+# Full server handover pack for truckdeck.site (landing :25855 + static downloads).
+# Output: TruckDeck_build_{version}\
 param(
     [string]$OutRoot = "",
     [switch]$SkipBuild,
@@ -41,7 +41,7 @@ if (-not $SkipInstaller) {
 
 # (source pack moved before release pack above)
 
-# Public downloads for nginx try_files (root /var/www/.../truckdeck.site)
+# Public downloads for static serving (web root /downloads/)
 $downloads = Join-Path $OutRoot "downloads"
 New-Item -ItemType Directory -Force -Path $downloads | Out-Null
 
@@ -71,23 +71,19 @@ foreach ($skin in $previewSkins) {
 $icon = Join-Path $htmlSkins "..\images\app-icon.png"
 if (Test-Path $icon) { Copy-Item $icon (Join-Path $previews "app-icon.png") -Force }
 
-# nginx + handoff docs
-Copy-Item (Join-Path $funbitRoot "nginx.conf") (Join-Path $OutRoot "nginx.conf") -Force -ErrorAction SilentlyContinue
-Copy-Item (Join-Path $buildDir "AGENT_HANDOFF_LANDING.md") (Join-Path $OutRoot "AGENT_HANDOFF.md") -Force
-Copy-Item (Join-Path $buildDir "..\README-DEPLOY-HANDOVER.md") (Join-Path $OutRoot "README-DEPLOY.md") -Force -ErrorAction SilentlyContinue
-if (-not (Test-Path (Join-Path $OutRoot "README-DEPLOY.md"))) {
-    @"
-# TruckDeck deployment pack (v$version)
-See AGENT_HANDOFF.md for VPS landing site deployment.
-"@ | Set-Content (Join-Path $OutRoot "README-DEPLOY.md") -Encoding UTF8
-}
-
 # Landing scaffold
 $landingSrc = Join-Path $buildDir "landing-scaffold"
 $landingDst = Join-Path $OutRoot "landing"
 if (Test-Path $landingSrc) {
     if (Test-Path $landingDst) { Remove-Item $landingDst -Recurse -Force }
     Copy-Item $landingSrc $landingDst -Recurse -Force
+}
+
+if (-not (Test-Path (Join-Path $OutRoot "README-DEPLOY.md"))) {
+    @"
+# TruckDeck deployment pack (v$version)
+Set TRUCKDECK_STATIC_ROOT to your web root. Run landing/ on 127.0.0.1:25855 behind your reverse proxy.
+"@ | Set-Content (Join-Path $OutRoot "README-DEPLOY.md") -Encoding UTF8
 }
 
 @"
@@ -98,18 +94,14 @@ Source: $truckDeckRoot
 
 Folders:
   release/          Windows runtime (TruckDeck.exe + Html) for end-user zip/installer
-  downloads/          Public files for nginx static serving (Setup, APK, NAV mod)
-  landing/            Flask scaffold for truckdeck.site :25855
-  landing-assets/     Skin preview JPEGs + app icon for landing page
-  TruckDeck/          Source tree (deploy on build server if needed)
-  nginx.conf          Production nginx vhost (proxy -> :25855, static try_files)
+  downloads/        Public files for static serving (Setup, APK, NAV mod)
+  landing/          Flask scaffold for truckdeck.site :25855
+  landing-assets/   Skin preview JPEGs + app icon for landing page
+  TruckDeck/        Source tree (deploy on build server if needed)
 
-Deploy target:
-  Web root: /var/www/veggrowing_g_usr/data/www/truckdeck.site
-  Landing app: 127.0.0.1:25855
-  HTTPS: nginx on 87.106.99.188:443 -> proxy_pass upstream
-
-See AGENT_HANDOFF.md for the next agent.
+Deploy:
+  Set TRUCKDECK_STATIC_ROOT to your web root
+  Landing app: 127.0.0.1:25855 behind HTTPS reverse proxy
 "@ | Set-Content (Join-Path $OutRoot "MANIFEST.txt") -Encoding UTF8
 
 # Zip packages
@@ -130,9 +122,7 @@ Compress-Archive -Path (Join-Path $downloads "*") -DestinationPath $dlZip -Force
 $handoverZip = Join-Path $zips "TruckDeck-$version-handover.zip"
 if (Test-Path $handoverZip) { Remove-Item $handoverZip -Force }
 $zipItems = @(
-    (Join-Path $OutRoot "AGENT_HANDOFF.md"),
     (Join-Path $OutRoot "MANIFEST.txt"),
-    (Join-Path $OutRoot "nginx.conf"),
     (Join-Path $OutRoot "README-DEPLOY.md"),
     (Join-Path $OutRoot "landing"),
     (Join-Path $OutRoot "landing-assets"),

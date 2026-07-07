@@ -9,23 +9,20 @@ if exist "%~dp0app\src\main\assets\pwa" rmdir /S /Q "%~dp0app\src\main\assets\pw
 xcopy /E /I /Y "%~dp0..\pwa" "%~dp0app\src\main\assets\pwa" >nul
 echo.
 
-:: 1. Try global gradle
+:: 1. Prefer project Gradle wrapper
+if exist "%~dp0gradlew.bat" (
+    set GRADLE_CMD=%~dp0gradlew.bat
+    goto :found
+)
+
+:: 2. Try global gradle
 where gradle >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
     set GRADLE_CMD=gradle
     goto :found
 )
 
-:: 2. Try the specific path we found on your system
-set LOCAL_GRADLE="C:\Users\Dave\.gradle\wrapper\dists\gradle-8.14-bin\38aieal9i53h9rfe7vjup95b9\gradle-8.14\bin\gradle.bat"
-if exist %LOCAL_GRADLE% (
-    set GRADLE_CMD=%LOCAL_GRADLE%
-    goto :found
-)
-
-:: 3. Error if not found
-echo Gradle not found in PATH or at the expected location.
-echo Please make sure Gradle is installed and added to PATH.
+echo Gradle not found. Install Gradle or run from Android Studio.
 pause
 exit /b 1
 

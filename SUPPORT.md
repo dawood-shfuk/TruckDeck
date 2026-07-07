@@ -1,6 +1,6 @@
 # Support TruckDeck development
 
-TruckDeck is **free** for the sim racing community. It is maintained by **Dawood** as accessible trucking telemetry software — built so drivers can run dashboards on a phone, tablet, or second screen without expensive hardware.
+TruckDeck is **free** for the sim racing community. It is maintained as accessible trucking telemetry software — built so drivers can run dashboards on a phone, tablet, or second screen without expensive hardware.
 
 If TruckDeck helps you on the road, consider supporting ongoing hosting, development, and accessibility work.
 

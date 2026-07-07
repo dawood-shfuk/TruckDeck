@@ -1,16 +1,16 @@
 """
-TruckDeck landing site — binds 127.0.0.1:25855 for nginx proxy_pass.
+TruckDeck landing site — binds 127.0.0.1:25855 for a reverse proxy.
 Expand with secure downloads, skin previews, and trucker-themed layout.
 """
+import hashlib
+import os
+from pathlib import Path
 from typing import Optional
 
 from flask import Flask, abort, render_template, send_file, url_for
 
 APP_VERSION = os.environ.get("TRUCKDECK_VERSION", "1.6.3.2")
-STATIC_ROOT = Path(os.environ.get(
-    "TRUCKDECK_STATIC_ROOT",
-    "/var/www/veggrowing_g_usr/data/www/truckdeck.site",
-))
+STATIC_ROOT = Path(os.environ.get("TRUCKDECK_STATIC_ROOT", ".")).resolve()
 DOWNLOAD_DIR = STATIC_ROOT / "downloads"
 PREVIEW_DIR = STATIC_ROOT / "landing-assets" / "previews"
 

@@ -8,7 +8,7 @@ mod_package : .package_name {
     package_version: "1.50"
 
     # Author can be any string with any length.
-    author: "Dawood"
+    author: "TruckDeck"
 
     # Display name can be any string with any length.
     display_name: "TruckDeck NAV"

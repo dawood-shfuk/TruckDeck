@@ -15,12 +15,13 @@ $version = & (Join-Path $PSScriptRoot "Get-TruckDeckVersion.ps1") -Root $truckDe
 $excludeDirs = @(
     "server", "packages", "obj", "bin", ".vs", ".git", ".cursor",
     "maps\generated", "_vanilla_gps_cache", "_game_extract", "mod\_tools",
-    "android_app\_gradle", "android_app\app\build", "android_app\.gradle",
+    "android_app\_gradle", "android_app\app\build", "android_app\.gradle", "android_app\build",
     "node_modules", "x64", "Release", "Debug", "Win32"
 )
 $excludeFiles = @(
     "*.pmtiles", "*.log", "TruckDeck.exe", "TruckDeck.exe.pending", "TruckDeck-crash.log",
-    "BUILD.txt", "err.txt", "out.txt", "*.user", "*.suo", "*.cache"
+    "BUILD.txt", "err.txt", "out.txt", "*.user", "*.suo", "*.cache",
+    "AGENT_HANDOFF*.md", "README-DEPLOY-HANDOVER.md", "local.properties", "nginx.conf"
 )
 
 function Copy-SourceTree {
@@ -55,8 +56,6 @@ $modRef = Join-Path $funbitRoot "Mod source"
 if (Test-Path $modRef) {
     Copy-SourceTree -Source $modRef -Destination (Join-Path $DestRoot "reference\paper-sun-gps-pc-mod")
 }
-
-Copy-Item (Join-Path $funbitRoot "nginx.conf") (Join-Path $DestRoot "nginx.conf") -Force -ErrorAction SilentlyContinue
 
 $docs = Join-Path $DestRoot "docs"
 $previews = Join-Path $docs "previews"

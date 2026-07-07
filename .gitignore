@@ -21,8 +21,18 @@
 
 # Android / Node
 **/android_app/app/build/
+**/android_app/build/
 **/android_app/.gradle/
+**/android_app/local.properties
 **/node_modules/
+
+# Internal / local-only (not for public repo)
+nginx.conf
+MANUAL_UPLOAD.*
+GITHUB_UPLOAD.md
+**/AGENT_HANDOFF*.md
+**/README-DEPLOY-HANDOVER.md
+docs/PROFILE_README.md
 
 # Logs & local settings
 *.log

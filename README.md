@@ -5,7 +5,7 @@
 [![Website](https://img.shields.io/badge/website-truckdeck.site-5ad11b)](https://truckdeck.site)
 [![Downloads](https://img.shields.io/badge/downloads-Windows%20%7C%20APK%20%7C%20NAV-5ad11b)](https://truckdeck.site/downloads)
 
-**Maintainer:** Dawood · **Version:** 1.6.3.2 · **Site:** [truckdeck.site](https://truckdeck.site)
+**Version:** 1.6.3.2 · **Site:** [truckdeck.site](https://truckdeck.site)
 
 ---
 
@@ -68,7 +68,6 @@ See [`TruckDeck/README.md`](TruckDeck/README.md) for API endpoints, Map Generato
 | [`docs/MOD_CHANGELOG.md`](docs/MOD_CHANGELOG.md) | NAV mod fork changelog |
 | [`CONTRIBUTORS.md`](CONTRIBUTORS.md) | **Full credits** — please read before redistributing |
 | [`SUPPORT.md`](SUPPORT.md) | Support & donate links |
-| [`nginx.conf`](nginx.conf) | Reference vhost for [truckdeck.site](https://truckdeck.site) |
 
 ---
 

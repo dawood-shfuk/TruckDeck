@@ -1,5 +1,5 @@
 TruckDeck NAV
-Author: Dawood
+Author: TruckDeck
 Version: 1.50
 Release Date: July 2026
 

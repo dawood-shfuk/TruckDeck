@@ -35,7 +35,7 @@ The accessory definitions (`def/vehicle/truck/...`) still target these third-par
 
 | | |
 |---|---|
-| **Maintainer** | **Dawood** |
+| **Maintainer** | **TruckDeck** |
 | **Product** | [TruckDeck](https://truckdeck.site) telemetry server + dashboards |
 | **Fork role** | Rebrand, ETS2 1.50+ compatibility, build automation, integration with TruckDeck installer/downloads |
 
@@ -61,7 +61,7 @@ The fork is intentionally **minimal**: Paper Sun's 3D models, materials, and per
 
 | File | Change |
 |---|---|
-| `manifest.sii` | `display_name`: **GPS/PC** → **TruckDeck NAV**; `author`: Paper Sun → Dawood; `package_version`: 1.21 → **1.50** |
+| `manifest.sii` | `display_name`: **GPS/PC** → **TruckDeck NAV**; `author`: Paper Sun → TruckDeck; `package_version`: 1.21 → **1.50** |
 | `mod_description.txt` | Replaced RU/EN stub with full TruckDeck NAV description, feature list, supported trucks, install steps |
 | Output archive | Packed as **`TruckDeck_NAV.scs`** (was ad-hoc `.scs` from original workflow) |
 
@@ -229,7 +229,7 @@ ui/template/dashboard_text.scania_2025.sii
 ## How to rebuild
 
 ```powershell
-cd "L:\FUNBIT TS4 src\TruckDeck\TruckDeck.Server\Html\mod"
+cd TruckDeck/TruckDeck.Server/Html/mod
 .\build_truckdeck_nav.ps1
 # Output: TruckDeck_NAV.scs in this folder
 ```
@@ -243,7 +243,7 @@ Requires a local ETS2 install (script default: `D:\SteamLibrary\steamapps\common
 - **Paper Sun GPS/PC** — original mod assets and design. This TruckDeck fork retains Paper Sun's models, textures, and accessory layout. Please credit **Paper Sun** when distributing derivative work.
 - **SCS Software** — ETS2, base vehicle UI extracts used for compatibility sync only.
 - **Community truck authors** — see table above; truck defs reference their Workshop content.
-- **TruckDeck** — packaging, branding, build tooling, and dashboard compatibility updates by Dawood.
+- **TruckDeck** — packaging, branding, build tooling, and dashboard compatibility updates.
 
 ---
 
