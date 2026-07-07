@@ -384,9 +384,14 @@ ui::text : _nameless._.eng_brake {
  my_parent: _nameless._.eng.group
 }
 #-----------------------------------------------------------------------------
-ui::group : _nameless._.fuel.group {`r`n fitting: false`r`n my_children: 8
+ui::group : _nameless._.fuel.group {
+ fitting: false
+ my_children: 8
  my_children[0]: _nameless._.fuel.bcg
- my_children[1]: _nameless._.fuel.bar1`r`n my_children[2]: _nameless._.fuel.bar2`r`n my_children[3]: _nameless._.fuel.bar3`r`n my_children[4]: _nameless._.fuel.bar4
+ my_children[1]: _nameless._.fuel.bar1
+ my_children[2]: _nameless._.fuel.bar2
+ my_children[3]: _nameless._.fuel.bar3
+ my_children[4]: _nameless._.fuel.bar4
  my_children[5]: _nameless._.fuel.value
  my_children[6]: _nameless._.fuel.range
  my_children[7]: _nameless._.fuel.consumption
@@ -506,7 +511,61 @@ ui_text_bar : _nameless._.fuel.bar4 {
  area_b: 1
 }
 
-ui::text_common : _nameless._.fuel.value {`r`n value: "0|"`r`n look_template: txt.mod_strong.fuel`r`n text: ""`r`n coords_l: 0`r`n coords_r: 150
+ui::text_common : _nameless._.fuel.value {
+ value: "0|"
+ look_template: txt.mod_strong.fuel
+ text: ""
+ coords_l: 0
+ coords_r: 160
+ coords_t: 45
+ coords_b: 5
+ id: 1060
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.fuel.group
+}
+
+ui::text_common : _nameless._.fuel.range {
+ value: "0|"
+ look_template: txt.mod_strong.fuel
+ text: ""
+ coords_l: 160
+ coords_r: 340
+ coords_t: 45
+ coords_b: 5
+ id: 1080
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.fuel.group
+ area_l: 1
+ area_r: 0
+ area_t: 0
+ area_b: 1
+}
+
+ui::text_common : _nameless._.fuel.consumption {
+ value: "0|"
+ look_template: txt.mod_strong.consumption
+ text: ""
+ coords_l: 340
+ coords_r: 512
+ coords_t: 45
+ coords_b: 5
+ id: 1160
+ layer: 5
+ tab: -1
+ pointer: -1
+ my_parent: _nameless._.fuel.group
+}
+#-----------------------------------------------------------------------------
+ui::text_common : _nameless._.eta {
+ value: "00:00"
+ look_template: txt.mod_strong.eta
+ text: ""
+ coords_l: 0
+ coords_r: 160
  coords_t: 85
  coords_b: 45
  id: 1530

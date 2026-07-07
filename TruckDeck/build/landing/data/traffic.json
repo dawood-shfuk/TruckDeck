@@ -1,0 +1,17 @@
+{
+  "visitors": {
+    "total": 50,
+    "referers": {
+      "reddit.com": 1,
+      "(direct)": 25,
+      "(internal)": 22,
+      "steamcommunity.com": 2
+    }
+  },
+  "bots": {
+    "total": 11,
+    "referers": {
+      "(direct)": 11
+    }
+  }
+}

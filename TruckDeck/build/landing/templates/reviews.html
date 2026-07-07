@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Reviews — TruckDeck{% endblock %}
+{% block content %}
+<section class="hero">
+    <p class="callsign">VERIFIED DRIVERS</p>
+    <h1>TruckDeck Reviews</h1>
+    <p class="hero-lead">{{ stats.avg }} ★ average · {{ stats.count }} verified review{% if stats.count != 1 %}s{% endif %}</p>
+</section>
+<section class="reviews-list">
+    {% for r in reviews %}
+    <article class="review-card">
+        <div class="review-stars">{% for i in range(r.stars) %}★{% endfor %}{% for i in range(5 - r.stars) %}☆{% endfor %}</div>
+        <p class="review-author">{{ r.display_name }}</p>
+        {% if r.comment %}<p class="review-comment">{{ r.comment }}</p>{% endif %}
+        <p class="review-meta">{{ r.created_at[:10] }}{% if r.app_version %} · v{{ r.app_version }}{% endif %}</p>
+    </article>
+    {% else %}
+    <p>No approved reviews yet. Be the first from the TruckDeck app.</p>
+    {% endfor %}
+</section>
+{% endblock %}

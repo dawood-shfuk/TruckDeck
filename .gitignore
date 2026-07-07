@@ -38,6 +38,10 @@ docs/PROFILE_README.md
 *.log
 TruckDeck-crash.log
 **/Settings.json
+**/ClientState.json
+TruckDeck/build/landing/data/admin.json
+TruckDeck/build/landing/data/truckdeck.db
+TruckDeck/build/landing/__pycache__/
 
 # Release packs (download installers separately from truckdeck.site)
 TruckDeck_build*/

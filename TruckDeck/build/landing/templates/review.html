@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}Rate TruckDeck{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Rate TruckDeck</h1>
+    <p class="hero-lead">Share your experience on truckdeck.site</p>
+</section>
+<form class="review-form" id="reviewForm">
+    <input type="hidden" name="token" value="{{ token }}">
+    <label>Stars
+        <select name="stars" required>
+            <option value="5">5 — Excellent</option>
+            <option value="4">4 — Good</option>
+            <option value="3">3 — OK</option>
+            <option value="2">2 — Needs work</option>
+            <option value="1">1 — Poor</option>
+        </select>
+    </label>
+    <label>Display name (optional)
+        <input type="text" name="display_name" maxlength="64" placeholder="Verified TruckDeck user">
+    </label>
+    <label>Comment (optional)
+        <textarea name="comment" maxlength="500" rows="4"></textarea>
+    </label>
+    <label><input type="checkbox" name="consent" required> I agree to publish this review on truckdeck.site</label>
+    <button type="submit" class="btn primary">Submit review</button>
+    <p id="reviewStatus" class="form-status"></p>
+</form>
+<script>
+document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const status = document.getElementById('reviewStatus');
+    status.textContent = 'Submitting...';
+    const body = {
+        token: f.token.value,
+        stars: parseInt(f.stars.value, 10),
+        comment: f.comment.value,
+        display_name: f.display_name.value,
+        consent: f.consent.checked,
+        app_version: '{{ version }}'
+    };
+    const res = await fetch('/api/v1/reviews/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    });
+    if (res.ok) {
+        const data = await res.json();
+        status.textContent = data.status === 'approved' ? 'Thank you! Your review is live.' : 'Thank you! Your review is pending moderation.';
+        f.querySelector('button').disabled = true;
+    } else {
+        status.textContent = 'Could not submit review. The link may have expired.';
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}Downloads — TruckDeck {{ version }}{% endblock %}
+
+{% block content %}
+<header class="hero compact">
+    <p class="callsign">LOAD DOCK · v{{ version }}</p>
+    <div class="hero-title compact">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="TruckDeck" class="hero-logo">
+        <h1>Secure Downloads</h1>
+    </div>
+    <p class="lede">Get the latest version of TruckDeck and its companion tools.</p>
+</header>
+
+<section class="download-container">
+    <div class="security-banner">
+        <div class="security-icon">🛡️</div>
+        <div class="security-text">
+            <h3>Secure & Verified</h3>
+            <p>All downloads are served over HTTPS and include SHA-256 checksums for verification.</p>
+        </div>
+    </div>
+
+    <div class="download-grid">
+        {% for d in downloads %}
+        <article class="download-card fancy {% if not d.available %}unavailable{% endif %}">
+            <div class="download-type-icon">
+                {% if d.id == 'setup' %}🪟{% elif d.id == 'apk' %}📱{% else %}📦{% endif %}
+            </div>
+            <div class="download-info">
+                <h2>{{ d.title }}</h2>
+                <p class="description">{{ d.description }}</p>
+                
+                {% if d.available or d.steam_url %}
+                <div class="download-actions">
+                    {% if d.steam_url %}
+                    <a class="btn primary download-btn steam-btn" href="{{ d.steam_url }}" target="_blank" rel="noopener noreferrer">
+                        {{ d.steam_label or 'Steam Workshop' }}
+                    </a>
+                    {% endif %}
+                    {% if d.available %}
+                    <a class="btn {% if d.steam_url %}secondary{% else %}primary{% endif %} download-btn" href="{{ d.url }}">
+                        {% if d.steam_url %}Direct download · {{ d.file }}{% else %}Download {{ d.file }}{% endif %}
+                    </a>
+                    {% endif %}
+                    <div class="file-meta">
+                        {% if d.available and d.steam_url and d.size_mb %}
+                        <span class="size">Direct file: {{ d.size_mb }} MB</span>
+                        {% elif d.available and d.size_mb %}
+                        <span class="size">{{ d.size_mb }} MB</span>
+                        {% endif %}
+                        {% if d.available %}
+                        <span class="count">📈 {{ d.count }} direct downloads</span>
+                        {% if d.sha256 %}
+                        <span class="checksum" title="{{ d.sha256 }}">
+                            SHA-256: <code>{{ d.sha256[:12] }}...</code>
+                        </span>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="status-msg pending">
+                    <span class="icon">⏳</span> Coming soon to this server
+                </div>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <div class="installation-notes">
+        <h3>Installation Quick Start</h3>
+        <ol>
+            <li>Download and run the <strong>TruckDeck Windows Installer</strong>.</li>
+            <li>Follow the setup wizard to install the server and required plugins.</li>
+            <li>For <strong>TruckDeck NAV</strong>, subscribe on <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3759641869" target="_blank" rel="noopener noreferrer">Steam Workshop</a> and enable the mod in Mod Manager.</li>
+            <li>Launch TruckDeck from your desktop.</li>
+            <li>Open the dashboard on your mobile device by entering your PC's IP address.</li>
+        </ol>
+    </div>
+</section>
+{% endblock %}

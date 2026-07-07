@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block title %}Preparing Download — TruckDeck {{ version }}{% endblock %}
+
+{% block content %}
+<section class="waiting-container">
+    <div class="waiting-card">
+        <header class="waiting-header">
+            <div class="hero-title compact">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="TruckDeck" class="hero-logo">
+                <h1>{{ file.title }}</h1>
+            </div>
+            <p class="file-info-line">{{ file.file }} · {{ file.size_mb }} MB</p>
+        </header>
+
+        <div class="timer-section">
+            <div id="countdown-wrapper">
+                <svg class="timer-svg" viewBox="0 0 100 100">
+                    <circle class="timer-bg" cx="50" cy="50" r="45"></circle>
+                    <circle id="timer-progress" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <div id="countdown-number">15</div>
+            </div>
+            <p id="waiting-msg">Preparing your download secure link...</p>
+            {% if file.steam_url %}
+            <p class="steam-alt-hint">Prefer Steam? <a href="{{ file.steam_url }}" target="_blank" rel="noopener noreferrer">{{ file.steam_label or 'Get on Steam Workshop' }}</a> — no wait.</p>
+            {% endif %}
+            <a id="download-link" href="{{ url_for('download_file', file_id=file.id) }}" class="btn primary large hidden">
+                Download Now
+            </a>
+        </div>
+
+        <hr class="divider">
+
+        <div class="donation-section overlay-style">
+            <div class="donation-header">
+                <h2>Support TruckDeck Development</h2>
+                <div class="donation-badge">COMMUNITY DRIVEN</div>
+            </div>
+            <p class="motivation-text">TruckDeck is a solo-developer project built with passion for the trucking community. Your donations directly cover server costs and keep the project alive. Every bit helps us stay on the road!</p>
+            
+            <div class="donation-options">
+                <div class="donation-card fuel">
+                    <div class="card-icon">⛽</div>
+                    <h3>Fuel the Rig</h3>
+                    <p class="card-desc">Keep the servers humming and the platform live. Every dollar covers the basic fuel costs to keep us rolling forward.</p>
+                    <div class="qr-code-small">
+                        <img src="/static/images/QR code1.png" alt="Fuel the Rig QR">
+                    </div>
+                    <div id="donate-fuel"></div>
+                </div>
+
+                <div class="donation-card boost">
+                    <div class="card-icon">⚡</div>
+                    <h3>Boost the Tech</h3>
+                    <p class="card-desc">Shifting gears. This directly funds new feature rollouts, deeper simulator integrations, and hardware testing.</p>
+                    <div class="qr-code-small">
+                        <img src="/static/images/QR code2.png" alt="Boost the Tech QR">
+                    </div>
+                    <div id="donate-boost"></div>
+                </div>
+                
+                <div class="donation-card commander">
+                    <div class="card-icon">👑</div>
+                    <h3>Fleet Commander</h3>
+                    <p class="card-desc">The ultimate backing. Provides the long-term stability needed for massive expansions and deep-dive R&D.</p>
+                    <div class="qr-code-small">
+                        <img src="/static/images/QR code3.png" alt="Fleet Commander QR">
+                    </div>
+                    <div id="donate-commander"></div>
+                </div>
+            </div>
+            
+            <p class="thank-you">Thank you for your support, driver! 🚛💨</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const number = document.getElementById('countdown-number');
+        const progress = document.getElementById('timer-progress');
+        const link = document.getElementById('download-link');
+        const msg = document.getElementById('waiting-msg');
+        
+        let timeLeft = 15;
+        const totalTime = 15;
+        
+        // Initial circle length
+        const radius = 45;
+        const circumference = 2 * Math.PI * radius;
+        progress.style.strokeDasharray = circumference;
+        
+        const timer = setInterval(() => {
+            timeLeft--;
+            number.innerText = timeLeft;
+            
+            // Update progress circle
+            const offset = circumference - (timeLeft / totalTime) * circumference;
+            progress.style.strokeDashoffset = offset;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                number.classList.add('hidden');
+                document.getElementById('countdown-wrapper').classList.add('finished');
+                msg.innerText = 'Your download is ready!';
+                link.classList.remove('hidden');
+                
+                // Auto-start download after a short delay
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 1000);
+            }
+        }, 1000);
+
+        // PayPal Buttons
+        PayPal.Donation.Button({
+            env: 'production',
+            hosted_button_id: '6ZS7K96DSKKF8',
+            image: {
+                src: 'https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif',
+                alt: 'Donate with PayPal button',
+                title: 'PayPal - The safer, easier way to pay online!',
+            }
+        }).render('#donate-fuel');
+
+        PayPal.Donation.Button({
+            env: 'production',
+            hosted_button_id: 'SF7343G8989N6',
+            image: {
+                src: 'https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif',
+                alt: 'Donate with PayPal button',
+                title: 'PayPal - The safer, easier way to pay online!',
+            }
+        }).render('#donate-boost');
+
+        PayPal.Donation.Button({
+            env: 'production',
+            hosted_button_id: 'M5D5XMPXK2W4L',
+            image: {
+                src: 'https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif',
+                alt: 'Donate with PayPal button',
+                title: 'PayPal - The safer, easier way to pay online!',
+            }
+        }).render('#donate-commander');
+    });
+</script>
+{% endblock %}

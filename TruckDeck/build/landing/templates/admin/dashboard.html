@@ -1,0 +1,139 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Admin Dashboard — TruckDeck{% endblock %}
+
+{% block content %}
+<section class="admin-dashboard">
+    <header class="admin-dash-header">
+        <div>
+            <p class="callsign">CONTROL TOWER · v{{ version }}</p>
+            <h1>Admin Dashboard</h1>
+        </div>
+        <div class="admin-header-actions">
+            <a href="{{ url_for('admin.admin_reviews') }}" class="btn secondary">Reviews</a>
+            <a href="{{ url_for('admin.admin_crashes') }}" class="btn secondary">Crashes</a>
+            <form method="post" action="{{ url_for('admin.logout') }}" class="admin-inline-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit" class="btn secondary">Log out</button>
+        </form>
+        </div>
+    </header>
+
+    <div class="admin-grid">
+        <article class="admin-panel admin-panel-wide">
+            <h2>Visitor Traffic <span class="admin-stat-badge">{{ traffic.visitors.total }}</span></h2>
+            <p class="admin-panel-desc">Real browsers only — bots excluded. Counts main pages (home, downloads, contributors, live demo).</p>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Referer</th>
+                            <th>Hits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in visitor_referers %}
+                        <tr>
+                            <td class="referer-cell">{{ row.referer }}</td>
+                            <td>{{ row.count }}</td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="2" class="empty-row">No visitor hits yet.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <article class="admin-panel admin-panel-wide">
+            <h2>Bot Traffic <span class="admin-stat-badge bot">{{ traffic.bots.total }}</span></h2>
+            <p class="admin-panel-desc">Crawlers, monitors, and scripted clients — with referer source.</p>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Referer</th>
+                            <th>Hits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in bot_referers %}
+                        <tr>
+                            <td class="referer-cell">{{ row.referer }}</td>
+                            <td>{{ row.count }}</td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="2" class="empty-row">No bot hits yet.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <form method="post" action="{{ url_for('admin.reset_traffic_counts') }}" class="admin-action-form"
+                  onsubmit="return confirm('Reset visitor and bot counters?');">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <button type="submit" class="btn secondary">Clear traffic counters</button>
+            </form>
+        </article>
+
+        <article class="admin-panel">
+            <h2>Download Stats</h2>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Downloads</th>
+                            <th>Size</th>
+                            <th>SHA-256</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in downloads %}
+                        <tr>
+                            <td>
+                                <strong>{{ d.title }}</strong><br>
+                                <span class="mono">{{ d.file }}</span>
+                            </td>
+                            <td>{{ d.count }}</td>
+                            <td>{% if d.size_mb %}{{ d.size_mb }} MB{% else %}—{% endif %}</td>
+                            <td class="mono checksum-cell" title="{{ d.sha256 or '' }}">
+                                {% if d.sha256 %}{{ d.sha256[:16] }}…{% else %}—{% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <form method="post" action="{{ url_for('admin.reset_counts') }}" class="admin-action-form"
+                  onsubmit="return confirm('Reset all download counters to zero?');">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <button type="submit" class="btn secondary">Clear download counters</button>
+            </form>
+        </article>
+
+        <article class="admin-panel">
+            <h2>Change Password</h2>
+            <form method="post" action="{{ url_for('admin.change_password') }}" class="admin-form compact">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+                <label for="current_password">Current password</label>
+                <input id="current_password" name="current_password" type="password" required autocomplete="current-password">
+
+                <label for="new_password">New password</label>
+                <input id="new_password" name="new_password" type="password" required minlength="12" autocomplete="new-password">
+
+                <label for="confirm_password">Confirm new password</label>
+                <input id="confirm_password" name="confirm_password" type="password" required minlength="12" autocomplete="new-password">
+
+                <button type="submit" class="btn primary">Update password</button>
+            </form>
+        </article>
+    </div>
+
+    <p class="admin-footnote">
+        <a href="{{ url_for('index') }}">← Back to public site</a>
+    </p>
+</section>
+{% endblock %}

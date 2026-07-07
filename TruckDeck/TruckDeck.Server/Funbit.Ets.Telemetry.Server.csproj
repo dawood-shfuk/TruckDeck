@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.6.3.2</ApplicationVersion>
+    <ApplicationVersion>1.6.5.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -151,11 +151,18 @@
     <Compile Include="Controls\TruckDeckStatusBeacon.cs" />
     <Compile Include="Controls\UiPaintHelper.cs" />
     <Compile Include="Services\BridgeConfigService.cs" />
+    <Compile Include="Services\ClientState.cs" />
+    <Compile Include="Services\CrashReportService.cs" />
+    <Compile Include="Services\InstallIdentityService.cs" />
     <Compile Include="Services\MapGenerationJob.cs" />
     <Compile Include="Services\MapGenerationService.cs" />
+    <Compile Include="Services\ReviewService.cs" />
+    <Compile Include="Services\TruckDeckApiClient.cs" />
+    <Compile Include="Services\UpdateCheckService.cs" />
     <Compile Include="Helpers\UiBridge.cs" />
     <Compile Include="Helpers\WslHelper.cs" />
     <Compile Include="Helpers\AssemblyHelper.cs" />
+    <Compile Include="Helpers\VersionComparer.cs" />
     <Compile Include="Helpers\ApplicationIconHelper.cs" />
     <Compile Include="Helpers\TruckDeckTheme.cs" />
     <Compile Include="Helpers\Ets2ProcessHelper.cs" />
@@ -195,6 +202,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MapGeneratorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReviewPromptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateAvailableForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MapGeneratorForm.Designer.cs">

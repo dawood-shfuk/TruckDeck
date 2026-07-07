@@ -24,8 +24,8 @@
             for (var i = 0; i < nodes.length; i++) {
                 var existing = nodes[i].getAttribute('src') || '';
                 if (existing.split('?')[0] === base) {
-                    resolve();
-                    return;
+                resolve();
+                return;
                 }
             }
             var s = document.createElement('script');
@@ -2125,7 +2125,7 @@
                 try {
                     var PM = pmtilesApi();
                     var protocol = new PM.Protocol();
-                    global.maplibregl.addProtocol('pmtiles', protocol.tile);
+                global.maplibregl.addProtocol('pmtiles', protocol.tile);
                     global.TruckDeckPmtilesProtocolAdded = true;
                     console.log('[TruckDeck NAV] PMTiles protocol registered');
                 } catch (e) {
@@ -2182,8 +2182,8 @@
                         };
                         return createMapInstance(self, tileUrl, hdr, game, minimalOpts, 25000);
                     });
+                    });
                 });
-            });
         });
     };
 

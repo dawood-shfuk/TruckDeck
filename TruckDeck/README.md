@@ -28,7 +28,7 @@ RenCloud fields (hazard lights, diff lock, lift axle, `fuelRange`, `wearBody`, r
 ## Build
 
 ```powershell
-cd TruckDeck
+cd "L:\FUNBIT TS4 src\TruckDeck"
 
 # Restore NuGet packages (first time)
 nuget restore TruckDeck.sln

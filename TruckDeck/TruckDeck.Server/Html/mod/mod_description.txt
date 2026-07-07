@@ -7,50 +7,77 @@ Release Date: July 2026
 DESCRIPTION
 ============================================================
 
-TruckDeck NAV is a specialized GPS mirror mod designed to work 
-seamlessly with the TruckDeck Telemetry Server. It provides 
-a high-quality, transparent GPS and PC display that can be 
-mounted in various positions within the truck cabin.
+TruckDeck NAV mirrors the TruckDeck turn-by-turn NAV dashboard
+into your truck cabin as a transparent GPS / PC accessory display.
+Designed for use with the free TruckDeck telemetry server on your
+gaming PC (phone, tablet, or second monitor dashboards).
+
+Website:  https://truckdeck.site
+Downloads: https://truckdeck.site/downloads
+Source:   https://github.com/dawood-shfuk/TruckDeck
 
 FEATURES:
-- Mirror your web-based GPS/NAV directly into the game.
-- Transparent GPS/PC display for minimal obstruction.
-- Can be mounted in the corner of the windshield.
-- PC display can be installed in the driver's plate.
-- Full compatibility with the latest ETS2 game versions.
+- Transparent in-cab GPS and PC displays (windshield corner or driver plate).
+- Mirrors TruckDeck NAV from the TruckDeck server in your browser.
+- Supports latest SCS trucks (2024-2026) and many community truck packs.
+- Optional with TruckDeck — telemetry server, 9+ dashboards, input bridge.
+
+============================================================
+TRUCKDECK APP (COMPANION SOFTWARE)
+============================================================
+
+TruckDeck is a Windows telemetry server for ETS2 and ATS:
+
+- Live REST telemetry API and browser dashboards on your LAN
+- Trucker's Command Deck, OEM-style brand skins, classic Funbit skins
+- Turn-by-turn NAV with offline maps (Map Generator)
+- Native input bridge — map dashboard buttons to in-game keys
+- Windows installer, Android APK, and this NAV cabin mod
+
+Download TruckDeck-Setup.exe from https://truckdeck.site/downloads
 
 ============================================================
 SUPPORTED TRUCKS
 ============================================================
 
-This mod includes comprehensive support for a wide range of 
-SCS and community-created trucks:
+SCS TRUCKS (2024-2026):
+DAF 2021, DAF XD, DAF XF, DAF XF Euro 6, Iveco Hi-Way, Iveco Stralis,
+Iveco S-Way, MAN TGX, MAN TGX 2020, MAN TGX Euro 6, Mercedes-Benz Actros,
+Mercedes-Benz Actros 2014, Renault T, Renault T E-Tech, Renault Premium,
+Renault Magnum, Scania R, Scania S, Scania R 2016, Scania S 2016,
+Scania Streamline, Volvo FH16, Volvo FH16 2012, Volvo FH 2021, Volvo FH 2024
 
-SCS TRUCKS (Latest 2024-2026 Models):
-- DAF 2021, DAF XD, DAF XF, DAF XF Euro 6
-- Iveco Hi-Way, Iveco Stralis, Iveco S-Way
-- MAN TGX, MAN TGX 2020, MAN TGX Euro 6
-- Mercedes-Benz Actros, Mercedes-Benz Actros 2014
-- Renault T, Renault T E-Tech, Renault Premium, Renault Magnum
-- Scania R, Scania S, Scania R 2016, Scania S 2016, Scania Streamline
-- Volvo FH16, Volvo FH16 2012, Volvo FH 2021, Volvo FH 2024
+COMMUNITY TRUCK PACKS (accessory hooks only — trucks by their authors):
+DAF 95ATi, DAF F241, DAF NTT (XBS), KamAZ 6460/65221 (Koral), MAN F2000 (XBS),
+Mercedes-Benz SK (XBS), Renault AE/DXI/Integral, RJL Scania series,
+Scania 5-series, Scania RS, Scania PGR-Series, Sisu M (XBS), Volvo F88 (XBS)
 
-COMMUNITY & CLASSIC MODS:
-- DAF 95ATi, DAF F241, DAF NTT (by XBS)
-- KamAZ 6460, KamAZ 65221 (by Koral)
-- MAN F2000 (by XBS)
-- Mercedes-Benz SK (by XBS)
-- Renault AE, Renault DXI, Renault Integral
-- RJL Scania G, R, R 4-series, Streamline, T & T 4-series
-- Scania 5-series, Scania RS, Scania PGR-Series
-- Sisu M (by XBS)
-- Volvo F88 (by XBS)
+============================================================
+CREDITS & ATTRIBUTION
+============================================================
+
+TRUCKDECK FORK (this package):
+  TruckDeck — rebrand, ETS2 1.50+ UI sync, build tooling, TruckDeck NAV
+  packaging, installer integration, dashboard compatibility, website
+  https://truckdeck.site
+
+ORIGINAL CABIN MOD:
+  Paper Sun — GPS/PC mod v1.21 (3D models, materials, accessory definitions)
+  This mod is a derivative fork. Please credit Paper Sun when sharing forks.
+
+COMMUNITY TRUCK AUTHORS (models not by TruckDeck):
+  XBS, Koral, RJL, and other authors listed in MOD_CHANGELOG.md on GitHub.
+
+TELEMETRY & DASHBOARD ECOSYSTEM:
+  Funbit, RenCloud, TruckSim GPS, SCS Software (telemetry SDK), and
+  community skin authors — see CONTRIBUTORS.md on the TruckDeck GitHub repo.
 
 ============================================================
 INSTALLATION
 ============================================================
-1. Copy 'TruckDeck_NAV.scs' to your 'Documents\Euro Truck Simulator 2\mod' folder.
-2. Enable the mod in the in-game Mod Manager.
-3. Use the 'Cabin Accessories' slots to install the GPS/PC units.
+1. Subscribe on Steam Workshop (or copy TruckDeck_NAV.scs to your mod folder).
+2. Enable TruckDeck NAV in Mod Manager (priority above truck mods if needed).
+3. Install GPS/PC via Cabin Accessories on supported trucks.
+4. Run TruckDeck on your PC, open TruckDeck NAV in the browser, start driving.
 
 Enjoy your drive with TruckDeck NAV!

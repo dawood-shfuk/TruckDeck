@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Funbit.Ets.Telemetry.Server.Helpers;
+using Funbit.Ets.Telemetry.Server.Services;
 
 namespace Funbit.Ets.Telemetry.Server
 {
@@ -108,6 +109,31 @@ namespace Funbit.Ets.Telemetry.Server
             {
                 var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TruckDeck-crash.log");
                 File.AppendAllText(path, DateTime.Now + Environment.NewLine + ex + Environment.NewLine + Environment.NewLine);
+            }
+            catch
+            {
+                // ignore
+            }
+
+            try
+            {
+                if (ClientState.Instance.CrashReportingEnabled)
+                {
+                    CrashReportService.ReportAsync(ex);
+                    return;
+                }
+
+                var result = MessageBox.Show(
+                    "TruckDeck encountered an error. Send an anonymous crash report to the developer?",
+                    "TruckDeck",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    ClientState.Instance.CrashReportingEnabled = true;
+                    ClientState.Instance.Save();
+                    CrashReportService.ReportAsync(ex);
+                }
             }
             catch
             {

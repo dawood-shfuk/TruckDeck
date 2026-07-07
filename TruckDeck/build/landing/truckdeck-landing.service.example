@@ -1,0 +1,17 @@
+[Unit]
+Description=TruckDeck Landing Site
+After=network.target
+
+[Service]
+User=veggrowing_g_usr
+Group=veggrowing_g_usr
+WorkingDirectory=/var/www/veggrowing_g_usr/data/www/truckdeck.site/landing
+Environment="TRUCKDECK_VERSION=1.6.5.0"
+Environment="TRUCKDECK_SECRET_KEY=REPLACE_ON_VPS"
+Environment="TRUCKDECK_HTTPS=1"
+Environment="PATH=/var/www/veggrowing_g_usr/data/www/truckdeck.site/landing/.venv/bin"
+ExecStart=/var/www/veggrowing_g_usr/data/www/truckdeck.site/landing/.venv/bin/gunicorn -w 2 -b 127.0.0.1:25855 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

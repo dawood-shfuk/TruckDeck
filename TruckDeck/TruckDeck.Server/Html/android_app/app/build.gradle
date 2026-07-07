@@ -8,8 +8,8 @@ android {
         applicationId "com.dawood.truckdeck"
         minSdk 24
         targetSdk 34
-        versionCode 16205
-        versionName "1.6.3.2"
+        versionCode 16500
+        versionName "1.6.5.0"
     }
 
     buildTypes {

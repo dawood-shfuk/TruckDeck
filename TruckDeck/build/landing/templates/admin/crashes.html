@@ -1,0 +1,31 @@
+{% extends "admin/layout.html" %}
+{% block title %}Crash Reports — Admin{% endblock %}
+{% block content %}
+<section class="admin-dashboard">
+    <header class="admin-dash-header">
+        <div>
+            <p class="callsign">DIAGNOSTICS</p>
+            <h1>Crash Reports</h1>
+        </div>
+        <a href="{{ url_for('admin.dashboard') }}" class="btn secondary">Dashboard</a>
+    </header>
+    <article class="admin-panel admin-panel-wide">
+        <table class="admin-table">
+            <thead><tr><th>ID</th><th>Version</th><th>Exception</th><th>When</th><th></th></tr></thead>
+            <tbody>
+            {% for r in reports %}
+            <tr>
+                <td>{{ r.id }}</td>
+                <td>{{ r.app_version or '—' }}</td>
+                <td>{{ r.exception_type or r.message or '—' }}</td>
+                <td>{{ r.created_at[:19] }}</td>
+                <td><a href="{{ url_for('admin.admin_crash_detail', report_id=r.id) }}">View</a></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5" class="empty-row">No crash reports yet.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </article>
+</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "admin/layout.html" %}
+{% block title %}Reviews — Admin{% endblock %}
+{% block content %}
+<section class="admin-dashboard">
+    <header class="admin-dash-header">
+        <div>
+            <p class="callsign">MODERATION</p>
+            <h1>Reviews</h1>
+        </div>
+        <a href="{{ url_for('admin.dashboard') }}" class="btn secondary">Dashboard</a>
+    </header>
+    <article class="admin-panel admin-panel-wide">
+        <h2>Pending</h2>
+        <table class="admin-table">
+            <thead><tr><th>Stars</th><th>Name</th><th>Comment</th><th>Date</th><th></th></tr></thead>
+            <tbody>
+            {% for r in pending %}
+            <tr>
+                <td>{{ r.stars }}</td>
+                <td>{{ r.display_name }}</td>
+                <td>{{ r.comment or '—' }}</td>
+                <td>{{ r.created_at[:10] }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('admin.approve_review', review_id=r.id) }}" class="admin-inline-form">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        <button type="submit" class="btn primary">Approve</button>
+                    </form>
+                    <form method="post" action="{{ url_for('admin.reject_review', review_id=r.id) }}" class="admin-inline-form">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        <button type="submit" class="btn secondary">Reject</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5" class="empty-row">No pending reviews.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </article>
+</section>
+{% endblock %}

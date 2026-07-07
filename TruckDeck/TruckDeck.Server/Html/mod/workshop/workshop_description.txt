@@ -1,0 +1,99 @@
+[h1]TruckDeck NAV[/h1]
+[b]Transparent in-cab GPS / PC displays for Euro Truck Simulator 2[/b] — mirrors the [b]TruckDeck NAV[/b] dashboard from the [url=https://truckdeck.site]TruckDeck[/url] telemetry server into your cabin.
+
+[hr][/hr]
+
+[h2]What this mod does[/h2]
+[list]
+[*] Adds windshield-corner GPS and driver-plate PC cabin accessories
+[*] Displays the TruckDeck NAV web dashboard inside the game (transparent overlay)
+[*] Supports latest SCS trucks (2024–2026) and many community truck packs
+[*] Works with the free [url=https://truckdeck.site/downloads]TruckDeck Windows server[/url] on your gaming PC
+[/list]
+
+[h2]TruckDeck app (companion software)[/h2]
+TruckDeck is a full telemetry suite for ETS2 and ATS — not just this mod.
+
+[list]
+[*][b]Windows server[/b] — REST API, browser dashboards, SignalR, installer
+[*][b]9+ TruckDeck skins[/b] — OEM Volvo, Scania, Mercedes, MAN, DAF, Renault, Big Rig Cluster
+[*][b]Trucker's Command Deck[/b] — full cab control grid on phone or second monitor
+[*][b]Turn-by-turn NAV[/b] — routing + offline maps (Map Generator desktop app)
+[*][b]Input bridge[/b] — map dashboard buttons to in-game keys (no Python at runtime)
+[*][b]Android APK[/b] — mobile dashboard client
+[*][b]17 legacy Funbit skins[/b] — preserved community dashboards
+[/list]
+
+[b]Live demo[/b] — every dashboard runs on animated mock telemetry in your browser (no game required). Browse all skins on the hub, or click a preview below to open that deck full screen:
+
+[url=https://truckdeck.site/live-demo]truckdeck.site/live-demo[/url]
+
+[url=https://truckdeck.site/demo/skins/TruckDeckDash/mock.html][img]https://truckdeck.site/demo/skins/TruckDeckDash/dashboard.jpg[/img][/url]
+[b]TruckDeckDash[/b] — [url=https://truckdeck.site/demo/skins/TruckDeckDash/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truck_command_deck/mock.html][img]https://truckdeck.site/demo/skins/truck_command_deck/dashboard.jpg[/img][/url]
+[b]Trucker's Command Deck[/b] — [url=https://truckdeck.site/demo/skins/truck_command_deck/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truckdeck_nav/mock.html][img]https://truckdeck.site/demo/skins/truckdeck_nav/dashboard.jpg[/img][/url]
+[b]TruckDeck NAV[/b] — [url=https://truckdeck.site/demo/skins/truckdeck_nav/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truckdeck_volvo/mock.html][img]https://truckdeck.site/demo/skins/truckdeck_volvo/dashboard.jpg[/img][/url]
+[b]TruckDeck Volvo[/b] — [url=https://truckdeck.site/demo/skins/truckdeck_volvo/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truckdeck_scania/mock.html][img]https://truckdeck.site/demo/skins/truckdeck_scania/dashboard.jpg[/img][/url]
+[b]TruckDeck Scania[/b] — [url=https://truckdeck.site/demo/skins/truckdeck_scania/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truckdeck_mercedes/mock.html][img]https://truckdeck.site/demo/skins/truckdeck_mercedes/dashboard.jpg[/img][/url]
+[b]TruckDeck Mercedes[/b] — [url=https://truckdeck.site/demo/skins/truckdeck_mercedes/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truckdeck_man/mock.html][img]https://truckdeck.site/demo/skins/truckdeck_man/dashboard.jpg[/img][/url]
+[b]TruckDeck MAN[/b] — [url=https://truckdeck.site/demo/skins/truckdeck_man/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truckdeck_daf/mock.html][img]https://truckdeck.site/demo/skins/truckdeck_daf/dashboard.jpg[/img][/url]
+[b]TruckDeck DAF[/b] — [url=https://truckdeck.site/demo/skins/truckdeck_daf/mock.html]live preview[/url]
+
+[url=https://truckdeck.site/demo/skins/truckdeck_renault/mock.html][img]https://truckdeck.site/demo/skins/truckdeck_renault/dashboard.jpg[/img][/url]
+[b]TruckDeck Renault[/b] — [url=https://truckdeck.site/demo/skins/truckdeck_renault/mock.html]live preview[/url]
+
+[b]Download:[/b] [url=https://truckdeck.site/downloads]truckdeck.site/downloads[/url]
+[b]Source code:[/b] [url=https://github.com/dawood-shfuk/TruckDeck]github.com/dawood-shfuk/TruckDeck[/url]
+
+[h2]Quick start[/h2]
+[list]
+[*] Install [url=https://truckdeck.site/downloads/TruckDeck-Setup.exe]TruckDeck-Setup.exe[/url] on your gaming PC
+[*] Subscribe to this Workshop mod and enable it in Mod Manager
+[*] Add GPS/PC via [b]Cabin Accessories[/b] on a supported truck
+[*] Start ETS2, launch TruckDeck, open NAV in your browser — the in-cab display mirrors it
+[/list]
+
+[hr][/hr]
+
+[h2]Credits & attribution[/h2]
+
+[h3]TruckDeck (this fork)[/h3]
+[b]TruckDeck[/b] — rebrand, ETS2 1.50+ compatibility, vanilla GPS UI sync, build automation, TruckDeck NAV packaging, installer and website integration, dashboard compatibility with the TruckDeck telemetry server.
+[url=https://truckdeck.site]truckdeck.site[/url]
+
+[h3]Original cabin mod[/h3]
+[b]Paper Sun[/b] — original [b]GPS/PC[/b] mod v1.21: 3D models, materials, and per-truck accessory definitions. This Workshop item is a derivative fork. Please credit Paper Sun when redistributing derivatives.
+
+[h3]Community truck packs[/h3]
+Accessory definitions target third-party trucks. [b]TruckDeck does not author these truck models.[/b] Credit goes to:
+[list]
+[*][b]XBS[/b] — DAF 95ATi, DAF F241, DAF NTT, MAN F2000, Mercedes SK, Sisu M, Volvo F88
+[*][b]Koral[/b] — KamAZ 6460, KamAZ 65221
+[*][b]RJL[/b] — Scania G / R / Streamline / T series ([url=https://steamcommunity.com/workshop/filedetails/?id=2466514780]Workshop[/url])
+[*][b]Community[/b] — Renault Magnum Megamod, Scania PGR-Series, and others listed in [url=https://github.com/dawood-shfuk/TruckDeck/blob/main/docs/MOD_CHANGELOG.md]MOD_CHANGELOG.md[/url]
+[/list]
+
+[h3]Telemetry & dashboard ecosystem[/h3]
+[list]
+[*][b]Funbit[/b] — original ETS2/ATS telemetry server and mobile dashboard framework
+[*][b]RenCloud[/b] — extended scs-sdk-plugin telemetry
+[*][b]TruckSim GPS[/b] — GPS telemetry plugin path
+[*][b]SCS Software[/b] — official telemetry SDK and game assets
+[*]Community skin authors (Klauzzy, Trinity, Argiano, and others) — see [url=https://github.com/dawood-shfuk/TruckDeck/blob/main/CONTRIBUTORS.md]CONTRIBUTORS.md[/url]
+[/list]
+
+[hr][/hr]
+[i]TruckDeck NAV v1.50 · Interior / cabin accessories · mp_mod_optional[/i]

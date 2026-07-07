@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<header class="hero">
+    <p class="callsign">DISPATCH · TRUCKDECK {{ version }}</p>
+    <div class="hero-title">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="TruckDeck" class="hero-logo">
+        <h1>Copy that, driver — your rig is online.</h1>
+    </div>
+    <p class="lede">Professional-grade telemetry dashboards for Euro Truck Simulator 2 and American Truck Simulator. Transform your phone, tablet, or second monitor into a functional truck dashboard.</p>
+    <div class="hero-actions">
+        <a class="btn primary large" href="{{ url_for('downloads_page') }}">Get Started</a>
+        <a class="btn secondary large" href="#features">Learn More</a>
+    </div>
+</header>
+
+<section id="previews" class="previews-section">
+    <div class="section-header">
+        <h2>Dashboard Skins</h2>
+        <p>Choose from a variety of OEM-inspired and custom layouts.</p>
+        <p id="main-preview-name" class="main-preview-name">{{ previews[0].name }}</p>
+    </div>
+    {% if previews %}
+    <div class="preview-featured">
+        <div class="preview-main">
+            <img id="main-preview-img" src="{{ previews[0].url }}" alt="{{ previews[0].name }}">
+        </div>
+        <div class="preview-thumbnails">
+            {% for p in previews %}
+            <div class="thumb {% if loop.first %}active{% endif %}" data-url="{{ p.url }}" data-name="{{ p.name }}">
+                <img src="{{ p.url }}" alt="{{ p.name }}">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<section id="features" class="features-section">
+    <div class="section-header">
+        <h2>Built for the Long Haul</h2>
+        <p>Everything you need to stay informed on the road.</p>
+    </div>
+    <div class="features-grid">
+        <article class="feature-card">
+            <div class="feature-icon">📡</div>
+            <h3>Live Telemetry</h3>
+            <p>Real-time data directly from the game engine. Speed, RPM, fuel levels, engine temperature, and job progress updated instantly.</p>
+        </article>
+        <article class="feature-card">
+            <div class="feature-icon">🚛</div>
+            <h3>OEM Dashboards</h3>
+            <p>Authentic layouts for Volvo, Scania, Mercedes-Benz, DAF, and more. Experience the same dashboard your truck has in-game.</p>
+        </article>
+        <article class="feature-card">
+            <div class="feature-icon">🗺️</div>
+            <h3>TruckDeck NAV</h3>
+            <p>Integrated GPS mirror with PMTiles support. See your route and current position on a dedicated map screen.</p>
+        </article>
+        <article class="feature-card">
+            <div class="feature-icon">🛠️</div>
+            <h3>Map Generator</h3>
+            <p>Create custom offline maps from your owned DLC using the built-in Map Generator in the Windows application.</p>
+        </article>
+        <article class="feature-card">
+            <div class="feature-icon">🔌</div>
+            <h3>Input Bridge</h3>
+            <p>Control your truck directly from your dashboard. Toggle lights, wipers, and more with a simple tap.</p>
+        </article>
+        <article class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Customizable</h3>
+            <p>Support for custom skins and community-made layouts. Make your dashboard truly yours.</p>
+        </article>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2>Ready to hit the road?</h2>
+    <p>Download TruckDeck today and elevate your simulation experience.</p>
+    <a class="btn primary large" href="{{ url_for('downloads_page') }}">Download Now</a>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.querySelectorAll('.thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            const url = thumb.getAttribute('data-url');
+            const name = thumb.getAttribute('data-name');
+            document.getElementById('main-preview-img').src = url;
+            document.getElementById('main-preview-name').innerText = name;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        });
+    });
+</script>
+{% endblock %}

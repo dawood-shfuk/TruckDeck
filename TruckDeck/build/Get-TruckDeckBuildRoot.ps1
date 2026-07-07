@@ -1,4 +1,4 @@
-# Returns the versioned build output folder: TruckDeck_build_{version}
+# Returns the versioned build output folder: FUNBIT TS4 src\TruckDeck_build_{version}
 param(
     [string]$Root = (Split-Path $PSScriptRoot -Parent)
 )

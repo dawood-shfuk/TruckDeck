@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}TruckDeck — Live Demo{% endblock %}
+
+{% block content %}
+<header class="hero compact">
+    <p class="callsign">LIVE PREVIEW · NO GAME REQUIRED</p>
+    <div class="hero-title compact">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="TruckDeck" class="hero-logo">
+        <h1>Dashboard Live Demo</h1>
+    </div>
+    <p class="lede">Every skin below runs against animated mock telemetry — the same previews shipped with TruckDeck. Pick a dashboard and watch gauges, tells, and trip data update in real time.</p>
+    <div class="live-demo-tips">
+        <p><strong>Try it:</strong> On dashboards with a gear readout, <em>tap the gear / RPM gauge</em> to cycle display styles (<span class="mono">1, 2, 3…</span> → <span class="mono">A1, A2…</span> → <span class="mono">1L, 1H…</span>). Centre info screens can be switched with the screen button — and with TruckDeck running, the same screen flip can be triggered from a <em>programmable steering-wheel button</em> via <strong>Input Bridge → Dashboard screen-cycle</strong> (<code>screenCycleJoy</code>).</p>
+    </div>
+</header>
+
+{% if demos %}
+<section class="live-demo-section">
+    <div class="live-demo-layout">
+        <aside class="live-demo-sidebar" aria-label="Dashboard skins">
+            {% for d in demos %}
+            <button type="button"
+                    class="live-demo-item {% if loop.first %}active{% endif %}"
+                    data-url="{{ d.url }}"
+                    data-title="{{ d.title }}"
+                    data-gear-cycle="{% if d.has_gear_cycle %}1{% else %}0{% endif %}"
+                    aria-pressed="{% if loop.first %}true{% else %}false{% endif %}">
+                {% if d.preview %}
+                <img class="live-demo-thumb" src="{{ d.preview }}" alt="" loading="lazy">
+                {% else %}
+                <span class="live-demo-thumb live-demo-thumb-fallback" aria-hidden="true">▶</span>
+                {% endif %}
+                <span class="live-demo-meta">
+                    <span class="live-demo-name">{{ d.title }}</span>
+                    {% if d.author %}<span class="live-demo-author">{{ d.author }}</span>{% endif %}
+                </span>
+            </button>
+            {% endfor %}
+        </aside>
+
+        <div class="live-demo-stage">
+            <div class="live-demo-toolbar">
+                <h2 id="live-demo-title">{{ demos[0].title }}</h2>
+                <a id="live-demo-open" class="btn secondary" href="{{ demos[0].url }}" target="_blank" rel="noopener">Open full screen ↗</a>
+            </div>
+            <div class="live-demo-frame-wrap">
+                <iframe id="live-demo-frame"
+                        title="{{ demos[0].title }} live preview"
+                        src="{{ demos[0].url }}"
+                        loading="lazy"
+                        allow="fullscreen"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="live-demo-empty">
+    <p>Mock preview pages were not found. Check that <code>TRUCKDECK_HTML_ROOT</code> points at the TruckDeck <code>Html</code> folder.</p>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% if demos %}
+<script>
+    (function () {
+        var items = document.querySelectorAll('.live-demo-item');
+        var frame = document.getElementById('live-demo-frame');
+        var title = document.getElementById('live-demo-title');
+        var openLink = document.getElementById('live-demo-open');
+        if (!items.length || !frame) return;
+
+        items.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var url = btn.getAttribute('data-url');
+                var name = btn.getAttribute('data-title');
+                frame.src = url;
+                frame.title = name + ' live preview';
+                title.textContent = name;
+                openLink.href = url;
+                items.forEach(function (b) {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+            });
+        });
+    })();
+</script>
+{% endif %}
+{% endblock %}

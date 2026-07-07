@@ -1,0 +1,25 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Admin Login — TruckDeck{% endblock %}
+
+{% block content %}
+<section class="admin-card">
+    <header class="admin-card-header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="TruckDeck" class="admin-logo">
+        <h1>Dispatch Login</h1>
+        <p class="admin-sub">Authorized personnel only.</p>
+    </header>
+
+    <form method="post" class="admin-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required maxlength="64" autocomplete="username">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required autocomplete="current-password">
+
+        <button type="submit" class="btn primary large admin-submit">Sign in</button>
+    </form>
+</section>
+{% endblock %}

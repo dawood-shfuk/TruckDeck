@@ -1,0 +1,29 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Create Admin — TruckDeck{% endblock %}
+
+{% block content %}
+<section class="admin-card">
+    <header class="admin-card-header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="TruckDeck" class="admin-logo">
+        <h1>One-Time Admin Setup</h1>
+        <p class="admin-sub">This registration page closes after the first account is created. Choose a strong password and store it safely.</p>
+    </header>
+
+    <form method="post" class="admin-form" autocomplete="off">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required minlength="3" maxlength="64" autocomplete="username">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required minlength="{{ min_password }}" autocomplete="new-password">
+        <p class="field-hint">Minimum {{ min_password }} characters.</p>
+
+        <label for="confirm_password">Confirm password</label>
+        <input id="confirm_password" name="confirm_password" type="password" required minlength="{{ min_password }}" autocomplete="new-password">
+
+        <button type="submit" class="btn primary large admin-submit">Create admin account</button>
+    </form>
+</section>
+{% endblock %}

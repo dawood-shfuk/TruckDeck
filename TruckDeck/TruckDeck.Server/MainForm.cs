@@ -56,6 +56,10 @@ namespace Funbit.Ets.Telemetry.Server
 
         NetworkInterfaceInfo _activeInterface;
 
+        bool _reviewPromptScheduled;
+
+        System.Windows.Forms.Timer _updateCheckTimer;
+
         static readonly log4net.ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
 
@@ -306,6 +310,34 @@ namespace Funbit.Ets.Telemetry.Server
 
             Start();
 
+            InstallIdentityService.EnsureIdentity();
+            _ = TruckDeckApiClient.RegisterInstallAsync();
+
+            _updateCheckTimer = new System.Windows.Forms.Timer { Interval = 30000 };
+            _updateCheckTimer.Tick += async (_, __) =>
+            {
+                _updateCheckTimer.Stop();
+                await UpdateCheckService.CheckForUpdateAsync(this);
+            };
+            _updateCheckTimer.Start();
+
+            var rateItem = new ToolStripMenuItem("Rate TruckDeck…");
+            rateItem.Click += (_, __) => ReviewService.OpenReviewPrompt(this);
+            contextMenuStrip.Items.Insert(1, rateItem);
+            contextMenuStrip.Items.Insert(2, new ToolStripSeparator());
+
+            var crashItem = new ToolStripMenuItem("Send anonymous crash reports")
+            {
+                Checked = ClientState.Instance.CrashReportingEnabled,
+                CheckOnClick = true
+            };
+            crashItem.CheckedChanged += (_, __) =>
+            {
+                ClientState.Instance.CrashReportingEnabled = crashItem.Checked;
+                ClientState.Instance.Save();
+            };
+            contextMenuStrip.Items.Insert(3, crashItem);
+
         }
 
 
@@ -408,6 +440,17 @@ namespace Funbit.Ets.Telemetry.Server
 
                     SetSimStatus(@"Simulator offline · start ETS2 or ATS", TruckDeckTheme.Disconnected, false);
 
+                }
+
+                var connected = !UseTestTelemetryData
+                    && Ets2ProcessHelper.IsEts2Running
+                    && ScsTelemetryDataReader.Instance.IsConnected;
+                ReviewService.TickRuntime(serverRunning: true, telemetryConnected: connected);
+
+                if (!_reviewPromptScheduled && ReviewService.CanPrompt())
+                {
+                    _reviewPromptScheduled = true;
+                    _ = ReviewService.TryOpenReviewFlowAsync(this);
                 }
 
             }

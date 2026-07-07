@@ -4,11 +4,7 @@ import { PMTiles } from 'pmtiles';
 const require = createRequire(import.meta.url);const VectorTile = require('@mapbox/vector-tile').VectorTile;
 const Protobuf = require('pbf');
 
-const pmtilesPath = process.argv[2];
-if (!pmtilesPath) {
-    console.error('Usage: node _inspect_poi_sprites.mjs <path-to-ets2.pmtiles>');
-    process.exit(1);
-}
+const pmtilesPath = process.argv[2] || 'file:///L:/FUNBIT TS4 src/TruckDeck/server/Html/ets2.pmtiles';
 const p = new PMTiles(pmtilesPath);
 
 const sprites = new Map();

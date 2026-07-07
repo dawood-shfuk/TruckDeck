@@ -1,0 +1,24 @@
+{% extends "admin/layout.html" %}
+{% block title %}Crash #{{ report.id }} — Admin{% endblock %}
+{% block content %}
+<section class="admin-dashboard">
+    <header class="admin-dash-header">
+        <h1>Crash Report #{{ report.id }}</h1>
+        <a href="{{ url_for('admin.admin_crashes') }}" class="btn secondary">Back</a>
+    </header>
+    <article class="admin-panel">
+        <p><strong>App:</strong> {{ report.app_version }}</p>
+        <p><strong>OS:</strong> {{ report.os_version }}</p>
+        <p><strong>Exception:</strong> {{ report.exception_type }}</p>
+        <p><strong>Message:</strong> {{ report.message }}</p>
+        <p><strong>Install:</strong> {{ report.install_id }}</p>
+        <p><strong>When:</strong> {{ report.created_at }}</p>
+        <h3>Stack trace</h3>
+        <pre class="crash-pre">{{ report.stack_trace }}</pre>
+        {% if report.log_tail %}
+        <h3>Log tail</h3>
+        <pre class="crash-pre">{{ report.log_tail }}</pre>
+        {% endif %}
+    </article>
+</section>
+{% endblock %}
