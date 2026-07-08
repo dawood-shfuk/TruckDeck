@@ -16,11 +16,12 @@ $excludeDirs = @(
     "server", "packages", "obj", "bin", ".vs", ".git", ".cursor",
     "maps\generated", "_vanilla_gps_cache", "_game_extract", "mod\_tools",
     "android_app\_gradle", "android_app\app\build", "android_app\.gradle",
-    "node_modules", "x64", "Release", "Debug", "Win32"
+    "node_modules", "x64", "Release", "Debug", "Win32", "_backup_*"
 )
 $excludeFiles = @(
     "*.pmtiles", "*.log", "TruckDeck.exe", "TruckDeck.exe.pending", "TruckDeck-crash.log",
-    "BUILD.txt", "err.txt", "out.txt", "*.user", "*.suo", "*.cache"
+    "BUILD.txt", "err.txt", "out.txt", "*.user", "*.suo", "*.cache",
+    "admin.json", "truckdeck.db"
 )
 
 function Copy-SourceTree {
@@ -41,7 +42,7 @@ Write-Host "=== TruckDeck GitHub source pack v$version ===" -ForegroundColor Cya
 Write-Host "Destination: $DestRoot"
 
 if (Test-Path $DestRoot) {
-    $preserve = @('.git', '.gitignore', 'README.md', 'CONTRIBUTORS.md', 'SUPPORT.md', 'LICENSE', 'THIRD_PARTY.md')
+    $preserve = @('.git', '.gitignore', 'README.md', 'CONTRIBUTORS.md', 'SUPPORT.md', 'LICENSE', 'THIRD_PARTY.md', 'CHANGELOG.md')
     Get-ChildItem $DestRoot -Force | Where-Object { $preserve -notcontains $_.Name } | Remove-Item -Recurse -Force
 } else {
     New-Item -ItemType Directory -Force -Path $DestRoot | Out-Null

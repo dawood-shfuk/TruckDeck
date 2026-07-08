@@ -72,13 +72,17 @@
         <div class="tdd-gauges">
             <!-- Speed gauge (tap to switch KM/H <-> MPH) -->
             <div class="tdd-gauge gauge-speed" title="Tap to switch KM/H / MPH">
-                <span class="ring-big js-speed">0</span>
-                <span class="ring-unit js-speed-unit">KM/H</span>
-                <span class="ring-sub js-cruise">CRUISE OFF</span>
+                <div class="tdd-speed-limit js-speedLimit-wrap" title="Speed limit" hidden>
+                    <span class="js-speedLimit"></span>
+                </div>
+                <div class="tdd-speed-stack">
+                    <span class="ring-big js-speed">0</span>
+                    <span class="ring-unit js-speed-unit">KM/H</span>
+                    <span class="ring-sub js-cruise">CRUISE OFF</span>
+                </div>
             </div>
 
-            <!-- Centre column between the gauges: speed limit on top, then the
-                 dashboard tell-tale lights below it. -->
+            <!-- Centre column between the gauges: tell-tale lights -->
             <div class="tdd-center">
 
                 <div class="tdd-screen-bar">
@@ -144,6 +148,7 @@
 
                     <div class="screen js-screen screen-dash" data-id="5" data-title="DASH">
                         <div class="info-row"><span>SPEED</span><b class="js-speed">--</b></div>
+                        <div class="info-row"><span>LIMIT</span><b class="js-speedLimit-info">--</b></div>
                         <div class="info-row"><span>GEAR</span><b class="js-gear">--</b></div>
                         <div class="info-row"><span>CRUISE</span><b class="js-cruise">--</b></div>
                     </div>

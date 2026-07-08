@@ -75,7 +75,7 @@
             const res = await fetch(serverUrl('/config.json?t=' + Date.now()), { cache: 'no-store' });
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const json = await res.json();
-            const skins = (json && json.skins) || [];
+            const skins = sortSkinsTdFirst((json && json.skins) || []);
             renderSkins(skins);
             setStatus('Connected \u2022 ' + skins.length + ' dashboards', 'ok');
         } catch (err) {
@@ -83,6 +83,15 @@
             setStatus('Cannot reach ' + ip + ' (is the server running?)', 'bad');
             el.skinList.innerHTML = '<div class="skin-empty">No dashboards. Check the IP and that the Telemetry Server is running.</div>';
         }
+    }
+
+    // TruckDeck skins first, Funbit OG skins after (mirrors the tab order on
+    // the main site's index.html). Stable sort keeps each group's original order.
+    function sortSkinsTdFirst(skins) {
+        return skins.slice().sort(function (a, b) {
+            const rank = function (s) { return s.group === 'Original Funbit skins' ? 1 : 0; };
+            return rank(a) - rank(b);
+        });
     }
 
     function renderSkins(skins) {

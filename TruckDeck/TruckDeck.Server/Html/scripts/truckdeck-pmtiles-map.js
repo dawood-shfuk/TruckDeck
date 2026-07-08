@@ -24,8 +24,8 @@
             for (var i = 0; i < nodes.length; i++) {
                 var existing = nodes[i].getAttribute('src') || '';
                 if (existing.split('?')[0] === base) {
-                resolve();
-                return;
+                    resolve();
+                    return;
                 }
             }
             var s = document.createElement('script');
@@ -1483,6 +1483,67 @@
         return coords;
     }
 
+    /** Caps a polyline to at most maxM metres so long-haul routes still qualify for
+     * the road-snapping refine pass in _scheduleRouteDots (which skips very long
+     * paths for performance). Only the near-term "ahead" window needs real dots;
+     * the far tail is still drawn via the unsnapped preview. */
+    function capAheadDistanceM(coords, maxM) {
+        if (!coords || coords.length < 2) return coords;
+        var total = 0;
+        for (var i = 1; i < coords.length; i++) {
+            var stepM = haversineMeters(coords[i - 1], coords[i]);
+            if (total + stepM > maxM) {
+                var need = maxM - total;
+                var frac = stepM > 0 ? need / stepM : 0;
+                var cut = [
+                    coords[i - 1][0] + (coords[i][0] - coords[i - 1][0]) * frac,
+                    coords[i - 1][1] + (coords[i][1] - coords[i - 1][1]) * frac
+                ];
+                return coords.slice(0, i).concat([cut]);
+            }
+            total += stepM;
+        }
+        return coords;
+    }
+
+    /** Clips a route polyline (already trimmed to start at the truck) down to the
+     * portion that falls within the current map viewport, plus a padding margin so
+     * dots don't pop in/out right at the screen edge during normal panning/driving.
+     * Dots outside the visible screen are wasted work (and, for far-away legs of a
+     * long-haul route, the reason road-snapping got skipped for performance). */
+    function clipAheadToBounds(coords, bounds, padFrac) {
+        if (!coords || coords.length < 2 || !bounds) return coords;
+        var west, south, east, north;
+        if (typeof bounds.getWest === 'function') {
+            west = bounds.getWest(); south = bounds.getSouth();
+            east = bounds.getEast(); north = bounds.getNorth();
+        } else {
+            west = bounds.west; south = bounds.south;
+            east = bounds.east; north = bounds.north;
+        }
+        if (!isFinite(west) || !isFinite(south) || !isFinite(east) || !isFinite(north)) return coords;
+        var pad = padFrac == null ? 0.5 : padFrac;
+        var padLng = (east - west) * pad;
+        var padLat = (north - south) * pad;
+        west -= padLng; east += padLng; south -= padLat; north += padLat;
+        function inside(p) {
+            return p[0] >= west && p[0] <= east && p[1] >= south && p[1] <= north;
+        }
+        // Find the first point on screen (usually the truck itself in follow mode, but
+        // could be further along the route if the user has manually panned ahead), then
+        // keep going until the route leaves the viewport again.
+        var start = -1;
+        for (var i = 0; i < coords.length; i++) {
+            if (inside(coords[i])) { start = i; break; }
+        }
+        if (start < 0) return coords.slice(0, Math.min(2, coords.length));
+        var end = start;
+        while (end + 1 < coords.length && inside(coords[end + 1])) end++;
+        var from = Math.max(0, start - 1);
+        var to = Math.min(coords.length - 1, end + 1);
+        return coords.slice(from, to + 1);
+    }
+
     /** Trims a route polyline to the portion from the truck's projected position onward. */
     function trimRouteAhead(route, truckLngLat, hintIndex) {
         if (!route || route.length < 2) return { ahead: route, index: 0 };
@@ -1700,6 +1761,10 @@
         map.on('moveend', function () {
             if (!self._lastLngLat || !self.map || !self.map.isStyleLoaded()) return;
             self._unfreezeTruckScreenOverlay();
+            // Refresh dots for the newly visible viewport even during a manual pan, so
+            // panning ahead along the route shows dots there too (they only ever cover
+            // the on-screen area, so panning away otherwise leaves that view empty).
+            if (self._routeFull) self._publishRouteDisplay();
             if (Date.now() < (self._manualUntil || 0)) return;
             self._refreshRoadSegments(self._routeFull);
             self._resnapTruckMarker();
@@ -2125,7 +2190,7 @@
                 try {
                     var PM = pmtilesApi();
                     var protocol = new PM.Protocol();
-                global.maplibregl.addProtocol('pmtiles', protocol.tile);
+                    global.maplibregl.addProtocol('pmtiles', protocol.tile);
                     global.TruckDeckPmtilesProtocolAdded = true;
                     console.log('[TruckDeck NAV] PMTiles protocol registered');
                 } catch (e) {
@@ -2182,8 +2247,8 @@
                         };
                         return createMapInstance(self, tileUrl, hdr, game, minimalOpts, 25000);
                     });
-                    });
                 });
+            });
         });
     };
 
@@ -2278,9 +2343,7 @@
             var trimMs = this._lowMemory ? 700 : 300;
             if (now - this._routeTrimAt >= trimMs) {
                 this._routeTrimAt = now;
-                var trimmed = trimRouteAhead(this._routeFull, displayLngLat, this._routeTrimHint);
-                this._routeTrimHint = trimmed.index;
-                var ahead = trimmed.ahead;
+                var ahead = this._visibleAhead(displayLngLat);
                 var zoomBucket = Math.round(this.map.getZoom());
                 var key = routeAheadDisplayKey(ahead, zoomBucket);
                 if (key !== this._routeAheadKey) {
@@ -2451,6 +2514,22 @@
         }
     };
 
+    /** Trims the full route to the truck-forward portion, then clips it down to what's
+     * actually on screen (plus padding) so dots are only ever generated for the visible
+     * map viewport. Falls back to a flat distance cap if bounds aren't available yet. */
+    TruckDeckPmtilesMap.prototype._visibleAhead = function (displayLngLat) {
+        var trimmed = trimRouteAhead(this._routeFull, displayLngLat, this._routeTrimHint);
+        this._routeTrimHint = trimmed.index;
+        var ahead = trimmed.ahead;
+        var bounds = (this.map && typeof this.map.getBounds === 'function') ? this.map.getBounds() : null;
+        if (bounds) {
+            ahead = clipAheadToBounds(ahead, bounds, 0.5);
+        }
+        // Safety net for very zoomed-out views (or if bounds are unavailable): still
+        // cap to a near-term window so long-haul routes qualify for road-snapping.
+        return capAheadDistanceM(ahead, 220000);
+    };
+
     TruckDeckPmtilesMap.prototype._publishRouteDisplay = function () {
         if (this._routeFull && this._lastLngLat) {
             var displayLngLat = resolveTruckDisplayLngLat(
@@ -2462,9 +2541,7 @@
             } else {
                 this._updateTruckScreenOverlay();
             }
-            var trimmed = trimRouteAhead(this._routeFull, displayLngLat, this._routeTrimHint);
-            this._routeTrimHint = trimmed.index;
-            var ahead = trimmed.ahead;
+            var ahead = this._visibleAhead(displayLngLat);
             var zoomBucket = this.map ? Math.round(this.map.getZoom()) : 10;
             this._routeAheadKey = routeAheadDisplayKey(ahead, zoomBucket);
             this._routeDotsZoom = zoomBucket;

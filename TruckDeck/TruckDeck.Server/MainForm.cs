@@ -16,6 +16,8 @@ using System.Reflection;
 
 using System.Text;
 
+using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 using Funbit.Ets.Telemetry.Server.Bridges;
@@ -56,7 +58,9 @@ namespace Funbit.Ets.Telemetry.Server
 
         NetworkInterfaceInfo _activeInterface;
 
-        bool _reviewPromptScheduled;
+        bool _reviewPromptBusy;
+
+        DateTime _reviewPromptRetryUtc = DateTime.MinValue;
 
         System.Windows.Forms.Timer _updateCheckTimer;
 
@@ -311,6 +315,7 @@ namespace Funbit.Ets.Telemetry.Server
             Start();
 
             InstallIdentityService.EnsureIdentity();
+            ClientState.Instance.TelemetryWasConnected = false;
             _ = TruckDeckApiClient.RegisterInstallAsync();
 
             _updateCheckTimer = new System.Windows.Forms.Timer { Interval = 30000 };
@@ -329,7 +334,8 @@ namespace Funbit.Ets.Telemetry.Server
             var crashItem = new ToolStripMenuItem("Send anonymous crash reports")
             {
                 Checked = ClientState.Instance.CrashReportingEnabled,
-                CheckOnClick = true
+                CheckOnClick = true,
+                ToolTipText = "Automatically send reports when TruckDeck crashes (off by default)"
             };
             crashItem.CheckedChanged += (_, __) =>
             {
@@ -337,6 +343,10 @@ namespace Funbit.Ets.Telemetry.Server
                 ClientState.Instance.Save();
             };
             contextMenuStrip.Items.Insert(3, crashItem);
+
+            var bugItem = new ToolStripMenuItem("Report a bug…");
+            bugItem.Click += (_, __) => CrashReportService.PromptUserReport(this);
+            contextMenuStrip.Items.Insert(4, bugItem);
 
         }
 
@@ -447,10 +457,17 @@ namespace Funbit.Ets.Telemetry.Server
                     && ScsTelemetryDataReader.Instance.IsConnected;
                 ReviewService.TickRuntime(serverRunning: true, telemetryConnected: connected);
 
-                if (!_reviewPromptScheduled && ReviewService.CanPrompt())
+                if (!_reviewPromptBusy
+                    && DateTime.UtcNow >= _reviewPromptRetryUtc
+                    && ReviewService.CanPrompt())
                 {
-                    _reviewPromptScheduled = true;
-                    _ = ReviewService.TryOpenReviewFlowAsync(this);
+                    _reviewPromptBusy = true;
+                    _ = ReviewService.TryOpenReviewFlowAsync(this).ContinueWith(t =>
+                    {
+                        _reviewPromptBusy = false;
+                        if (t.IsFaulted || (!t.IsCanceled && t.Result == false))
+                            _reviewPromptRetryUtc = DateTime.UtcNow.AddMinutes(20);
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
                 }
 
             }

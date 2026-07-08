@@ -2,14 +2,14 @@
 ; Run: .\build\build_installer.ps1
 
 #define MyAppName "TruckDeck"
-#define MyAppVersion "1.6.5.0"
+#define MyAppVersion "1.6.5.2"
 #define MyAppPublisher "TruckDeck"
 #define MyAppExeName "TruckDeck.exe"
 #ifndef ReleaseDir
-#define ReleaseDir "..\..\TruckDeck_build_1.6.5.0\release"
+#define ReleaseDir "..\..\TruckDeck_build_1.6.5.2\release"
 #endif
 #ifndef OutputDir
-#define OutputDir "..\..\TruckDeck_build_1.6.5.0"
+#define OutputDir "..\..\TruckDeck_build_1.6.5.2"
 #endif
 
 [Setup]

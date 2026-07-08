@@ -475,10 +475,15 @@ Funbit.Ets.Telemetry.Dashboard.prototype.initialize = function (skinConfig, util
         if (!isFinite(navM) || navM < 50) return true;
         var err = result.matchErrorM;
         if (!isFinite(err)) return true;
+        // Long routes (>1500km) are far more likely to include a ferry leg, which
+        // the game's navigation distance excludes but the road-graph route length
+        // includes. Widen the job-city tolerance for those so a correctly-computed
+        // route to the real destination isn't rejected just because of the ferry gap.
+        var longNav = navM > 1500000;
         var tol = Math.max(1500, navM * 0.12);
         if (method === 'city' || method === 'city-weak') tol = Math.max(3000, navM * 0.22);
-        if (method === 'job-city') tol = Math.max(4000, navM * 0.25);
-        if (method === 'job-city-approx') tol = Math.max(8000, navM * 0.18);
+        if (method === 'job-city') tol = Math.max(4000, navM * (longNav ? 0.35 : 0.25));
+        if (method === 'job-city-approx') tol = Math.max(8000, navM * (longNav ? 0.32 : 0.18));
         if (method === 'heading') tol = Math.max(8000, navM * 0.25);
         if (err > tol) return false;
         if (method === 'graph-fallback' && err > Math.max(800, navM * 0.06)) return false;
@@ -1102,20 +1107,8 @@ Funbit.Ets.Telemetry.Dashboard.prototype.initialize = function (skinConfig, util
                 if (window.TruckDeckRouter && window.TruckDeckRouter.warmup) {
                     window.TruckDeckRouter.warmup();
                 }
-            },
-            onPickDestination: function (lngLat) {
-                if (!lngLat || !isFinite(lngLat[0]) || !isFinite(lngLat[1])) return;
-                saveManualDest(lngLat[0], lngLat[1]);
-                self._routeKey = null;
-                self._routeRetryAt = 0;
-                if (self._lastLngLat && self._mapReady) {
-                    self._computeRoute(game, {
-                        kind: 'lnglat',
-                        key: game + '|manual|' + lngLat[0].toFixed(3) + ',' + lngLat[1].toFixed(3) + '|' + self._navMode,
-                        lngLat: lngLat
-                    }, self._lastLngLat);
-                }
             }
+            // onPickDestination intentionally omitted: Live Map has no manual routing.
         });
         setMapStatus('Loading map…');
         self._pmtilesMap.init().then(function () {
@@ -1384,8 +1377,12 @@ Funbit.Ets.Telemetry.Dashboard.prototype.filter = function (data, utils) {
         }
     }
 
-    var routeTarget = self._resolveRouteTarget ? self._resolveRouteTarget(data, ll, game) : null;
-    var routeKey = routeTarget ? routeTarget.key : '';
+    // Live Map: turn-by-turn routing and the route line are intentionally disabled —
+    // this skin only shows the truck's live position on the map. Forcing the target to
+    // null here reuses the existing "no route" cleanup path below (clears any leftover
+    // route/checkpoint state) and short-circuits the whole GPS/job-city matching pipeline.
+    var routeTarget = null;
+    var routeKey = '';
 
     if (!routeTarget) {
         self._waypointText = '--';

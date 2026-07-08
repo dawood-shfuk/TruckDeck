@@ -70,6 +70,38 @@ namespace Funbit.Ets.Telemetry.Server.Controllers
             return ServeStaticFile("", "index.html");
         }
 
+
+        // Explicit map / routing assets (avoid attribute-route edge cases with large binaries).
+        [HttpGet, HttpHead]
+        [Route("ets2.pmtiles", Name = "GetEts2Pmtiles")]
+        public HttpResponseMessage GetEts2Pmtiles() { return ServeStaticFile("", "ets2.pmtiles"); }
+
+        [HttpGet, HttpHead]
+        [Route("ats.pmtiles", Name = "GetAtsPmtiles")]
+        public HttpResponseMessage GetAtsPmtiles() { return ServeStaticFile("", "ats.pmtiles"); }
+
+        [HttpGet, HttpHead]
+        [Route("ets2-graph.json", Name = "GetEts2Graph")]
+        public HttpResponseMessage GetEts2Graph() { return ServeStaticFile("", "ets2-graph.json"); }
+
+        [HttpGet, HttpHead]
+        [Route("ets2-cities.json", Name = "GetEts2Cities")]
+        public HttpResponseMessage GetEts2Cities() { return ServeStaticFile("", "ets2-cities.json"); }
+
+        [HttpGet, HttpHead]
+        [Route("ats-graph.json", Name = "GetAtsGraph")]
+        public HttpResponseMessage GetAtsGraph() { return ServeStaticFile("", "ats-graph.json"); }
+
+        [HttpGet, HttpHead]
+        [Route("ats-cities.json", Name = "GetAtsCities")]
+        public HttpResponseMessage GetAtsCities() { return ServeStaticFile("", "ats-cities.json"); }
+
+        [HttpGet, HttpHead]
+        [Route("maps/generated/{fileName}", Name = "GetMapsGeneratedFile")]
+        public HttpResponseMessage GetMapsGeneratedFile(string fileName)
+        {
+            return ServeStaticFile("maps/generated", fileName);
+        }
         [HttpGet, HttpHead]
         [Route("{fileName:regex(^(?!.*api))}", Name = "GetRootFile")]
         public HttpResponseMessage GetRootFile(

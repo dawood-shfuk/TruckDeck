@@ -34,12 +34,12 @@ html, body {
     --btn1: #1a212a;            /* control button gradient */
     --btn2: #121820;
     --line: #1d242c;            /* panel borders */
-    --control-btn-pad: 5px;     /* inner padding on grid control buttons */
+    --control-btn-pad: 9px;     /* inner padding on grid control buttons */
     --ink: #e7edf3;
     --ink-strong: #ffffff;
     --btn-ink: #c7d4e0;
-    --ico: #9fb1c4;
-    --lbl: #aebccb;
+    --ico: #ffffff;
+    --lbl: #ffffff;
     --muted: #6f8095;
     --ind-bg: #0d1218;
     --ind-ink: #6c7c8d;
@@ -292,7 +292,7 @@ html, body {
     color: var(--muted);
 }
 .win-rail .win-btn { flex: 1 1 0; }
-.win-rail .win-btn .ico { font-size: clamp(1.1rem, 3.4vh, 1.9rem); }
+.win-rail .win-btn .ico { font-size: 4vh; }
 
 /* control grid */
 .tcd-grid {
@@ -344,9 +344,17 @@ html, body {
     overflow: hidden;
 }
 /* Suspension: 2 columns (UP/DN pairs), RESET spans the full width */
-.btn-row.susp-row,
-.btn-row.lights-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.btn-row.susp-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .susp-row .susp-reset { grid-column: 1 / -1; }
+
+/* Lights: 3 columns x 2 rows, filled column-first so markup order
+   (headlights, high beam, beacons, hazards, park brake) maps to
+   col1 = headlights/high beam, col2 = beacons/hazards, col3 = park brake */
+.btn-row.lights-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: column;
+}
 
 /* Suspension arrow colours: front / rear / trailer */
 .susp-row .susp-front .ico { color: #3aa0ff; }
@@ -356,8 +364,8 @@ html, body {
 .dashboard.tcd[data-mode="day"] .susp-row .susp-rear .ico { color: #b07415; }
 .dashboard.tcd[data-mode="day"] .susp-row .susp-trailer .ico { color: #6a3fb0; }
 
-/* Park brake spans the full width of the LIGHTS block */
-.btn-row .park-full { grid-column: 1 / -1; }
+/* Park brake fills the full height of its column (3rd column, both rows) */
+.btn-row .park-full { grid-row: 1 / -1; }
 
 /* Cameras: 3 compact columns */
 .btn-row.cam-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -376,7 +384,7 @@ html, body {
     grid-row: 1 / span 2;
 }
 .sys-row .nav-tall .ico {
-    font-size: clamp(1.8rem, 7vh, 3.6rem);
+    font-size: 4vh;
 }
 
 /* Radio: 3 + 3 over two rows */
@@ -386,7 +394,7 @@ html, body {
 }
 
 /* Bigger icons/labels in wide system buttons */
-.btn-row.sys-row .ico { font-size: clamp(1.5rem, 6vh, 3.2rem); }
+.btn-row.sys-row .ico { font-size: 4vh; }
 .btn-row.sys-row .lbl { font-size: clamp(.5rem, 1.6vh, .78rem); }
 
 /* Cabin & View: 3 + 3 + 1 (big horn) */
@@ -397,7 +405,7 @@ html, body {
 .btn-row.cabin-rows .horn-main { grid-column: 1 / -1; }
 .btn-row.cabin-rows .horn-main .ico {
     flex: 1 1 100%;
-    font-size: clamp(2rem, 8vh, 4rem);
+    font-size: clamp(2rem, 4vh, 4rem);
 }
 
 /* Braking system: 3×2 (cycle + / − per row) */
@@ -413,7 +421,7 @@ html, body {
 }
 .btn-row.axle-rows .engine-main { grid-column: 1 / -1; }
 .btn-row.axle-rows .engine-main .ico {
-    font-size: clamp(1.6rem, 6.5vh, 3.4rem);
+    font-size: 4vh;
 }
 .btn-row.axle-rows .engine-main .lbl {
     font-size: clamp(.58rem, 1.8vh, .85rem);
@@ -423,7 +431,7 @@ html, body {
 /* Dense rows: smaller buttons so many fit inside a narrow block */
 .btn-row.dense { gap: clamp(3px, .6vh, 6px); }
 .btn-row.dense .control-btn { gap: 1px; padding: var(--control-btn-pad); border-radius: 9px; }
-.btn-row.dense .ico { font-size: clamp(.85rem, 2.8vh, 1.35rem); }
+.btn-row.dense .ico { font-size: 4vh; }
 .btn-row.dense .lbl { font-size: clamp(.42rem, 1.15vh, .55rem); letter-spacing: 0; }
 
 /* ---------- Buttons ---------- */
@@ -433,7 +441,7 @@ html, body {
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    gap: clamp(1px, .3vh, 3px);
+    gap: clamp(2px, .8vh, 6px);
     min-height: 0;
     min-width: 0;
     padding: var(--control-btn-pad);
@@ -455,7 +463,8 @@ html, body {
     min-height: 0;
     min-width: 0;
     width: 100%;
-    font-size: clamp(1rem, 4.5vh, 2.8rem);
+    padding: 2px 0;
+    font-size: 4vh;
     line-height: 1;
     color: var(--ico);
     transition: color .15s ease;
@@ -499,8 +508,15 @@ html, body {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.control-btn.cycle-btn .ico { flex: 1 1 46%; }
+/* Cycle buttons (headlights, wipers, eng brake, retarder) also show an ON/OFF
+   indicator badge, so the icon gets a smaller slice (46% vs the normal 58%) —
+   scale its font-size down to match, or it overflows into the badge below it. */
+.control-btn.cycle-btn .ico { flex: 1 1 46%; font-size: 3.2vh; }
 .control-btn.cycle-btn .lbl { flex: 1 1 28%; }
+
+/* Wipers has no label (icon + ON/OFF indicator only), so its icon gets the freed
+   space back and can run at the full 4vh like non-cycle icon+label buttons. */
+.control-btn.cycle-btn[data-command="wipers"] .ico { font-size: 4vh; }
 
 .control-btn:active { transform: scale(.95); }
 
@@ -855,7 +871,7 @@ html, body {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: clamp(4px, .8vh, 8px);
 }
-.pcm-mouse-btns .pcm-btn .ico { font-size: clamp(.85rem, 2.8vh, 1.3rem); }
+.pcm-mouse-btns .pcm-btn .ico { font-size: 4vh; }
 
 .pcm-keys {
     flex: 0 0 auto;

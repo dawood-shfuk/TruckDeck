@@ -1,7 +1,7 @@
 {
     "config": {
         "name": "truckdeck_nav",
-        "title": "TruckDeck NAV",
+        "title": "Live Map",
         "author": "Dawood",
         "width": -1,
         "height": -1

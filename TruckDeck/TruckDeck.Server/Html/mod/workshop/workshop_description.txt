@@ -3,6 +3,20 @@
 
 [hr][/hr]
 
+[h2]What's new — TruckDeck 1.6.5.0[/h2]
+The companion [b]TruckDeck Windows app[/b] was updated in July 2026. Pair this Workshop mod with [url=https://truckdeck.site/downloads/TruckDeck-Setup.exe]TruckDeck-Setup.exe 1.6.5.0[/url] or newer.
+
+[list]
+[*][b]Update notifications[/b] — TruckDeck checks [url=https://truckdeck.site]truckdeck.site[/url] and prompts you when a newer version is available (Download / Later / Skip)
+[*][b]Verified driver reviews[/b] — rate TruckDeck from the app after real use; approved reviews appear on [url=https://truckdeck.site/reviews]truckdeck.site/reviews[/url]
+[*][b]Opt-in crash reports[/b] — send anonymous diagnostics to help fix bugs (off by default; enable in tray menu or after a crash)
+[*][b]Live demo hub[/b] — try every dashboard in your browser before installing: [url=https://truckdeck.site/live-demo]truckdeck.site/live-demo[/url]
+[/list]
+
+[b]This Workshop item[/b] is the in-cab GPS/PC mod. The features above are in the free Windows server — not inside the .scs file itself.
+
+[hr][/hr]
+
 [h2]What this mod does[/h2]
 [list]
 [*] Adds windshield-corner GPS and driver-plate PC cabin accessories
@@ -15,7 +29,9 @@
 TruckDeck is a full telemetry suite for ETS2 and ATS — not just this mod.
 
 [list]
-[*][b]Windows server[/b] — REST API, browser dashboards, SignalR, installer
+[*][b]Windows server[/b] — REST API, browser dashboards, SignalR, installer ([b]v1.6.5.0+[/b])
+[*][b]Auto-update check[/b] — notifies when a new build is on [url=https://truckdeck.site/downloads]truckdeck.site/downloads[/url]
+[*][b]Community reviews[/b] — verified ratings from real drivers on [url=https://truckdeck.site/reviews]truckdeck.site/reviews[/url]
 [*][b]9+ TruckDeck skins[/b] — OEM Volvo, Scania, Mercedes, MAN, DAF, Renault, Big Rig Cluster
 [*][b]Trucker's Command Deck[/b] — full cab control grid on phone or second monitor
 [*][b]Turn-by-turn NAV[/b] — routing + offline maps (Map Generator desktop app)
@@ -60,10 +76,11 @@ TruckDeck is a full telemetry suite for ETS2 and ATS — not just this mod.
 
 [h2]Quick start[/h2]
 [list]
-[*] Install [url=https://truckdeck.site/downloads/TruckDeck-Setup.exe]TruckDeck-Setup.exe[/url] on your gaming PC
+[*] Install [url=https://truckdeck.site/downloads/TruckDeck-Setup.exe]TruckDeck-Setup.exe[/url] [b](1.6.5.0 or newer)[/b] on your gaming PC
 [*] Subscribe to this Workshop mod and enable it in Mod Manager
 [*] Add GPS/PC via [b]Cabin Accessories[/b] on a supported truck
 [*] Start ETS2, launch TruckDeck, open NAV in your browser — the in-cab display mirrors it
+[*] After some driving time, you can [b]Rate TruckDeck[/b] from the tray menu (optional)
 [/list]
 
 [hr][/hr]
@@ -96,4 +113,4 @@ Accessory definitions target third-party trucks. [b]TruckDeck does not author th
 [/list]
 
 [hr][/hr]
-[i]TruckDeck NAV v1.50 · Interior / cabin accessories · mp_mod_optional[/i]
+[i]TruckDeck NAV mod v1.50 · Companion app 1.6.5.0 · Interior / cabin accessories · mp_mod_optional[/i]

@@ -25,6 +25,10 @@ namespace Funbit.Ets.Telemetry.Server.Services
             {
                 state.TelemetryWasConnected = false;
             }
+            else if (telemetryConnected && state.TelemetryConnectedSessions < 1)
+            {
+                state.TelemetryConnectedSessions = 1;
+            }
 
             state.Save();
         }
@@ -40,9 +44,9 @@ namespace Funbit.Ets.Telemetry.Server.Services
                 && state.TelemetryConnectedSessions >= 1;
         }
 
-        public static async Task TryOpenReviewFlowAsync(Control owner)
+        public static async Task<bool> TryOpenReviewFlowAsync(Control owner)
         {
-            if (!CanPrompt()) return;
+            if (!CanPrompt()) return true;
 
             try
             {
@@ -53,14 +57,23 @@ namespace Funbit.Ets.Telemetry.Server.Services
                     app_version = AssemblyHelper.Version,
                 });
 
-                if (!res.IsSuccessStatusCode) return;
+                if (!res.IsSuccessStatusCode) return false;
 
                 var json = await res.Content.ReadAsStringAsync();
                 var doc = JObject.Parse(json);
-                if (!doc.Value<bool>("eligible")) return;
+                if (!doc.Value<bool>("eligible"))
+                {
+                    var reason = doc.Value<string>("reason");
+                    if (reason == "already_reviewed")
+                    {
+                        ClientState.Instance.HasSubmittedReview = true;
+                        ClientState.Instance.Save();
+                    }
+                    return true;
+                }
 
                 var reviewUrl = doc.Value<string>("review_url");
-                if (string.IsNullOrWhiteSpace(reviewUrl)) return;
+                if (string.IsNullOrWhiteSpace(reviewUrl)) return false;
 
                 owner.BeginInvoke(new Action(() =>
                 {
@@ -81,10 +94,11 @@ namespace Funbit.Ets.Telemetry.Server.Services
                         ClientState.Instance.Save();
                     }
                 }));
+                return true;
             }
             catch
             {
-                // silent
+                return false;
             }
         }
 

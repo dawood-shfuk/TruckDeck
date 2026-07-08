@@ -91,9 +91,10 @@ namespace Funbit.Ets.Telemetry.Server.Controllers
 
             try
             {
-                string absoluteFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                    BaseDirectory, directory, fileName);
-                if (!File.Exists(absoluteFileName))
+                // Path.Combine ignores earlier segments when a later one is rooted;
+                // also avoid empty directory segments. Normalize "/" to OS separators.
+                string absoluteFileName = ResolveHtmlPath(directory, fileName);
+                if (absoluteFileName == null || !File.Exists(absoluteFileName))
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Page not found!");
 
                 var fileLength = new FileInfo(absoluteFileName).Length;
@@ -155,6 +156,34 @@ namespace Funbit.Ets.Telemetry.Server.Controllers
             }
         }
 
+
+        static string ResolveHtmlPath(string directory, string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+                return null;
+            if (fileName.IndexOf("..", StringComparison.Ordinal) >= 0 ||
+                fileName.IndexOf(':') >= 0 ||
+                fileName.IndexOf('\\') >= 0)
+                return null;
+
+            var htmlRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, BaseDirectory));
+            var relative = string.IsNullOrWhiteSpace(directory)
+                ? fileName
+                : (directory.Trim().Trim('/').Replace('/', Path.DirectorySeparatorChar) +
+                   Path.DirectorySeparatorChar + fileName);
+            relative = relative.Replace('/', Path.DirectorySeparatorChar);
+            if (relative.IndexOf("..", StringComparison.Ordinal) >= 0)
+                return null;
+
+            var candidate = Path.GetFullPath(Path.Combine(htmlRoot, relative));
+            var rootPrefix = htmlRoot.EndsWith(Path.DirectorySeparatorChar.ToString())
+                ? htmlRoot
+                : htmlRoot + Path.DirectorySeparatorChar;
+            if (!candidate.StartsWith(rootPrefix, StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(candidate, htmlRoot, StringComparison.OrdinalIgnoreCase))
+                return null;
+            return candidate;
+        }
         RangeHeaderValue ParseRangeHeader()
         {
             if (Request.Headers.Range != null)

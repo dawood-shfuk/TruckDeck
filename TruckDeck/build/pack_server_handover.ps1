@@ -74,6 +74,10 @@ if (Test-Path $icon) { Copy-Item $icon (Join-Path $previews "app-icon.png") -For
 # nginx + handoff docs
 Copy-Item (Join-Path $funbitRoot "nginx.conf") (Join-Path $OutRoot "nginx.conf") -Force -ErrorAction SilentlyContinue
 Copy-Item (Join-Path $buildDir "AGENT_HANDOFF_LANDING.md") (Join-Path $OutRoot "AGENT_HANDOFF.md") -Force
+$handoff165 = Join-Path $buildDir "AGENT_HANDOFF_1.6.5.0_VPS.md"
+if (Test-Path $handoff165) {
+    Copy-Item $handoff165 (Join-Path $OutRoot "AGENT_HANDOFF_1.6.5.0_VPS.md") -Force
+}
 Copy-Item (Join-Path $buildDir "..\README-DEPLOY-HANDOVER.md") (Join-Path $OutRoot "README-DEPLOY.md") -Force -ErrorAction SilentlyContinue
 if (-not (Test-Path (Join-Path $OutRoot "README-DEPLOY.md"))) {
     @"
@@ -100,6 +104,7 @@ Folders:
   release/          Windows runtime (TruckDeck.exe + Html) for end-user zip/installer
   downloads/          Public files for nginx static serving (Setup, APK, NAV mod)
   landing/            Flask scaffold for truckdeck.site :25855
+  AGENT_HANDOFF_1.6.5.0_VPS.md  Reviews + crash reports deploy guide (1.6.5.0)
   landing-assets/     Skin preview JPEGs + app icon for landing page
   TruckDeck/          Source tree (deploy on build server if needed)
   nginx.conf          Production nginx vhost (proxy -> :25855, static try_files)

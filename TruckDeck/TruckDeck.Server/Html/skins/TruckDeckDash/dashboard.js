@@ -481,7 +481,10 @@ Funbit.Ets.Telemetry.Dashboard.prototype.filter = function (data, utils) {
     var speedMax = isMph ? 90 : 140;
     var kmh = Math.abs(num(['truck.speed']) || 0);
     var shownSpeed = Math.round(toUnit(kmh));
-    var limitKmh = num(['navigation.speedLimit']);
+    var limitKmh = num(['navigation.speedLimit', 'navigation.SpeedLimit']);
+    if (!(limitKmh > 0) && data.navigation && data.navigation.speedLimit > 0) {
+        limitKmh = data.navigation.speedLimit;
+    }
     var shownLimit = (limitKmh && limitKmh > 0) ? Math.round(toUnit(limitKmh)) : null;
     var speedRatio = (shownLimit && shownLimit > 0) ? (shownSpeed / shownLimit) : null;
     var speedZone = 'neutral';
@@ -499,6 +502,17 @@ Funbit.Ets.Telemetry.Dashboard.prototype.filter = function (data, utils) {
     setVar('.dashboard.tdd', '--speedcol', speedCol);
     $('.gauge-speed').removeClass('speed-ok speed-warn speed-over speed-neutral')
         .addClass('speed-' + speedZone);
+
+    var $limitWrap = $('.js-speedLimit-wrap');
+    if (shownLimit && shownLimit > 0) {
+        $('.js-speedLimit').text(shownLimit);
+        $('.js-speedLimit-info').text(shownLimit);
+        $limitWrap.removeAttr('hidden').show();
+    } else {
+        $('.js-speedLimit').text('');
+        $('.js-speedLimit-info').text('--');
+        $limitWrap.attr('hidden', 'hidden').hide();
+    }
 
     // ---------- RPM + gear ----------
     var rpm = Math.max(0, num(['truck.engineRpm']) || 0);
@@ -774,13 +788,8 @@ Funbit.Ets.Telemetry.Dashboard.prototype.filter = function (data, utils) {
         }
     }
 
-    var restMs = new Date(self._rv(data, 'game.nextRestStopTime')).getTime() - epoch;
-    if (isFinite(restMs) && restMs > 0) {
-        var rm = Math.round(restMs / 60000);
-        $('.js-rest').text(Math.floor(rm / 60) + 'h ' + pad(rm % 60) + 'm');
-    } else {
-        $('.js-rest').text('--');
-    }
+    $('.js-rest').text(Funbit.Ets.Telemetry.Dashboard.formatRestRemaining(
+        self._rv(data, 'game.nextRestStopTime'), data.game));
 
     // In-game clock
     if (isFinite(gameMs)) {

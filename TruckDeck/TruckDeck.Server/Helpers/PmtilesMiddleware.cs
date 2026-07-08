@@ -94,10 +94,17 @@ namespace Funbit.Ets.Telemetry.Server.Helpers
             var relative = requestPath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar);
             if (string.IsNullOrEmpty(relative))
                 return null;
+            if (relative.IndexOf("..", StringComparison.Ordinal) >= 0)
+                return null;
 
             var htmlRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, HtmlRootName));
             var candidate = Path.GetFullPath(Path.Combine(htmlRoot, relative));
-            if (!candidate.StartsWith(htmlRoot, StringComparison.OrdinalIgnoreCase))
+            // Require trailing separator so Html\ets2.pmtiles is not rejected vs Html root.
+            var rootPrefix = htmlRoot.EndsWith(Path.DirectorySeparatorChar.ToString())
+                ? htmlRoot
+                : htmlRoot + Path.DirectorySeparatorChar;
+            if (!candidate.StartsWith(rootPrefix, StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(candidate, htmlRoot, StringComparison.OrdinalIgnoreCase))
                 return null;
             return candidate;
         }
