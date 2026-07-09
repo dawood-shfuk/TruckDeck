@@ -1,6 +1,7 @@
 using System;
 using System.Configuration;
 using System.Net.Http;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace Funbit.Ets.Telemetry.Server.Services
 {
     public static class TruckDeckApiClient
     {
+        static readonly log4net.ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         static readonly HttpClient Http = new HttpClient { Timeout = TimeSpan.FromSeconds(20) };
 
         public static string ApiBase =>
@@ -29,14 +31,31 @@ namespace Funbit.Ets.Telemetry.Server.Services
             var json = JsonConvert.SerializeObject(body);
             using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
             {
-                var res = await Http.PostAsync(ApiBase.TrimEnd('/') + "/api/v1/reviews/register", content);
-                return res.IsSuccessStatusCode;
+                try
+                {
+                    var res = await Http.PostAsync(ApiBase.TrimEnd('/') + "/api/v1/reviews/register", content)
+                        .ConfigureAwait(false);
+                    if (!res.IsSuccessStatusCode)
+                    {
+                        var respBody = "";
+                        try { respBody = await res.Content.ReadAsStringAsync().ConfigureAwait(false); } catch { /* ignore */ }
+                        Log.Warn($"Install registration rejected: {(int)res.StatusCode} {respBody}");
+                    }
+                    return res.IsSuccessStatusCode;
+                }
+                catch (Exception ex)
+                {
+                    Log.Warn("Install registration failed: " + ex.Message);
+                    return false;
+                }
             }
         }
 
         public static async Task<HttpResponseMessage> PostSignedAsync(string path, object payload)
         {
-            await RegisterInstallAsync();
+            var registered = await RegisterInstallAsync().ConfigureAwait(false);
+            if (!registered)
+                Log.Warn($"Proceeding to {path} despite failed (re)registration — server may reject with 403");
             var json = JsonConvert.SerializeObject(payload);
             var ts = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
             var sig = Sign(InstallIdentityService.InstallKey, ts, json);

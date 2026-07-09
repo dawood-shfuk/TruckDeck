@@ -10,14 +10,9 @@ namespace Funbit.Ets.Telemetry.Server.Services
     {
         public string InstallId { get; set; }
         public string InstallKey { get; set; }
-        public long TotalRuntimeSeconds { get; set; }
-        public int TelemetryConnectedSessions { get; set; }
-        public bool HasSubmittedReview { get; set; }
-        public DateTime? ReviewPromptDismissedUntil { get; set; }
         public string SkippedUpdateVersion { get; set; }
         public DateTime? LastUpdateCheckUtc { get; set; }
         public bool CrashReportingEnabled { get; set; }
-        public bool TelemetryWasConnected { get; set; }
 
         static readonly string StateFile = Path.Combine(Settings.SettingsDirectory, "ClientState.json");
         static readonly Lazy<ClientState> LazyInstance = new Lazy<ClientState>(Load);

@@ -204,9 +204,6 @@
     <Compile Include="MapGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReviewPromptForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="UpdateAvailableForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -373,9 +373,24 @@ def reviews_page():
 
 @app.route("/review")
 def review_form():
-    token = request.args.get("t", "").strip()
-    if not token:
+    from reviews_bp import already_reviewed, mint_review_token, verify_review_link
+
+    install_id = request.args.get("install_id", "").strip()
+    ts = request.args.get("ts", "").strip()
+    sig = request.args.get("sig", "").strip()
+    key_b64 = request.args.get("key", "").strip()
+
+    if not install_id:
         abort(400)
+
+    ok, reason = verify_review_link(install_id, ts, sig, key_b64)
+    if not ok:
+        return render_template("review_error.html", version=APP_VERSION, reason=reason), 403
+
+    if already_reviewed(install_id):
+        return render_template("review_error.html", version=APP_VERSION, reason="already_reviewed")
+
+    token = mint_review_token(install_id)
     return render_template("review.html", version=APP_VERSION, token=token)
 
 

@@ -3,6 +3,21 @@
 All notable changes to the TruckDeck Windows server, dashboards, and PWA are documented here.
 Versions follow the app's `AssemblyInformationalVersion` (see tray "About").
 
+## [1.6.5.3]
+
+### Feedback & reviews rework
+- Replaced the old in-app review dialog and tray "Rate TruckDeck…" prompt with a permanent **FEEDBACK** card on the main window (between **NETWORK** and **CAB LINKS**): "Your feedback is very important", a **★ RATE TRUCKDECK** button, and a link to public reviews.
+- Clicking **Rate TruckDeck** now opens a **signed browser link** to `truckdeck.site/review` using the install id/key — no eligibility round-trip, no usage threshold, no modal. One review per install is still enforced server-side.
+- Removed `ReviewPromptForm.cs`, automatic review popups, runtime/telemetry tracking fields from `ClientState`, and the old `POST /api/v1/reviews/eligibility` client flow.
+
+### Landing site (deploy separately)
+- `GET /review` now verifies `install_id`, `ts`, `sig`, and `key` query params and mints the form token on the page.
+- Removed `POST /api/v1/reviews/eligibility`; added `review_error.html` for expired, invalid, or already-reviewed links.
+- New deploy handoff: `TruckDeck/build/AGENT_HANDOFF_REVIEW_LINK.md`.
+
+### Build
+- Version bumped to **1.6.5.3** (`AssemblyInfo.cs`, installer output).
+
 ## [1.6.5.2]
 
 ### Live Map (formerly "TruckDeck NAV")

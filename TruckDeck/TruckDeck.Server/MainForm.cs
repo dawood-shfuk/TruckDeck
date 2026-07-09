@@ -58,10 +58,6 @@ namespace Funbit.Ets.Telemetry.Server
 
         NetworkInterfaceInfo _activeInterface;
 
-        bool _reviewPromptBusy;
-
-        DateTime _reviewPromptRetryUtc = DateTime.MinValue;
-
         System.Windows.Forms.Timer _updateCheckTimer;
 
         static readonly log4net.ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -315,7 +311,6 @@ namespace Funbit.Ets.Telemetry.Server
             Start();
 
             InstallIdentityService.EnsureIdentity();
-            ClientState.Instance.TelemetryWasConnected = false;
             _ = TruckDeckApiClient.RegisterInstallAsync();
 
             _updateCheckTimer = new System.Windows.Forms.Timer { Interval = 30000 };
@@ -326,11 +321,8 @@ namespace Funbit.Ets.Telemetry.Server
             };
             _updateCheckTimer.Start();
 
-            var rateItem = new ToolStripMenuItem("Rate TruckDeck…");
-            rateItem.Click += (_, __) => ReviewService.OpenReviewPrompt(this);
-            contextMenuStrip.Items.Insert(1, rateItem);
-            contextMenuStrip.Items.Insert(2, new ToolStripSeparator());
-
+            // Feedback/reviews live in the always-visible FEEDBACK card on the main
+            // window now (see feedbackRateButton_Click) — no tray prompt or dialog.
             var crashItem = new ToolStripMenuItem("Send anonymous crash reports")
             {
                 Checked = ClientState.Instance.CrashReportingEnabled,
@@ -342,11 +334,11 @@ namespace Funbit.Ets.Telemetry.Server
                 ClientState.Instance.CrashReportingEnabled = crashItem.Checked;
                 ClientState.Instance.Save();
             };
-            contextMenuStrip.Items.Insert(3, crashItem);
+            contextMenuStrip.Items.Insert(1, crashItem);
 
             var bugItem = new ToolStripMenuItem("Report a bug…");
             bugItem.Click += (_, __) => CrashReportService.PromptUserReport(this);
-            contextMenuStrip.Items.Insert(4, bugItem);
+            contextMenuStrip.Items.Insert(2, bugItem);
 
         }
 
@@ -452,24 +444,6 @@ namespace Funbit.Ets.Telemetry.Server
 
                 }
 
-                var connected = !UseTestTelemetryData
-                    && Ets2ProcessHelper.IsEts2Running
-                    && ScsTelemetryDataReader.Instance.IsConnected;
-                ReviewService.TickRuntime(serverRunning: true, telemetryConnected: connected);
-
-                if (!_reviewPromptBusy
-                    && DateTime.UtcNow >= _reviewPromptRetryUtc
-                    && ReviewService.CanPrompt())
-                {
-                    _reviewPromptBusy = true;
-                    _ = ReviewService.TryOpenReviewFlowAsync(this).ContinueWith(t =>
-                    {
-                        _reviewPromptBusy = false;
-                        if (t.IsFaulted || (!t.IsCanceled && t.Result == false))
-                            _reviewPromptRetryUtc = DateTime.UtcNow.AddMinutes(20);
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
-                }
-
             }
 
             catch (Exception ex)
@@ -559,7 +533,17 @@ namespace Funbit.Ets.Telemetry.Server
             ProcessHelper.OpenUrl("https://www.paypal.com/donate/?hosted_button_id=M5D5XMPXK2W4L");
         }
 
+        async void feedbackRateButton_Click(object sender, EventArgs e)
+        {
+            // Fire-and-forget from the user's perspective: no dialog, no eligibility wait —
+            // just open the signed link. The website handles the form + one-per-install rule.
+            await ReviewService.OpenFeedbackPageAsync();
+        }
 
+        void feedbackReviewsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProcessHelper.OpenUrl(TruckDeckApiClient.ApiBase.TrimEnd('/') + "/reviews");
+        }
 
         void openDashboardButton_Click(object sender, EventArgs e)
         {

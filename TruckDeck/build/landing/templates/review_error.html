@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Rate TruckDeck{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Rate TruckDeck</h1>
+    {% if reason == "already_reviewed" %}
+    <p class="hero-lead">You've already submitted a review for this install — thank you for the feedback! 🚚</p>
+    {% elif reason == "link_expired" %}
+    <p class="hero-lead">This feedback link has expired. Open TruckDeck and click "★ Rate TruckDeck" again for a fresh link.</p>
+    {% elif reason == "install_not_registered" %}
+    <p class="hero-lead">We couldn't verify this install yet. Make sure TruckDeck has an internet connection, then reopen the app and try again.</p>
+    {% else %}
+    <p class="hero-lead">This feedback link isn't valid. Open TruckDeck and click "★ Rate TruckDeck" again for a fresh link.</p>
+    {% endif %}
+</section>
+{% endblock %}

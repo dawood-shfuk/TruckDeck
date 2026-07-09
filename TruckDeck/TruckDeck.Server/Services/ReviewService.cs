@@ -1,114 +1,47 @@
 using System;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Funbit.Ets.Telemetry.Server.Helpers;
-using Newtonsoft.Json.Linq;
 
 namespace Funbit.Ets.Telemetry.Server.Services
 {
+    /// <summary>
+    /// Feedback/review flow — deliberately thin. There is no in-app eligibility check,
+    /// countdown, or dialog: the app just opens a signed link to truckdeck.site, and the
+    /// website (which owns the review form, one-review-per-install enforcement, and
+    /// moderation) handles everything else. See build/AGENT_HANDOFF_REVIEW_LINK.md.
+    /// </summary>
     public static class ReviewService
     {
-        public const int MinRuntimeSeconds = 1800;
-
-        public static void TickRuntime(bool serverRunning, bool telemetryConnected)
+        /// <summary>
+        /// Registers the install (if not already) and opens the signed feedback link in the
+        /// default browser. Safe to call at any time — no usage threshold, no round trip
+        /// required before opening the browser.
+        /// </summary>
+        public static async Task OpenFeedbackPageAsync()
         {
-            var state = ClientState.Instance;
-            if (serverRunning)
-                state.TotalRuntimeSeconds++;
+            try { await TruckDeckApiClient.RegisterInstallAsync().ConfigureAwait(false); }
+            catch { /* best effort — the site can still show a friendly error if unregistered */ }
 
-            if (telemetryConnected && !state.TelemetryWasConnected)
-            {
-                state.TelemetryConnectedSessions++;
-                state.TelemetryWasConnected = true;
-            }
-            else if (!telemetryConnected)
-            {
-                state.TelemetryWasConnected = false;
-            }
-            else if (telemetryConnected && state.TelemetryConnectedSessions < 1)
-            {
-                state.TelemetryConnectedSessions = 1;
-            }
-
-            state.Save();
+            ProcessHelper.OpenUrl(BuildReviewUrl());
         }
 
-        public static bool CanPrompt()
+        /// <summary>
+        /// Builds https://truckdeck.site/review?install_id=..&amp;ts=..&amp;sig=..&amp;key=.. — the
+        /// site verifies the signature against the install's stored key hash (from /register)
+        /// and shows the review form, or a "you've already reviewed" page if one exists for
+        /// this install_id (enforced server-side, one row per install_id). No usage-threshold
+        /// gate and no prior round trip from the app — see build/AGENT_HANDOFF_REVIEW_LINK.md.
+        /// </summary>
+        public static string BuildReviewUrl()
         {
-            var state = ClientState.Instance;
-            if (state.HasSubmittedReview) return false;
-            if (state.ReviewPromptDismissedUntil.HasValue
-                && state.ReviewPromptDismissedUntil.Value > DateTime.UtcNow)
-                return false;
-            return state.TotalRuntimeSeconds >= MinRuntimeSeconds
-                && state.TelemetryConnectedSessions >= 1;
-        }
-
-        public static async Task<bool> TryOpenReviewFlowAsync(Control owner)
-        {
-            if (!CanPrompt()) return true;
-
-            try
-            {
-                var res = await TruckDeckApiClient.PostSignedAsync("/api/v1/reviews/eligibility", new
-                {
-                    total_runtime_seconds = ClientState.Instance.TotalRuntimeSeconds,
-                    telemetry_connected_sessions = ClientState.Instance.TelemetryConnectedSessions,
-                    app_version = AssemblyHelper.Version,
-                });
-
-                if (!res.IsSuccessStatusCode) return false;
-
-                var json = await res.Content.ReadAsStringAsync();
-                var doc = JObject.Parse(json);
-                if (!doc.Value<bool>("eligible"))
-                {
-                    var reason = doc.Value<string>("reason");
-                    if (reason == "already_reviewed")
-                    {
-                        ClientState.Instance.HasSubmittedReview = true;
-                        ClientState.Instance.Save();
-                    }
-                    return true;
-                }
-
-                var reviewUrl = doc.Value<string>("review_url");
-                if (string.IsNullOrWhiteSpace(reviewUrl)) return false;
-
-                owner.BeginInvoke(new Action(() =>
-                {
-                    var result = MessageBox.Show(owner,
-                        "You've been running TruckDeck for a while — would you like to rate it on truckdeck.site?",
-                        "Rate TruckDeck",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information);
-                    if (result == DialogResult.Yes)
-                    {
-                        ProcessHelper.OpenUrl(reviewUrl);
-                        ClientState.Instance.HasSubmittedReview = true;
-                        ClientState.Instance.Save();
-                    }
-                    else
-                    {
-                        ClientState.Instance.ReviewPromptDismissedUntil = DateTime.UtcNow.AddDays(90);
-                        ClientState.Instance.Save();
-                    }
-                }));
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static void OpenReviewPrompt(IWin32Window owner)
-        {
-            using (var form = new ReviewPromptForm())
-            {
-                if (form.ShowDialog(owner) == DialogResult.OK && !string.IsNullOrWhiteSpace(form.ReviewUrl))
-                    ProcessHelper.OpenUrl(form.ReviewUrl);
-            }
+            var installId = InstallIdentityService.InstallId;
+            var installKey = InstallIdentityService.InstallKey;
+            var ts = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+            var sig = TruckDeckApiClient.Sign(installKey, ts, installId);
+            var keyB64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(installKey));
+            var baseUrl = TruckDeckApiClient.ApiBase.TrimEnd('/');
+            return $"{baseUrl}/review?install_id={Uri.EscapeDataString(installId)}&ts={ts}&sig={sig}&key={Uri.EscapeDataString(keyB64)}";
         }
     }
 }

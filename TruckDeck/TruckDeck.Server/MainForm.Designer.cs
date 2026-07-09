@@ -90,6 +90,16 @@ namespace Funbit.Ets.Telemetry.Server
 
             this.networkInterfaceTitleLabel = new System.Windows.Forms.Label();
 
+            this.feedbackCard = new Funbit.Ets.Telemetry.Server.Controls.TruckDeckCard();
+
+            this.feedbackTitleLabel = new System.Windows.Forms.Label();
+
+            this.feedbackLedeLabel = new System.Windows.Forms.Label();
+
+            this.feedbackRateButton = new Funbit.Ets.Telemetry.Server.Controls.TruckDeckActionButton();
+
+            this.feedbackReviewsLink = new System.Windows.Forms.LinkLabel();
+
             this.statusCard = new Funbit.Ets.Telemetry.Server.Controls.TruckDeckCard();
 
             this.statusBeacon = new Funbit.Ets.Telemetry.Server.Controls.TruckDeckStatusBeacon();
@@ -125,6 +135,8 @@ namespace Funbit.Ets.Telemetry.Server
             this.linksCard.SuspendLayout();
 
             this.networkCard.SuspendLayout();
+
+            this.feedbackCard.SuspendLayout();
 
             this.statusCard.SuspendLayout();
 
@@ -298,6 +310,8 @@ namespace Funbit.Ets.Telemetry.Server
 
             this.contentPanel.Controls.Add(this.linksCard);
 
+            this.contentPanel.Controls.Add(this.feedbackCard);
+
             this.contentPanel.Controls.Add(this.networkCard);
 
             this.contentPanel.Controls.Add(this.statusCard);
@@ -342,13 +356,13 @@ namespace Funbit.Ets.Telemetry.Server
 
             this.linksCard.Controls.Add(this.appUrlTitleLabel);
 
-            this.linksCard.Location = new System.Drawing.Point(16, 188);
+            this.linksCard.Location = new System.Drawing.Point(16, 348);
 
             this.linksCard.Name = "linksCard";
 
             this.linksCard.Size = new System.Drawing.Size(428, 200);
 
-            this.linksCard.TabIndex = 2;
+            this.linksCard.TabIndex = 3;
 
             // 
 
@@ -620,6 +634,123 @@ namespace Funbit.Ets.Telemetry.Server
 
             // 
 
+            // feedbackCard
+
+            // 
+
+            this.feedbackCard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+
+            | System.Windows.Forms.AnchorStyles.Right)));
+
+            this.feedbackCard.CardTitle = "FEEDBACK";
+
+            this.feedbackCard.Controls.Add(this.feedbackReviewsLink);
+
+            this.feedbackCard.Controls.Add(this.feedbackRateButton);
+
+            this.feedbackCard.Controls.Add(this.feedbackLedeLabel);
+
+            this.feedbackCard.Controls.Add(this.feedbackTitleLabel);
+
+            this.feedbackCard.Location = new System.Drawing.Point(16, 188);
+
+            this.feedbackCard.Name = "feedbackCard";
+
+            this.feedbackCard.Size = new System.Drawing.Size(428, 150);
+
+            this.feedbackCard.TabIndex = 2;
+
+            // 
+
+            // feedbackTitleLabel
+
+            // 
+
+            this.feedbackTitleLabel.AutoSize = true;
+
+            this.feedbackTitleLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+
+            this.feedbackTitleLabel.Location = new System.Drawing.Point(19, 34);
+
+            this.feedbackTitleLabel.Name = "feedbackTitleLabel";
+
+            this.feedbackTitleLabel.Size = new System.Drawing.Size(280, 17);
+
+            this.feedbackTitleLabel.TabIndex = 0;
+
+            this.feedbackTitleLabel.Text = "💬 Your feedback is very important";
+
+            // 
+
+            // feedbackLedeLabel
+
+            // 
+
+            this.feedbackLedeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+
+            | System.Windows.Forms.AnchorStyles.Right)));
+
+            this.feedbackLedeLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+
+            this.feedbackLedeLabel.Location = new System.Drawing.Point(19, 54);
+
+            this.feedbackLedeLabel.Name = "feedbackLedeLabel";
+
+            this.feedbackLedeLabel.Size = new System.Drawing.Size(393, 30);
+
+            this.feedbackLedeLabel.TabIndex = 1;
+
+            this.feedbackLedeLabel.Text = "A quick rating on truckdeck.site helps other truckers find the app — it takes 30 se" +
+    "conds.";
+
+            // 
+
+            // feedbackRateButton
+
+            // 
+
+            this.feedbackRateButton.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
+
+            this.feedbackRateButton.Location = new System.Drawing.Point(19, 92);
+
+            this.feedbackRateButton.Name = "feedbackRateButton";
+
+            this.feedbackRateButton.Primary = true;
+
+            this.feedbackRateButton.Size = new System.Drawing.Size(180, 32);
+
+            this.feedbackRateButton.TabIndex = 2;
+
+            this.feedbackRateButton.Text = "★ RATE TRUCKDECK";
+
+            this.feedbackRateButton.Click += new System.EventHandler(this.feedbackRateButton_Click);
+
+            // 
+
+            // feedbackReviewsLink
+
+            // 
+
+            this.feedbackReviewsLink.AutoSize = true;
+
+            this.feedbackReviewsLink.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+
+            this.feedbackReviewsLink.Location = new System.Drawing.Point(19, 132);
+
+            this.feedbackReviewsLink.Name = "feedbackReviewsLink";
+
+            this.feedbackReviewsLink.Size = new System.Drawing.Size(151, 13);
+
+            this.feedbackReviewsLink.TabIndex = 3;
+
+            this.feedbackReviewsLink.TabStop = true;
+
+            this.feedbackReviewsLink.Text = "See what other truckers say";
+
+            this.feedbackReviewsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.feedbackReviewsLink_LinkClicked);
+
+            // 
+
             // statusCard
 
             // 
@@ -702,13 +833,13 @@ namespace Funbit.Ets.Telemetry.Server
 
             this.donationCard.Controls.Add(this.supportTitleLabel);
 
-            this.donationCard.Location = new System.Drawing.Point(16, 396);
+            this.donationCard.Location = new System.Drawing.Point(16, 558);
 
             this.donationCard.Name = "donationCard";
 
             this.donationCard.Size = new System.Drawing.Size(428, 168);
 
-            this.donationCard.TabIndex = 3;
+            this.donationCard.TabIndex = 4;
 
             // 
 
@@ -988,6 +1119,10 @@ namespace Funbit.Ets.Telemetry.Server
 
             this.networkCard.PerformLayout();
 
+            this.feedbackCard.ResumeLayout(false);
+
+            this.feedbackCard.PerformLayout();
+
             this.statusCard.ResumeLayout(false);
 
             this.statusCard.PerformLayout();
@@ -1047,6 +1182,16 @@ namespace Funbit.Ets.Telemetry.Server
         private Controls.TruckDeckCard statusCard;
 
         private Controls.TruckDeckCard networkCard;
+
+        private Controls.TruckDeckCard feedbackCard;
+
+        private System.Windows.Forms.Label feedbackTitleLabel;
+
+        private System.Windows.Forms.Label feedbackLedeLabel;
+
+        private Controls.TruckDeckActionButton feedbackRateButton;
+
+        private System.Windows.Forms.LinkLabel feedbackReviewsLink;
 
         private Controls.TruckDeckCard linksCard;
 

@@ -1,6 +1,9 @@
-"""Review registration, eligibility, submit, and public list."""
+"""Review registration, review-link verification, submit, and public list."""
 from __future__ import annotations
 
+import base64
+import hashlib
+import hmac
 import re
 import secrets
 import time
@@ -9,14 +12,16 @@ from datetime import datetime, timezone
 from flask import Blueprint, abort, jsonify, render_template, request
 
 from db import get_db, init_db
-from signing import hash_install_key, verify_signed_request
+from signing import hash_install_key
 
 reviews_bp = Blueprint("reviews_api", __name__, url_prefix="/api/v1/reviews")
 
-MIN_RUNTIME_SEC = 1800
-MIN_TELEMETRY_SESSIONS = 1
 TOKEN_TTL_SEC = 900
 MAX_COMMENT_LEN = 500
+# Feedback links (?install_id=&ts=&sig=&key=) are self-contained proof of a
+# registered install — no usage-threshold gate. Still time-boxed so an old
+# screenshot/shared link can't be replayed indefinitely.
+MAX_LINK_SKEW_SEC = 1800
 
 
 def _utc_now() -> str:
@@ -99,38 +104,55 @@ def register_install():
     return jsonify({"ok": True})
 
 
-@reviews_bp.route("/eligibility", methods=["POST"])
-def check_eligibility():
-    install_id = request.headers.get("X-Install-Id", "").strip()
+def verify_review_link(install_id: str, ts: str, sig: str, key_b64: str):
+    """Verifies a self-contained feedback-card link (see AGENT_HANDOFF_REVIEW_LINK.md).
+
+    Unlike verify_signed_request (used for app->server POSTs with an
+    X-Install-Key header), this reads the equivalent proof from query params
+    because a browser GET can't carry custom headers.
+    """
     row = _get_install(install_id)
     if not row:
-        abort(403, "install not registered")
+        return False, "install_not_registered"
 
-    ok, err = verify_signed_request(request, row["key_hash"])
-    if not ok:
-        abort(403, err)
+    if not (ts and sig and key_b64):
+        return False, "missing_link_params"
 
-    data = request.get_json(silent=True) or {}
-    runtime = int(data.get("total_runtime_seconds", 0))
-    sessions = int(data.get("telemetry_connected_sessions", 0))
+    try:
+        install_key = base64.b64decode(key_b64).decode("utf-8")
+    except Exception:
+        return False, "invalid_key"
 
+    if hash_install_key(install_key) != row["key_hash"]:
+        return False, "key_mismatch"
+
+    try:
+        ts_val = int(ts)
+    except ValueError:
+        return False, "invalid_timestamp"
+
+    if abs(time.time() - ts_val) > MAX_LINK_SKEW_SEC:
+        return False, "link_expired"
+
+    expected = hmac.new(
+        install_key.encode("utf-8"), (ts + "\n" + install_id).encode("utf-8"), hashlib.sha256
+    ).hexdigest()
+    if not hmac.compare_digest(expected, sig.strip().lower()):
+        return False, "bad_signature"
+
+    return True, ""
+
+
+def already_reviewed(install_id: str) -> bool:
     with get_db() as conn:
-        reviewed = conn.execute(
+        row = conn.execute(
             "SELECT id FROM reviews WHERE install_id = ?",
             (install_id,),
         ).fetchone()
+    return row is not None
 
-    if reviewed:
-        return jsonify({"eligible": False, "reason": "already_reviewed"})
 
-    if runtime < MIN_RUNTIME_SEC or sessions < MIN_TELEMETRY_SESSIONS:
-        return jsonify({
-            "eligible": False,
-            "reason": "usage_threshold",
-            "required_runtime_seconds": MIN_RUNTIME_SEC,
-            "required_telemetry_sessions": MIN_TELEMETRY_SESSIONS,
-        })
-
+def mint_review_token(install_id: str) -> str:
     token = secrets.token_urlsafe(32)
     expires = time.time() + TOKEN_TTL_SEC
     with get_db() as conn:
@@ -138,12 +160,7 @@ def check_eligibility():
             "INSERT INTO review_tokens (token, install_id, expires_at, used) VALUES (?, ?, ?, 0)",
             (token, install_id, expires),
         )
-    return jsonify({
-        "eligible": True,
-        "token": token,
-        "expires_at": datetime.fromtimestamp(expires, tz=timezone.utc).isoformat(),
-        "review_url": f"https://truckdeck.site/review?t={token}",
-    })
+    return token
 
 
 @reviews_bp.route("/submit", methods=["POST"])
