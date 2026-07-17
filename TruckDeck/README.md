@@ -1,8 +1,18 @@
-# TruckDeck %TRUCKDECK_VERSION%
+# TruckDeck 1.6.6.0
 
 Unified ETS2/ATS telemetry server and TruckDeck dashboard suite. Combines the TelemetryServer4 foundation, RenCloud `scs-sdk-plugin` telemetry, native C# input bridge, and all TruckDeck Html skins from the live install.
 
 **No Python sidecars at runtime** — telemetry extras and input commands are handled inside `TruckDeck.exe`.
+
+## Latest release — 1.6.6.0
+
+TruckDeck 1.6.6.0 is the all-in-one trucking release with responsive modern dashboards, TruckDeck NAV improvements, native input controls, and **TruckDeck Multimon 1.2.0.6 included**.
+
+- **Download TruckDeck:** [truckdeck.site/downloads](https://truckdeck.site/downloads)
+- **Release details:** [truckdeck.site](https://truckdeck.site)
+- **Multimon and PiP guide:** [truckdeck.site/multimon](https://truckdeck.site/multimon)
+
+The website is the official source for the current Windows installer, standalone Multimon package, Android client, and TruckDeck NAV download.
 
 ## Architecture
 
